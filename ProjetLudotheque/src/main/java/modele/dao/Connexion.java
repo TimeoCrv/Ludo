@@ -6,6 +6,7 @@ public class Connexion {
 		System.out.println("connecté - presque-");
 		System.out.println("Ca marche");
 		System.out.println("Quand ca veux bien!");
+		System.out.println("IntelliJ serait plus simple");
 	}
 
 }
