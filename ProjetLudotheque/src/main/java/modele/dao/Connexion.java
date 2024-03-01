@@ -2,8 +2,10 @@ package modele.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +20,10 @@ public class Connexion {
 	private static final String BASE_DE_DONNEES = "ludo";
 	private static final String ID = "ercan";
 	private static final String MDP = "toto";
+	
+	private static final int COLONNE_TEXTE = 10;
+	private static final int COLONNE_ENTIER = 6;
+	private static final int COLONNE_DATE = 11;
 
 	/**
 	 * Patron de conception Singleton
@@ -94,6 +100,120 @@ public class Connexion {
 			System.out.println("echec de la fermeture");
 		}
 	}
+	
+	
+	public static void afficheSelectEtoile(String table, String clauseWhere){
+		try{
+			String requete = "SELECT * FROM "+table;
+			if (clauseWhere!=null) {
+				requete += " WHERE "+clauseWhere;
+			}
+			ResultSet res = Connexion.executeQuery(requete) ;
+			ResultSetMetaData rsmd = res.getMetaData();
+			int taille = rsmd.getColumnCount();
+			boolean hasNext =res.next(); 
+			if (!hasNext) {System.out.println("table vide");}
+			else {
+				// Affichage du nom des colonnes
+				System.out.print("|");
+				for (int j = 1; j <= taille; j++) {
+					String colonneNorme = extraireNomColonneNorme(rsmd, j);
+					System.out.print(colonneNorme+"|");							
+				} 
+				System.out.println();
+
+				// Affichage des donn�es
+				while(hasNext){
+					System.out.print("|");
+					for (int j = 1; j <= taille; j++) {
+						String valeurNormee = extraireValeurNormeeTypee(res, rsmd, j);
+						System.out.print(valeurNormee+"|");							
+					} 
+					System.out.println();
+					hasNext = res.next();
+				}
+			}
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+	}
+	
+	private static String extraireValeurNormeeTypee(ResultSet res, ResultSetMetaData rsmd, int j)
+			throws SQLException {
+		String valeurNormee = "";
+		switch (rsmd.getColumnType(j)) {
+		case Types.VARCHAR:
+		case Types.NVARCHAR:
+			valeurNormee = res.getString(j);
+			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_TEXTE, Alignement.DROITE);
+			break;
+		case Types.DATE:
+			valeurNormee = res.getDate(j).toString();
+			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_DATE, Alignement.DROITE);
+			break;
+		case Types.TIMESTAMP:
+			valeurNormee = res.getTimestamp(j).toString();
+			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_DATE, Alignement.DROITE);
+			break;
+		case Types.INTEGER:
+			valeurNormee = res.getInt(j)+"";
+			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_ENTIER, Alignement.DROITE);
+			break;
+		case Types.DECIMAL:
+			valeurNormee = res.getFloat(j)+"";
+			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_ENTIER, Alignement.DROITE);
+			break;	
+		default:
+			break;
+		}
+		return valeurNormee;
+	}
+
+	private static String extraireNomColonneNorme(ResultSetMetaData rsmd, int j)
+			throws SQLException {
+		String nomColonneNorme = rsmd.getColumnName(j);
+		switch (rsmd.getColumnType(j)) {
+		case Types.VARCHAR:
+			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_TEXTE, Alignement.DROITE);
+			break;
+		case Types.DATE:
+			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_DATE, Alignement.DROITE);
+			break;
+		case Types.TIMESTAMP:
+			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_DATE, Alignement.DROITE);
+			break;
+		case Types.INTEGER:
+			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_ENTIER, Alignement.DROITE);
+			break;
+		default:
+			break;
+		}
+		return nomColonneNorme;
+	}
+
+	
+	/** Le seul alignement pris en compte est � droite.
+	 * 
+	 * @param valeurNormee la chaine de texte � normaliser
+	 * @param colonneTexte  la largeur maximale de la colonne
+	 * @param aligne  gauche / droite / centr�
+	 * @return la chaine de caract�re normalis� pour affichage de tableau.
+	 */
+	private static String norme(String valeurNormee, int colonneTexte, Alignement aligne) {
+		String rep = "";
+		int tailleEffective =valeurNormee.length(); 
+		if (tailleEffective>=colonneTexte) {
+			rep = valeurNormee.substring(0, colonneTexte);
+		}
+		else {
+			rep = valeurNormee;
+			for (int i = tailleEffective; i < colonneTexte; i++) {
+				rep += " ";
+			}
+		}
+		return rep;
+	}
 
 	/**
 	 * Requ�te qui permet de r�cup�rer le plus grand id de la table, a priori celui qui vient d'�tre affect�
@@ -136,12 +256,10 @@ public class Connexion {
 
 	
 	public static void main(String[] args) {
-		System.out.println("connecté - presque-");
-		System.out.println("Ca marche");
-		System.out.println("Quand ca veux bien!");
-		System.out.println("IntelliJ serait plus simple");
-		System.out.println("La on est est pas mal non?");
 		Connexion.getInstance();
+		
+		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
+		
 		Connexion.fermer();
 	}
 }
