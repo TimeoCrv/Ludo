@@ -260,6 +260,8 @@ public class Connexion {
 		
 		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
 		
+		AdherentDAO.getInstance().read(1);
+		
 		Connexion.fermer();
 	}
 }

@@ -1,10 +1,11 @@
 package modele.dao;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 
 import ludo.Adherent;
 
@@ -105,8 +106,8 @@ public class AdherentDAO extends DAO<Adherent> {
 		String ville =adherent.getVille();
 		String tel =adherent.getTel();
 		String mail =adherent.getMail();
-		Date dateAdhesion =adherent.getDateAdhesion();
-		Date dateFinAdhesion =adherent.getDateFinAdhesion();
+		Timestamp dateAdhesion =adherent.getDateAdhesion();
+		Timestamp dateFinAdhesion =adherent.getDateFinAdhesion();
 		float caution =adherent.getCaution();
 		int id = adherent.getNumero();
 
@@ -156,8 +157,8 @@ public class AdherentDAO extends DAO<Adherent> {
 				String ville = rs.getString(VILLE);
 				String tel = rs.getString(TEL);
 				String mail = rs.getString(MAIL);
-				Date dateAdhesion = (Date) rs.getObject(DATE_ADHESION);
-				Date dateFinAdhesion = (Date) rs.getObject(DATE_FIN_ADHESION);
+				Timestamp dateAdhesion = rs.getTimestamp(DATE_ADHESION);
+				Timestamp dateFinAdhesion = rs.getTimestamp(DATE_FIN_ADHESION);
 				float caution = rs.getFloat(CAUTION);
 				adherent = new Adherent (id, nom, prenom, adresse, cp, ville, tel, mail, dateAdhesion,
 										dateFinAdhesion, caution);

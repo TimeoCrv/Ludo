@@ -1,6 +1,7 @@
 package ludo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Adherent {
 
@@ -12,13 +13,13 @@ public class Adherent {
 		private String ville;
 		private String tel;
 		private String mail;
-		private Date dateAdhesion;
-		private Date dateFinAdhesion;
+		private Timestamp dateAdhesion;
+		private Timestamp dateFinAdhesion;
 		private float caution;
 		
 		public Adherent(int numero, String nom, String prenom, String adresse,
-						int cp,String ville,String tel,String mail,Date dateAdhesion,
-						Date dateFinAdhesion,float caution) {
+						int cp,String ville,String tel,String mail,Timestamp dateAdhesion,
+						Timestamp dateFinAdhesion,float caution) {
 			super();
 			this.numero = numero;
 			this.nom = nom;
@@ -131,25 +132,25 @@ public class Adherent {
 
 
 
-		public Date getDateAdhesion() {
+		public Timestamp getDateAdhesion() {
 			return dateAdhesion;
 		}
 
 
 
-		public void setDateAdhesion(Date dateAdhesion) {
+		public void setDateAdhesion(Timestamp dateAdhesion) {
 			this.dateAdhesion = dateAdhesion;
 		}
 
 
 
-		public Date getDateFinAdhesion() {
+		public Timestamp getDateFinAdhesion() {
 			return dateFinAdhesion;
 		}
 
 
 
-		public void setDateFinAdhesion(Date dateFinAdhesion) {
+		public void setDateFinAdhesion(Timestamp dateFinAdhesion) {
 			this.dateFinAdhesion = dateFinAdhesion;
 		}
 
