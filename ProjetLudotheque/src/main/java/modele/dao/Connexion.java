@@ -5,11 +5,15 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+
+import ludo.Adherent;
 
 
 public class Connexion {
@@ -260,9 +264,40 @@ public class Connexion {
 		
 		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
 		
-		AdherentDAO.getInstance().read(1);
+		Adherent adherent1 = AdherentDAO.getInstance().read(1);
+		Adherent adherent2 = AdherentDAO.getInstance().read(4);
+		
+		Adherent adherentCree = new Adherent("Hanma", "Baki", "Dojo", 30, "Vannes",
+				"Ne donne pas", "A oublié", 40);
+		
+		AdherentDAO.getInstance().create(adherentCree);
+
+		AdherentDAO.getInstance().afficheAdherent(adherentCree.getNumero());
+		
+		Adherent adherent3 = AdherentDAO.getInstance().read(adherentCree.getNumero());
+		
+		compareDate(adherent1);
+		compareDate(adherent2);
+		compareDate(adherent3);
+        
 		
 		Connexion.fermer();
+	}
+	
+	public static void compareDate(Adherent adherent) {
+		Date currentDate = new Date();
+        Timestamp todayTimestamp = new Timestamp(currentDate.getTime());
+        
+		if (adherent.getDateFinAdhesion().before(todayTimestamp)) {
+            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+            + " n'est plus valide.");
+        } else if (adherent.getDateFinAdhesion().after(todayTimestamp)) {
+            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+            + " est encore valide.");
+        } else {
+            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+            + " termine aujourd'hui.");
+        }
 	}
 }
 
