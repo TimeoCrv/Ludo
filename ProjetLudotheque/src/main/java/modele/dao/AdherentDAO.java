@@ -5,7 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 import ludo.Adherent;
 
@@ -57,8 +58,16 @@ public class AdherentDAO extends DAO<Adherent> {
 			pst.setString(5, adherent.getVille());
 			pst.setString(6, adherent.getTel());
 			pst.setString(7, adherent.getMail());
-			pst.setObject(8, adherent.getDateAdhesion());
-			pst.setObject(9, adherent.getDateFinAdhesion());
+			
+			Date startDate = new Date();			
+			pst.setTimestamp(8, new Timestamp(startDate.getTime()));
+			
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(startDate);
+            cal.add(Calendar.YEAR, 1);
+            Date endDate = cal.getTime();
+			pst.setTimestamp(9, new Timestamp(endDate.getTime()));
+			
 			pst.setFloat(10, adherent.getCaution());
 			// on ex�cute la mise � jour
 			pst.executeUpdate();
@@ -124,8 +133,8 @@ public class AdherentDAO extends DAO<Adherent> {
 			pst.setString(5,ville) ;
 			pst.setString(6,tel) ;
 			pst.setString(7,mail) ;
-			pst.setObject(8,dateAdhesion) ;
-			pst.setObject(9,dateFinAdhesion) ;
+			pst.setTimestamp(8,dateAdhesion) ;
+			pst.setTimestamp(9,dateFinAdhesion) ;
 			pst.setFloat(10, caution) ;
 			pst.executeUpdate() ;
 			donnees.put(id, adherent);
@@ -139,34 +148,30 @@ public class AdherentDAO extends DAO<Adherent> {
 	@Override
 	public Adherent read(int id) {
 		Adherent adherent = null;
-		if (donnees.containsKey(id)) {
-			System.out.println("récupéré");
-			adherent=donnees.get(id);
-		}
-		else {
-			System.out.println("recherché dans la BD");
-			try {
+		
+		System.out.println("recherché dans la BD");
+		try {
 
-				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+id;
-				ResultSet rs = Connexion.executeQuery(requete);
-				rs.next();
-				String nom = rs.getString(NOM_ADHERENT);
-				String prenom = rs.getString(PRENOM_ADHERENT);
-				String adresse = rs.getString(ADRESSE);
-				int cp = rs.getInt(CP);
-				String ville = rs.getString(VILLE);
-				String tel = rs.getString(TEL);
-				String mail = rs.getString(MAIL);
-				Timestamp dateAdhesion = rs.getTimestamp(DATE_ADHESION);
-				Timestamp dateFinAdhesion = rs.getTimestamp(DATE_FIN_ADHESION);
-				float caution = rs.getFloat(CAUTION);
-				adherent = new Adherent (id, nom, prenom, adresse, cp, ville, tel, mail, dateAdhesion,
-										dateFinAdhesion, caution);
-				donnees.put(id, adherent);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+id;
+			ResultSet rs = Connexion.executeQuery(requete);
+			rs.next();
+			String nom = rs.getString(NOM_ADHERENT);
+			String prenom = rs.getString(PRENOM_ADHERENT);
+			String adresse = rs.getString(ADRESSE);
+			int cp = rs.getInt(CP);
+			String ville = rs.getString(VILLE);
+			String tel = rs.getString(TEL);
+			String mail = rs.getString(MAIL);
+			Timestamp dateAdhesion = rs.getTimestamp(DATE_ADHESION);
+			Timestamp dateFinAdhesion = rs.getTimestamp(DATE_FIN_ADHESION);
+			float caution = rs.getFloat(CAUTION);
+			adherent = new Adherent (id, nom, prenom, adresse, cp, ville, tel, mail, dateAdhesion,
+									dateFinAdhesion, caution);
+			donnees.put(id, adherent);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		
 		return adherent;
 	}
 
@@ -175,12 +180,13 @@ public class AdherentDAO extends DAO<Adherent> {
 		String clauseWhere = null;
 		Connexion.afficheSelectEtoile("Adherent", clauseWhere);
 
-//		System.out.println("--- Avion contraint par Vol --- ");
-//		clauseWhere = CLE_PRIMAIRE+" IN (SELECT "+CLE_PRIMAIRE+" From Vol)";
-//		Connexion.afficheSelectEtoile("Avion", clauseWhere);
-
 	}
 
+	public void afficheAdherent(int id) {
+		System.out.println("--- Liste adhérent ---");
+		String clauseWhere = CLE_PRIMAIRE + " = " + id;
+		Connexion.afficheSelectEtoile("Adherent", clauseWhere);
 
+	}
 
 }

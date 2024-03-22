@@ -1,7 +1,6 @@
 package ludo;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 public class Adherent {
 
@@ -16,6 +15,19 @@ public class Adherent {
 		private Timestamp dateAdhesion;
 		private Timestamp dateFinAdhesion;
 		private float caution;
+		
+		public Adherent(String nom, String prenom, String adresse,
+				int cp,String ville,String tel,String mail, float caution) {
+			super();
+			this.nom = nom;
+			this.prenom = prenom;
+			this.adresse = adresse;
+			this.cp = cp;
+			this.ville = ville;
+			this.tel = tel;
+			this.mail = mail;
+			this.caution = caution;
+}
 		
 		public Adherent(int numero, String nom, String prenom, String adresse,
 						int cp,String ville,String tel,String mail,Timestamp dateAdhesion,
