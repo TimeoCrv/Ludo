@@ -21,7 +21,7 @@ public class Connexion {
 	private static Connection connect = null;
 
 	private static final String SQL_SERVER = "localhost\\SQLEXPRESS01";
-	private static final String BASE_DE_DONNEES = "ludo";
+	private static final String BASE_DE_DONNEES = "Ludo";
 	private static final String ID = "ercan";
 	private static final String MDP = "toto";
 	
@@ -262,22 +262,16 @@ public class Connexion {
 	public static void main(String[] args) {
 		Connexion.getInstance();
 		
-		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
-		
-		Adherent adherent1 = AdherentDAO.getInstance().read(1);
-		Adherent adherent2 = AdherentDAO.getInstance().read(4);
-		
-		Adherent adherentCree = new Adherent("Hanma", "Baki", "Dojo", 30, "Vannes",
-				"Ne donne pas", "A oublié", 40);
+		Adherent adherentCree = new Adherent("Hanma", "Baki", "Vannes", "0673952857", "h.baki@baki.com",
+											"noCNI", 40);
 		
 		AdherentDAO.getInstance().create(adherentCree);
 
 		AdherentDAO.getInstance().afficheAdherent(adherentCree.getNumero());
+		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
 		
 		Adherent adherent3 = AdherentDAO.getInstance().read(adherentCree.getNumero());
 		
-		compareDate(adherent1);
-		compareDate(adherent2);
 		compareDate(adherent3);
         
 		

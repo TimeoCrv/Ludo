@@ -12,19 +12,20 @@ import ludo.Adherent;
 
 public class AdherentDAO extends DAO<Adherent> {
 
-	private static final String TABLE = "Adherent";
+	private static final String TABLE = "adherent";
 	private static final String CLE_PRIMAIRE = "id_adherent";
 
-	private static final String NOM_ADHERENT = "nom_adherent";
-	private static final String PRENOM_ADHERENT = "prenom_adherent";
+	private static final String NOM_ADHERENT = "nom";
+	private static final String PRENOM_ADHERENT = "prenom";
 	private static final String ADRESSE = "adresse";
-	private static final String CP = "cp";
-	private static final String VILLE = "ville";
 	private static final String TEL = "tel";
-	private static final String MAIL = "mail";
-	private static final String DATE_ADHESION = "date_adhesion";
-	private static final String DATE_FIN_ADHESION = "date_fin_adhesion";
+	private static final String MAIL = "email";
+	private static final String DATE_ADHESION = "date_inscription";
+	private static final String DATE_FIN_ADHESION = "date_inscription_fin";
+	private static final String NO_CNI = "numero_carte_identite";
+	private static final String ACTIF = "actif";
 	private static final String CAUTION = "caution";
+	private static final String OBSERVATIONS = "observations";
 
 	
 	private static AdherentDAO instance=null;
@@ -47,28 +48,32 @@ public class AdherentDAO extends DAO<Adherent> {
 		try {
 
 			String requete = "INSERT INTO "+TABLE+" ("+NOM_ADHERENT+","+PRENOM_ADHERENT+" , "+ADRESSE+
-							" , "+CP+" , "+VILLE+" , "+TEL+" , "+MAIL+" , "+DATE_ADHESION+" , "+DATE_FIN_ADHESION+
-							" , "+CAUTION+") VALUES (?, ?, ?,?, ?, ?,?, ?, ?, ?)";
+							" , "+TEL+" , "+MAIL+" , "+DATE_ADHESION+" , "+DATE_FIN_ADHESION+" , "+NO_CNI+
+							" , "+ACTIF+" , "+CAUTION+" , "+OBSERVATIONS+") VALUES (?, ?, ?,?, ?, ?,?, ?, ?, ?, ?)";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 			// on pose un String en param�tre 1 -1er '?'- et ce String est le nom de l'avion
 			pst.setString(1, adherent.getNom());
 			pst.setString(2, adherent.getPrenom());
 			pst.setString(3, adherent.getAdresse());
-			pst.setInt(4, adherent.getCp());
-			pst.setString(5, adherent.getVille());
-			pst.setString(6, adherent.getTel());
-			pst.setString(7, adherent.getMail());
+			pst.setString(4, adherent.getTel());
+			pst.setString(5, adherent.getMail());
 			
 			Date startDate = new Date();			
-			pst.setTimestamp(8, new Timestamp(startDate.getTime()));
+			pst.setTimestamp(6, new Timestamp(startDate.getTime()));
 			
             Calendar cal = Calendar.getInstance();
             cal.setTime(startDate);
             cal.add(Calendar.YEAR, 1);
             Date endDate = cal.getTime();
-			pst.setTimestamp(9, new Timestamp(endDate.getTime()));
+			pst.setTimestamp(7, new Timestamp(endDate.getTime()));
 			
+			pst.setString(8, adherent.getCni());
+			pst.setBoolean(9, true);
 			pst.setFloat(10, adherent.getCaution());
+			
+			String observations = (adherent.getObservations() != null) ? adherent.getObservations() : "";
+			
+			pst.setString(11, observations);
 			// on ex�cute la mise � jour
 			pst.executeUpdate();
 
@@ -111,31 +116,33 @@ public class AdherentDAO extends DAO<Adherent> {
 		String nom =adherent.getNom();
 		String prenom =adherent.getPrenom();
 		String adresse =adherent.getAdresse();
-		int cp = adherent.getCp();
-		String ville =adherent.getVille();
 		String tel =adherent.getTel();
 		String mail =adherent.getMail();
 		Timestamp dateAdhesion =adherent.getDateAdhesion();
 		Timestamp dateFinAdhesion =adherent.getDateFinAdhesion();
+		String cni =adherent.getCni();
+		Boolean actif =adherent.isActif();
 		float caution =adherent.getCaution();
+		String observations =adherent.getObservations();
 		int id = adherent.getNumero();
 
 		try {
 			String requete = "UPDATE "+TABLE+" SET "+NOM_ADHERENT+" = ?, "+PRENOM_ADHERENT+" = ?, "
-							+ADRESSE+" = ?, "+CP+" = ?, "+VILLE+" = ?, "+TEL+" = ?, "+MAIL+" = ?, "
-							+DATE_ADHESION+" = ?, "+DATE_FIN_ADHESION+" = ?, "+CAUTION+" = ?"
-									+ "WHERE "+CLE_PRIMAIRE+" = ?";
+							+ADRESSE+" = ?, "+TEL+" = ?, "+MAIL+" = ?, "+DATE_ADHESION+" = ?, "
+							+DATE_FIN_ADHESION+" = ?, "+NO_CNI+" = ?"+ACTIF+" = ?"+CAUTION+" = ?"
+							+OBSERVATIONS+" = ?"+"WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 			pst.setString(1,nom) ; 
 			pst.setString(2,prenom) ;
 			pst.setString(3,adresse) ;
-			pst.setInt(4, cp) ;
-			pst.setString(5,ville) ;
-			pst.setString(6,tel) ;
-			pst.setString(7,mail) ;
-			pst.setTimestamp(8,dateAdhesion) ;
-			pst.setTimestamp(9,dateFinAdhesion) ;
+			pst.setString(4,tel) ;
+			pst.setString(5,mail) ;
+			pst.setTimestamp(6,dateAdhesion) ;
+			pst.setTimestamp(7,dateFinAdhesion) ;
+			pst.setString(8,cni) ;
+			pst.setBoolean(9,actif) ;
 			pst.setFloat(10, caution) ;
+			pst.setString(11,observations) ;
 			pst.executeUpdate() ;
 			donnees.put(id, adherent);
 		} catch (SQLException e) {
@@ -158,15 +165,16 @@ public class AdherentDAO extends DAO<Adherent> {
 			String nom = rs.getString(NOM_ADHERENT);
 			String prenom = rs.getString(PRENOM_ADHERENT);
 			String adresse = rs.getString(ADRESSE);
-			int cp = rs.getInt(CP);
-			String ville = rs.getString(VILLE);
 			String tel = rs.getString(TEL);
 			String mail = rs.getString(MAIL);
 			Timestamp dateAdhesion = rs.getTimestamp(DATE_ADHESION);
 			Timestamp dateFinAdhesion = rs.getTimestamp(DATE_FIN_ADHESION);
+			String cni = rs.getString(NO_CNI);
+			Boolean actif = rs.getBoolean(ACTIF);
 			float caution = rs.getFloat(CAUTION);
-			adherent = new Adherent (id, nom, prenom, adresse, cp, ville, tel, mail, dateAdhesion,
-									dateFinAdhesion, caution);
+			String observations = rs.getString(OBSERVATIONS);
+			adherent = new Adherent (id, nom, prenom, adresse, tel, mail, dateAdhesion,
+									dateFinAdhesion, cni, actif, caution, observations);
 			donnees.put(id, adherent);
 		} catch (SQLException e) {
 			e.printStackTrace();
