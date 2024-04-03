@@ -1,4 +1,4 @@
-package ihmAdherent;
+package controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,7 @@ public class AdherentGUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         // Charger le fichier FXML
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("connexion.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/connexion.fxml"));
         Parent root = loader.load();
 
         // Créer une scène avec le contenu chargé depuis le FXML

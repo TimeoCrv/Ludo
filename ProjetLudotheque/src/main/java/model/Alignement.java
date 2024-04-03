@@ -1,4 +1,4 @@
-package modele.dao;
+package model;
 
 public enum Alignement {
 	GAUCHE, DROITE, HAUT, BAS;

@@ -1,8 +1,7 @@
-package ihmAdherent;
+package controller;
 
 import java.util.List;
 
-import ihm.IhmControl;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,8 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
-import ludo.Adherent;
-import modele.dao.AdherentDAO;
+import model.Adherent;
+import model.AdherentDAO;
 
 public class MonCompteControl extends IhmControl{
 	

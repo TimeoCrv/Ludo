@@ -1,8 +1,7 @@
-package ihmAdherent;
+package controller;
 
 import java.io.IOException;
 
-import ihm.IhmControl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +37,7 @@ public class ConnexionControl extends IhmControl{
 	  
 		try {
             // Charger la scène accueil.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("accueilAdherent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/accueilAdherent.fxml"));
             Parent accueilRoot = loader.load();
             
             // Récupérer la fenêtre principale (stage)

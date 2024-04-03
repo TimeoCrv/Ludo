@@ -1,4 +1,4 @@
-package modele.dao;
+package model;
 
 import java.sql.Timestamp;
 import java.sql.PreparedStatement;
@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import ludo.Adherent;
 
 public class AdherentDAO extends DAO<Adherent> {
 

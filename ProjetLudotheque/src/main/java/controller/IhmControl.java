@@ -1,6 +1,4 @@
-package ihm;
-
-import ihmAdherent.AdherentGUI;
+package controller;
 
 public abstract class IhmControl {
 	

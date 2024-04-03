@@ -1,4 +1,4 @@
-package ludo;
+package model;
 
 import java.sql.Timestamp;
 
