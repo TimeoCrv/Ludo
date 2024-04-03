@@ -1,4 +1,4 @@
-package modele.dao;
+package model;
 
 import java.util.HashMap;
 

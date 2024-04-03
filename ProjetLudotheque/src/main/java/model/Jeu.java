@@ -1,4 +1,4 @@
-package ludo;
+package model;
 
 public class Jeu {
 

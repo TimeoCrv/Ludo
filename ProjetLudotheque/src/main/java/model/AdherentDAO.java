@@ -1,14 +1,14 @@
-package modele.dao;
+package model;
 
 import java.sql.Timestamp;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import ludo.Adherent;
+import java.util.List;
 
 public class AdherentDAO extends DAO<Adherent> {
 
@@ -195,6 +195,24 @@ public class AdherentDAO extends DAO<Adherent> {
 		String clauseWhere = CLE_PRIMAIRE + " = " + id;
 		Connexion.afficheSelectEtoile("Adherent", clauseWhere);
 
+	}
+	
+	public List<Adherent> readTable() {
+		List<Adherent> rep = new ArrayList<Adherent>();
+		Adherent ad = null;
+		try{
+			String requete = "SELECT "+CLE_PRIMAIRE+" FROM "+TABLE;
+			ResultSet res = Connexion.executeQuery(requete) ;
+			while(res.next()){
+				int id = res.getInt(1);
+				ad = AdherentDAO.getInstance().read(id);
+				rep.add(ad);
+			}
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+		return rep;
 	}
 
 }

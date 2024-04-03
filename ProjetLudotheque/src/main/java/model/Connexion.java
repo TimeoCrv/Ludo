@@ -1,4 +1,4 @@
-package modele.dao;
+package model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,8 +12,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
-
-import ludo.Adherent;
 
 
 public class Connexion {
