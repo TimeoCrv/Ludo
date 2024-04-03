@@ -2,131 +2,190 @@ package model;
 
 public class Jeu {
 
-	private int id;
+	private int idJeu;
 	private String nom;
-	private int ageMin;
-	private int nombreJoueursMini;
+	private int nombreJoueursMax;
+	private int nombreJoueursMin;
 	private int annee;
+	private int ageMin;
+	private int ageMax;
 	private int dureeMin;
 	private int dureeMax;
-	private int complexite;
 	private String descriptif;
+	private String editeur;
 	private int disponible;
-	private int etatInitiale;
-	private int etatActuel;
+	private String etat;
 	
-	public Jeu(int id, String nom, int ageMin, int nombreJoueurMini, int annee, int dureeMin, int dureeMax, int complexite, String descriptif, int disponible, int etatInitiale, int etatActuel, int nombreJoueursMini) {
+	
+	public Jeu(int idJeu, String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int ageMax, int dureeMin, int dureeMax, String descriptif, String editeur, int disponible, String etat) {
 		super();
 		
-		this.id = id;
+		this.idJeu = idJeu;
 		this.nom = nom;
-		this.ageMin = ageMin;
-		this.nombreJoueursMini = nombreJoueursMini;
+		this.nombreJoueursMax = nombreJoueursMax;
+		this.nombreJoueursMin = nombreJoueursMin;
 		this.annee = annee;
-		this.dureeMin = dureeMin;
+		this.ageMin = ageMin;
+		this.ageMax = ageMax;
+		this.dureeMin= dureeMin;
 		this.dureeMax = dureeMax;
-		this.complexite = complexite;
 		this.descriptif = descriptif;
+		this.editeur = editeur;
 		this.disponible = disponible;
-		this.etatInitiale = etatInitiale;
-		this.etatActuel = etatActuel;
+		this.etat = etat;
+	}
+	
+	public Jeu(String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int ageMax, int dureeMin, int dureeMax, String descriptif, String editeur, int disponible, String etat) {
+		super();
+		
+		this.nom = nom;
+		this.nombreJoueursMax = nombreJoueursMax;
+		this.nombreJoueursMin = nombreJoueursMin;
+		this.annee = annee;
+		this.ageMin = ageMin;
+		this.ageMax = ageMax;
+		this.dureeMin= dureeMin;
+		this.dureeMax = dureeMax;
+		this.descriptif = descriptif;
+		this.editeur = editeur;
+		this.disponible = disponible;
+		this.etat = etat;
 	}
 
-	public int getId() {
-		return id;
+
+	public int getIdJeu() {
+		return idJeu;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+
+	public void setIdJeu(int idJeu) {
+		this.idJeu = idJeu;
 	}
+
 
 	public String getNom() {
 		return nom;
 	}
 
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
 
-	public int getAgeMin() {
-		return ageMin;
+
+	public int getNombreJoueursMax() {
+		return nombreJoueursMax;
 	}
 
-	public void setAgeMin(int ageMin) {
-		this.ageMin = ageMin;
+
+	public void setNombreJoueursMax(int nombreJoueursMax) {
+		this.nombreJoueursMax = nombreJoueursMax;
 	}
 
-	public int getNombreJoueursMini() {
-		return nombreJoueursMini;
+
+	public int getNombreJoueursMin() {
+		return nombreJoueursMin;
 	}
 
-	public void setNombreJoueursMini(int nombreJoueursMini) {
-		this.nombreJoueursMini = nombreJoueursMini;
+
+	public void setNombreJoueursMin(int nombreJoueursMin) {
+		this.nombreJoueursMin = nombreJoueursMin;
 	}
+
 
 	public int getAnnee() {
 		return annee;
 	}
 
+
 	public void setAnnee(int annee) {
 		this.annee = annee;
 	}
+
+
+	public int getAgeMin() {
+		return ageMin;
+	}
+
+
+	public void setAgeMin(int ageMin) {
+		this.ageMin = ageMin;
+	}
+
+
+	public int getAgeMax() {
+		return ageMax;
+	}
+
+
+	public void setAgeMax(int ageMax) {
+		this.ageMax = ageMax;
+	}
+
 
 	public int getDureeMin() {
 		return dureeMin;
 	}
 
+
 	public void setDureeMin(int dureeMin) {
 		this.dureeMin = dureeMin;
 	}
+
 
 	public int getDureeMax() {
 		return dureeMax;
 	}
 
+
 	public void setDureeMax(int dureeMax) {
 		this.dureeMax = dureeMax;
 	}
 
-	public int getComplexite() {
-		return complexite;
-	}
-
-	public void setComplexite(int complexite) {
-		this.complexite = complexite;
-	}
 
 	public String getDescriptif() {
 		return descriptif;
 	}
 
+
 	public void setDescriptif(String descriptif) {
 		this.descriptif = descriptif;
 	}
+
+
+	public String getEditeur() {
+		return editeur;
+	}
+
+
+	public void setEditeur(String editeur) {
+		this.editeur = editeur;
+	}
+
 
 	public int getDisponible() {
 		return disponible;
 	}
 
+
 	public void setDisponible(int disponible) {
 		this.disponible = disponible;
 	}
 
-	public int getEtatInitiale() {
-		return etatInitiale;
+
+	public String getEtat() {
+		return etat;
 	}
 
-	public void setEtatInitiale(int etatInitiale) {
-		this.etatInitiale = etatInitiale;
+
+	public void setEtat(String etat) {
+		this.etat = etat;
 	}
 
-	public int getEtatActuel() {
-		return etatActuel;
-	}
 
-	public void setEtatActuel(int etatActuel) {
-		this.etatActuel = etatActuel;
-	}
+	
+
+	
 	
 	
 	
