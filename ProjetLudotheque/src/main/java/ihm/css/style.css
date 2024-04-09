@@ -1,0 +1,57 @@
+@font-face {
+	font-family: "Bigelow Rules";
+	src: url("BigelowRules-Regular.ttf");
+}
+.root {
+    -fx-background-color: #9B9B9B;
+
+}
+
+.profilBtn {
+	-fx-width: min-content;
+	-fx-height: min-content;
+	-fx-padding: 4px 4px 4px 8px;
+    -fx-border-color: #E8C600;
+	-fx-border-width: 2;
+	-fx-border-radius: 16px;
+}
+.account-icon {
+	-fx-fill:#E8C600;
+}
+
+.close-icon {
+	-fx-fill:#FFFFFF;
+}
+/* ------------------- *\
+|      HEADER PAGE      |
+\* --------------------*/
+
+#MainTitle {
+	-fx-font-family: "Bigelow Rules";
+	-fx-font-size: 48;
+	-fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);
+}
+
+#ContainerPane {
+	-fx-width: 276;
+}
+/* ------------------- *\
+|      FORMULAIRE       |
+\* --------------------*/
+
+#ConnexionForm {
+    -fx-background-radius: 8;
+    -fx-background-color: #6e6e6e;
+    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 0, 1);
+}
+
+#ConnexionForm .title,
+#ConnexionForm .label {
+    -fx-text-fill: white;
+}
+
+#ConnexionForm .text-field {
+    -fx-max-width: 160;
+}
