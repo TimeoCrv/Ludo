@@ -37,6 +37,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Moi/Documents/greta/dev/java/jar/jdbc/sqljdbc_4.2/fra/sqljdbc4.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
