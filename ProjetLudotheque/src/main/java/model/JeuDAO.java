@@ -102,7 +102,7 @@ import java.sql.Statement;
 			String nom =jeu.getNom();
 			int nombreJoueursMax =jeu.getNombreJoueursMax();
 			int nombreJoueursMin =jeu.getNombreJoueursMin();
-			int annee = jeu.getAnnee();
+			int annee =jeu.getAnnee();
 			int ageMin =jeu.getAgeMin();
 			int ageMax =jeu.getAgeMax();
 			int dureeMin =jeu.getDureeMin();
