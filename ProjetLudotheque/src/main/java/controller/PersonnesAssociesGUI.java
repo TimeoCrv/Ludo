@@ -6,12 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+
 public class PersonnesAssociesGUI extends PageInit {
+
+
 
 
 	public void start(Stage primaryStage) throws Exception {
 		// Charger le fichier FXML
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/personnel.fxml"));
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/personnesAssocies.fxml"));
 		Parent root = loader.load();
 
 		// Créer une scène avec le contenu chargé depuis le FXML
@@ -20,6 +25,7 @@ public class PersonnesAssociesGUI extends PageInit {
 		// Définir la scène sur la fenêtre principale
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Personnel");
+		primaryStage.setTitle("PersonnesAssocies");
 		primaryStage.show();
 	}
 

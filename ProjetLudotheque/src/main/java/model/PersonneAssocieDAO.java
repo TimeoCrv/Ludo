@@ -9,15 +9,23 @@ import java.util.List;
 
 public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 
+
 		private static final String TABLE = "personne_associe";
 		private static final String CLE_PRIMAIRE = "id_personne_associe";
 		private static final String NOM_PERSONNEASSOCIE = "nom";
 		private static final String PRENOM_PERSONNEASSOCIE = "prenom";
+
+		//private static final String TABLE = "personnes_associes";
+		//private static final String CLE_PRIMAIRE = "id_personnes_associes";
+
+		private static final String NOM = "nom";
+		private static final String PRENOM = "prenom";
 		private static final String ADRESSE = "adresse";
 		private static final String TEL = "tel";
 		private static final String MAIL = "email";
 		private static final String NO_CNI = "numero_carte_identite";
 		private static final String CLE_ETRANGERE ="id_profil";
+		//private static final String CLE_ETRANGERE ="id_adherent";
 
 
 		
@@ -40,7 +48,11 @@ public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 			boolean succes=true;
 			try {
 
+<<<<<<< HEAD
 				String requete = "INSERT INTO "+TABLE+" ("+NOM_PERSONNEASSOCIE+","+PRENOM_PERSONNEASSOCIE+" , "+ADRESSE+
+=======
+				String requete = "INSERT INTO "+TABLE+" ("+NOM+","+PRENOM+" , "+ADRESSE+
+>>>>>>> 51bfa59 (mise a jour)
 								" , "+TEL+" , "+MAIL+", "+NO_CNI+") VALUES (?, ?, ?,?, ?, ?)";
 				PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 				// on pose un String en param�tre 1 -1er '?'- et ce String est le nom de l'avion
@@ -98,7 +110,11 @@ public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 			int id = personneAssocie.getIdPersonneAssocie();
 
 			try {
+<<<<<<< HEAD
 				String requete = "UPDATE "+TABLE+" SET "+NOM_PERSONNEASSOCIE+" = ?, "+PRENOM_PERSONNEASSOCIE+" = ?, "
+=======
+				String requete = "UPDATE "+TABLE+" SET "+NOM+" = ?, "+PRENOM+" = ?, "
+>>>>>>> 51bfa59 (mise a jour)
 						+ADRESSE+" = ?, "+TEL+" = ?, "+MAIL+" = ?, "+NO_CNI+" = ?"+"WHERE "+CLE_ETRANGERE+" = ?";
 				PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 				pst.setString(1,nom) ; 
@@ -116,18 +132,30 @@ public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 			return succes;	
 		}
 
+<<<<<<< HEAD
 		/*@Override
+=======
+		@Override
+>>>>>>> 51bfa59 (mise a jour)
 		public PersonneAssocie read(int id) {
 			PersonneAssocie personneAssocie = null;
 			
 			System.out.println("recherché dans la BD");
 			try {
 
+<<<<<<< HEAD
 				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_ETRANGERE+"  = =+id;
 				ResultSet rs = Connexion.executeQuery(requete);
 				rs.next();
 				String nom = rs.getString(NOM_PERSONNEASSOCIE);
 				String prenom = rs.getString(PRENOM_PERSONNEASSOCIE);
+=======
+				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+id;
+				ResultSet rs = Connexion.executeQuery(requete);
+				rs.next();
+				String nom = rs.getString(NOM);
+				String prenom = rs.getString(PRENOM);
+>>>>>>> 51bfa59 (mise a jour)
 				String adresse = rs.getString(ADRESSE);
 				String tel = rs.getString(TEL);
 				String mail = rs.getString(MAIL);
@@ -140,6 +168,7 @@ public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 			}
 			
 			return personneAssocie;
+<<<<<<< HEAD
 		}*/
 		
 		
@@ -172,6 +201,8 @@ public class PersonneAssocieDAO extends DAO<PersonneAssocie> {
 		    }
 		    
 		    return personneAssocie;
+=======
+>>>>>>> 51bfa59 (mise a jour)
 		}
 
 		public void afficheSelectPersonneAssocie() {

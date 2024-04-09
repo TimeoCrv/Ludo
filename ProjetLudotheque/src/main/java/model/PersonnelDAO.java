@@ -1,5 +1,6 @@
 package model;
 
+<<<<<<< HEAD
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -202,5 +203,8 @@ public class PersonnelDAO extends DAO<Personnel> {
 		}
 		return rep;
 	}
+=======
+public class PersonnelDAO {
+>>>>>>> 51bfa59 (mise a jour)
 
 }

@@ -13,6 +13,14 @@ public class PersonneAssocie {
 
 	public PersonneAssocie(int idPersonneAssocie, String nom, String prenom, String tel, String email, String adresse,
 			String numeroCarteIdentite, int idProfil) {
+	private int idAdherent;
+
+
+
+	
+	
+	public PersonneAssocie(int idPersonneAssocie, String nom, String prenom, String tel, String email, String adresse,
+			String numeroCarteIdentite, int idAdherent) {
 		super();
 		this.idPersonneAssocie = idPersonneAssocie;
 		this.nom = nom;
@@ -26,6 +34,12 @@ public class PersonneAssocie {
 
 	public PersonneAssocie(String nom, String prenom, String adresse, String tel,String email,
 			String numeroCarteIdentite, int idProfil) {
+
+		this.idAdherent = idAdherent;
+	}
+
+	public PersonneAssocie(String nom, String prenom, String adresse, String tel,String email,
+			String numeroCarteIdentite, int idAdherent) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -33,7 +47,11 @@ public class PersonneAssocie {
 		this.adresse = adresse;
 		this.tel = tel;
 		this.numeroCarteIdentite = numeroCarteIdentite;
+
 		this.idProfil = idProfil;
+
+		this.idAdherent = idAdherent;
+
 		
 	}
 
@@ -120,20 +138,32 @@ public class PersonneAssocie {
 	}
 
 
+
 	public int getidProfil() {
 		return idProfil;
+
+	public int getIdAdherent() {
+		return idAdherent;
+
 	}
+
 
 
 
 	public void setidProfil(int idProfil) {
 		this.idProfil = idProfil;
+
+	public void setIdAdherent(int idAdherent) {
+		this.idAdherent = idAdherent;
 	}
 
 	@Override
 	public String toString() {
 		return "PersonnesAssocie [idPersonneAssocie=" + idPersonneAssocie + ", nom=" + nom + ", prenom=" + prenom
+
 				+ ", idProfil=" + idProfil + "]";
+
+				+ ", idAdherent=" + idAdherent + "]";
 	}
 
 }
