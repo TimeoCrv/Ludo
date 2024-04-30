@@ -257,24 +257,24 @@ public class Connexion {
 	}
 
 	
-	public static void main(String[] args) {
-		Connexion.getInstance();
-		
-		Adherent adherentCree = new Adherent("Hanma", "Baki", "Vannes", "0673952857", "h.baki@baki.com",
-											"noCNI", 40);
-		
-		AdherentDAO.getInstance().create(adherentCree);
-
-		AdherentDAO.getInstance().afficheAdherent(adherentCree.getNumero());
-		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
-		
-		Adherent adherent3 = AdherentDAO.getInstance().read(adherentCree.getNumero());
-		
-		compareDate(adherent3);
-        
-		
-		Connexion.fermer();
-	}
+//	public static void main(String[] args) {
+//		Connexion.getInstance();
+//		
+//		Adherent adherentCree = new Adherent("Hanma", "Baki", "Vannes", "0673952857", "h.baki@baki.com",
+//											"noCNI", 40);
+//		
+//		AdherentDAO.getInstance().create(adherentCree);
+//
+//		AdherentDAO.getInstance().afficheAdherent(adherentCree.getNumero());
+//		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
+//		
+//		Adherent adherent3 = AdherentDAO.getInstance().read(adherentCree.getNumero());
+//		
+//		compareDate(adherent3);
+//        
+//		
+//		Connexion.fermer();
+//	}
 	
 	public static void compareDate(Adherent adherent) {
 		Date currentDate = new Date();
