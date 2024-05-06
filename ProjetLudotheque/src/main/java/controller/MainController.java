@@ -1,81 +1,100 @@
 package controller;
 
-import java.io.IOException;
-
-import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-public class MainController extends Application {
+public class MainController {
+	
+	private Main main;
 
-	private static Scene scene;
-	
-	private String currentView = "listeJeu";
-	
+    @FXML
+    private Button btnAddJeu;
+
+    @FXML
+    private Button btnConnexion;
+    
+    @FXML
+    private Button btnDeconnexion;
+
+    @FXML
+    private Button btnHistorique;
+
+    @FXML
+    private Button btnListeJeu;
+
+    @FXML
+    private Button btnProfil;
+
+    @FXML
+    private Button btnRendreJeu;
+    
+    @FXML
+    private Label labelAdmin;
+    @FXML
+    private Button btnListeAdherent;
+    
 	@FXML
-    private Label accountButton;
-	
-    @Override
-    public void start(Stage stage) throws IOException {
-    	Parent root = loadFXML("mainLayout");
-    	scene = new Scene(root);
+    private Button btnAddAdherent;
 
-        stage.setScene(scene);
-        stage.show();
-        
-        loadViewInContainer(currentView);
-    }
+    @FXML
+    private Button btnListeEmploye;
 
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/ihm/" + fxml + ".fxml"));
-        return fxmlLoader.load();
+    @FXML
+    private Button btnAddEmploye;
+    
+
+    @FXML
+    public void initialize() {
+        // Masquer certains boutons et labels au démarrage de l'application
+        btnProfil.setVisible(false);
+        btnProfil.setManaged(false);
+        btnDeconnexion.setVisible(false);
+        btnDeconnexion.setManaged(false);
+        btnHistorique.setVisible(false);
+        btnHistorique.setManaged(false);
+        btnAddJeu.setVisible(false);
+        btnAddJeu.setManaged(false);
+        btnRendreJeu.setVisible(false);
+        btnRendreJeu.setManaged(false);
+        labelAdmin.setVisible(false);
+        labelAdmin.setManaged(false);
+        btnListeAdherent.setVisible(false);
+        btnListeAdherent.setManaged(false);
+        btnAddAdherent.setVisible(false);
+        btnAddAdherent.setManaged(false);
+        btnListeEmploye.setVisible(false);
+        btnListeEmploye.setManaged(false);
+        btnAddEmploye.setVisible(false);
+        btnAddEmploye.setManaged(false);
     }
     
-    public static void loadViewInContainer(String fxml) throws IOException {
-        StackPane mainContent = (StackPane) scene.getRoot().lookup("#StackPane");
-            
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/ihm/" + fxml + ".fxml"));
-        Node otherContent = fxmlLoader.load();
-            
-        mainContent.getChildren().clear();
-        mainContent.getChildren().add(otherContent);
-    }
-
-    public static void loadViewInOverlay(String fxml) throws IOException {
-        StackPane mainContent = (StackPane) scene.getRoot().lookup("#StackPane");
-            
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("/ihm/" + fxml + ".fxml"));
-        Node otherContent = fxmlLoader.load();
-            
-        mainContent.getChildren().add(otherContent);
-        
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
+    public void setMain(Main main) {
+        this.main = main;
     }
     
     @FXML
-    private void handleConnexionButton() {
-    	try {
-    		currentView = "connexion";
-    		
-			MainController.loadViewInOverlay(currentView);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    void handleButtonClick(ActionEvent event) {
+    	Button sourceButton = (Button) event.getSource();
+        String buttonName = sourceButton.getText();
+
+        // Réagir à l'événement de clic de bouton ici
+        System.out.println("Le bouton " + buttonName + " a été cliqué !");
     }
     
     @FXML
-    private void closeOverlay() {
-    	StackPane mainContent = (StackPane) scene.getRoot().lookup("#StackPane");
-    	mainContent.getChildren().clear();
+    public void onBtnConnexionClicked() {
+    	btnConnexion.setVisible(!btnConnexion.isVisible());
+        btnConnexion.setManaged(btnConnexion.isVisible());
+        
+        btnDeconnexion.setVisible(!btnDeconnexion.isVisible());
+        btnDeconnexion.setManaged(btnDeconnexion.isVisible());
+        
+        btnProfil.setVisible(!btnProfil.isVisible());
+        btnProfil.setManaged(btnProfil.isVisible());
+        
+        btnHistorique.setVisible(!btnHistorique.isVisible());
+        btnHistorique.setManaged(btnHistorique.isVisible());
     }
 }

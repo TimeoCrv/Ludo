@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.SVGPath?>
 
 
-<AnchorPane id="ConnexionForm" fx:id="containerLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="256.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane id="ConnexionForm" fx:id="containerLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="201.0" prefWidth="256.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Main">
    <children>
       <Label alignment="CENTER" contentDisplay="RIGHT" graphicTextGap="0.0" styleClass="title" text="Connexion" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <Label alignment="BASELINE_LEFT" layoutX="48.0" layoutY="67.0" text="Identifiant" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="40.0" />
