@@ -8,16 +8,14 @@ public class Jeu {
 	private int nombreJoueursMin;
 	private int annee;
 	private int ageMin;
-	private int ageMax;
 	private int dureeMin;
-	private int dureeMax;
 	private String descriptif;
 	private String editeur;
 	private int disponible;
-	private String etat;
+	private int nombre;
 	
-	
-	public Jeu(int idJeu, String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int ageMax, int dureeMin, int dureeMax, String descriptif, String editeur, int disponible, String etat) {
+
+	public Jeu(int idJeu, String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, int disponible, int nombre) {
 		super();
 		
 		this.idJeu = idJeu;
@@ -26,16 +24,14 @@ public class Jeu {
 		this.nombreJoueursMin = nombreJoueursMin;
 		this.annee = annee;
 		this.ageMin = ageMin;
-		this.ageMax = ageMax;
 		this.dureeMin= dureeMin;
-		this.dureeMax = dureeMax;
 		this.descriptif = descriptif;
 		this.editeur = editeur;
 		this.disponible = disponible;
-		this.etat = etat;
+		this.nombre = nombre;
 	}
 	
-	public Jeu(String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int ageMax, int dureeMin, int dureeMax, String descriptif, String editeur, int disponible, String etat) {
+	public Jeu(String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, int disponible, int nombre) {
 		super();
 		
 		this.nom = nom;
@@ -43,13 +39,11 @@ public class Jeu {
 		this.nombreJoueursMin = nombreJoueursMin;
 		this.annee = annee;
 		this.ageMin = ageMin;
-		this.ageMax = ageMax;
 		this.dureeMin= dureeMin;
-		this.dureeMax = dureeMax;
 		this.descriptif = descriptif;
 		this.editeur = editeur;
 		this.disponible = disponible;
-		this.etat = etat;
+		this.nombre = nombre;
 	}
 
 
@@ -113,16 +107,6 @@ public class Jeu {
 	}
 
 
-	public int getAgeMax() {
-		return ageMax;
-	}
-
-
-	public void setAgeMax(int ageMax) {
-		this.ageMax = ageMax;
-	}
-
-
 	public int getDureeMin() {
 		return dureeMin;
 	}
@@ -130,16 +114,6 @@ public class Jeu {
 
 	public void setDureeMin(int dureeMin) {
 		this.dureeMin = dureeMin;
-	}
-
-
-	public int getDureeMax() {
-		return dureeMax;
-	}
-
-
-	public void setDureeMax(int dureeMax) {
-		this.dureeMax = dureeMax;
 	}
 
 
@@ -173,20 +147,13 @@ public class Jeu {
 	}
 
 
-	public String getEtat() {
-		return etat;
+	public int getNombre() {
+		return nombre;
 	}
 
 
-	public void setEtat(String etat) {
-		this.etat = etat;
+	public void setnombre(int nombre) {
+		this.nombre = nombre;
 	}
-
-
-	
-
-	
-	
-	
 	
 }
