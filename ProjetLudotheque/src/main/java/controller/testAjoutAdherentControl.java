@@ -9,13 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Adherent;
 import model.AdherentDAO;
 import model.Connexion;
 import utils.PassEncTech4;
 
-public class testAjoutAdherentControl extends Application {
+public class testAjoutAdherentControl extends PageInit{
 
 	@FXML
 	private TextField nom;
@@ -34,22 +35,7 @@ public class testAjoutAdherentControl extends Application {
 
 	@FXML
 	private TextArea observations;
-
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		// Charger le fichier FXML
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testAjoutAdherent.fxml"));
-		Parent root = loader.load();
-
-		// Créer une scène avec le contenu chargé depuis le FXML
-		Scene scene = new Scene(root);
-
-		// Définir la scène sur la fenêtre principale
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Connexion");
-		primaryStage.show();
-	}
-
+	
 	@FXML
 	public void ajouterAdherent(ActionEvent event) {
 
@@ -85,22 +71,19 @@ public class testAjoutAdherentControl extends Application {
 	public void allerVersConnexion(ActionEvent event) {
 	  
 		try {
-            // Charger la scène accueil.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
-            Parent accueilRoot = loader.load();
-            
-            // Récupérer la fenêtre principale (stage)
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Récupérer la scène du bouton
-            
-            stage.setScene(new Scene(accueilRoot));
-            stage.setTitle("Connexion");
+			closePopup();
+//            // Charger la scène accueil.fxml
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
+//            Parent accueilRoot = loader.load();
+//            
+//            // Récupérer la fenêtre principale (stage)
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Récupérer la scène du bouton
+//            
+//            stage.setScene(new Scene(accueilRoot));
+//            stage.setTitle("Connexion");
         } catch (Exception e) {
             e.printStackTrace();
         }
 	}
     
-	public static void main(String[] args) {
-		launch(args);
-	}
-
 }

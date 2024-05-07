@@ -10,12 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.AdherentDAO;
 import model.Connexion;
 import utils.PassEncTech4;
 
-public class testConnexionAdherentControl {
+public class testConnexionAdherentControl extends PageInit {
 
 	@FXML
 	private TextField loginEmail;
@@ -32,15 +34,8 @@ public class testConnexionAdherentControl {
 		if (authenticate(emailSaisi, motDePasseSaisi)) {
 
 			try {
-				// Charger la scène accueil.fxml
-				FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/accueilAdherent.fxml"));
-				Parent accueilRoot = loader.load();
-
-				// Récupérer la fenêtre principale (stage)
-				Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Récupérer la scène du bouton
-
-				stage.setScene(new Scene(accueilRoot));
-				stage.setTitle("Accueil");
+			
+				loadModal("testAjoutAdherent", "test pop up");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -69,5 +64,5 @@ public class testConnexionAdherentControl {
 	    
 		return connexionOk;
 	}
-
+	
 }

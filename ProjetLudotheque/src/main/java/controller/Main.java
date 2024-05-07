@@ -34,16 +34,9 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/ihm/" + fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-    
+  
     public static void main(String[] args) {
         launch(args);
     }
-    
-    
-    
+   
 }

@@ -240,7 +240,7 @@
             <VBox HBox.hgrow="SOMETIMES">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0" />
-                  <AnchorPane VBox.vgrow="ALWAYS">
+                  <AnchorPane fx:id="mainWindow" VBox.vgrow="ALWAYS">
                      <children>
                         <TableView style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <columns>
