@@ -15,7 +15,7 @@ import javafx.util.Callback;
 import model.Jeu;
 import model.JeuDAO;
 
-public class ListJeuControl extends IhmControl {
+public class ListJeuControl extends PageInit {
 	
 	@FXML
 	private TableView<Jeu> jeuList;
@@ -44,7 +44,8 @@ public class ListJeuControl extends IhmControl {
 	
 	
 	@FXML
-	private void initialize() {
+	private void start() {
+		System.out.println("oui");
 		nomJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {

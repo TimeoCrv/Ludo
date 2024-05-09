@@ -128,6 +128,9 @@ public class MainController {
 				SessionManager.closeSession();
 				loadFXML("Accueil");
 				break;
+			case "Tous les jeux":
+				loadFXML("listejeuadmin");
+				break;
 
 			default:
 				// code block
