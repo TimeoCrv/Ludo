@@ -12,25 +12,28 @@ public class Adherent {
 		private String mail;
 		private Timestamp dateAdhesion;
 		private Timestamp dateFinAdhesion;
-		private String cni;
 		private boolean actif;
 		private float caution;
 		private String observations;
+		private String password;
+		private String salt;
 		
 		public Adherent(String nom, String prenom, String adresse, String tel,String mail,
-						String cni, float caution) {
+						float caution, String observations, String password, String salt) {
 			super();
 			this.nom = nom;
 			this.prenom = prenom;
 			this.adresse = adresse;
 			this.tel = tel;
 			this.mail = mail;
-			this.cni = cni;
 			this.caution = caution;
+			this.observations = observations;
+			this.password = password;
+			this.salt = salt;
 }
 		
 		public Adherent(int numero, String nom, String prenom, String adresse, String tel, String mail,
-						Timestamp dateAdhesion, Timestamp dateFinAdhesion, String cni, 
+						Timestamp dateAdhesion, Timestamp dateFinAdhesion, 
 						boolean actif, float caution, String observations) {
 			super();
 			this.numero = numero;
@@ -41,7 +44,6 @@ public class Adherent {
 			this.mail = mail;
 			this.dateAdhesion = dateAdhesion;
 			this.dateFinAdhesion = dateFinAdhesion;
-			this.cni = cni;
 			this.actif = actif;
 			this.caution = caution;
 			this.observations = observations;
@@ -112,14 +114,6 @@ public class Adherent {
 			this.dateFinAdhesion = dateFinAdhesion;
 		}
 
-		public String getCni() {
-			return cni;
-		}
-
-		public void setCni(String cni) {
-			this.cni = cni;
-		}
-
 		public boolean isActif() {
 			return actif;
 		}
@@ -142,6 +136,22 @@ public class Adherent {
 
 		public void setObservations(String observations) {
 			this.observations = observations;
+		}
+		
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
+		
+		public String getSalt() {
+			return salt;
+		}
+
+		public void setSalt(String salt) {
+			this.salt = salt;
 		}
 
 		@Override

@@ -22,10 +22,11 @@ public class AdherentDAO extends DAO<Adherent> {
 	private static final String MAIL = "email";
 	private static final String DATE_ADHESION = "date_inscription";
 	private static final String DATE_FIN_ADHESION = "date_inscription_fin";
-	private static final String NO_CNI = "numero_carte_identite";
 	private static final String ACTIF = "actif";
 	private static final String CAUTION = "caution";
 	private static final String OBSERVATIONS = "observations";
+	private static final String MOT_DE_PASSE = "password";
+	private static final String SALT = "salt";
 
 	
 	private static AdherentDAO instance=null;
@@ -48,8 +49,9 @@ public class AdherentDAO extends DAO<Adherent> {
 		try {
 
 			String requete = "INSERT INTO "+TABLE+" ("+NOM_ADHERENT+","+PRENOM_ADHERENT+" , "+ADRESSE+
-							" , "+TEL+" , "+MAIL+" , "+DATE_ADHESION+" , "+DATE_FIN_ADHESION+" , "+NO_CNI+
-							" , "+ACTIF+" , "+CAUTION+" , "+OBSERVATIONS+") VALUES (?, ?, ?,?, ?, ?,?, ?, ?, ?, ?)";
+							" , "+TEL+" , "+MAIL+" , "+DATE_ADHESION+" , "+DATE_FIN_ADHESION+
+							" , "+ACTIF+" , "+CAUTION+" , "+OBSERVATIONS+" , "+MOT_DE_PASSE+
+							" , "+SALT+") VALUES (?, ?, ?,?, ?, ?,?, ?, ?, ?, ?, ?)";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
 			// on pose un String en param�tre 1 -1er '?'- et ce String est le nom de l'avion
 			pst.setString(1, adherent.getNom());
@@ -67,13 +69,14 @@ public class AdherentDAO extends DAO<Adherent> {
             Date endDate = cal.getTime();
 			pst.setTimestamp(7, new Timestamp(endDate.getTime()));
 			
-			pst.setString(8, adherent.getCni());
-			pst.setBoolean(9, true);
-			pst.setFloat(10, adherent.getCaution());
+			pst.setBoolean(8, true);
+			pst.setFloat(9, adherent.getCaution());
 			
 			String observations = (adherent.getObservations() != null) ? adherent.getObservations() : "";
 			
-			pst.setString(11, observations);
+			pst.setString(10, observations);
+			pst.setString(11, adherent.getPassword());
+			pst.setString(12, adherent.getSalt());
 			// on ex�cute la mise � jour
 			pst.executeUpdate();
 
@@ -120,7 +123,6 @@ public class AdherentDAO extends DAO<Adherent> {
 		String mail =adherent.getMail();
 		Timestamp dateAdhesion =adherent.getDateAdhesion();
 		Timestamp dateFinAdhesion =adherent.getDateFinAdhesion();
-		String cni =adherent.getCni();
 		Boolean actif =adherent.isActif();
 		float caution =adherent.getCaution();
 		String observations =adherent.getObservations();
@@ -129,7 +131,7 @@ public class AdherentDAO extends DAO<Adherent> {
 		try {
 			String requete = "UPDATE "+TABLE+" SET "+NOM_ADHERENT+" = ?, "+PRENOM_ADHERENT+" = ?, "
 							+ADRESSE+" = ?, "+TEL+" = ?, "+MAIL+" = ?, "+DATE_ADHESION+" = ?, "
-							+DATE_FIN_ADHESION+" = ?, "+NO_CNI+" = ?"+ACTIF+" = ?"+CAUTION+" = ?"
+							+DATE_FIN_ADHESION+" = ?, "+ACTIF+" = ?"+CAUTION+" = ?"
 							+OBSERVATIONS+" = ?"+"WHERE "+CLE_PRIMAIRE+" = ?";
 			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 			pst.setString(1,nom) ; 
@@ -139,10 +141,9 @@ public class AdherentDAO extends DAO<Adherent> {
 			pst.setString(5,mail) ;
 			pst.setTimestamp(6,dateAdhesion) ;
 			pst.setTimestamp(7,dateFinAdhesion) ;
-			pst.setString(8,cni) ;
-			pst.setBoolean(9,actif) ;
-			pst.setFloat(10, caution) ;
-			pst.setString(11,observations) ;
+			pst.setBoolean(8,actif) ;
+			pst.setFloat(9, caution) ;
+			pst.setString(10,observations) ;
 			pst.executeUpdate() ;
 			donnees.put(id, adherent);
 		} catch (SQLException e) {
@@ -169,12 +170,11 @@ public class AdherentDAO extends DAO<Adherent> {
 			String mail = rs.getString(MAIL);
 			Timestamp dateAdhesion = rs.getTimestamp(DATE_ADHESION);
 			Timestamp dateFinAdhesion = rs.getTimestamp(DATE_FIN_ADHESION);
-			String cni = rs.getString(NO_CNI);
 			Boolean actif = rs.getBoolean(ACTIF);
 			float caution = rs.getFloat(CAUTION);
 			String observations = rs.getString(OBSERVATIONS);
 			adherent = new Adherent (id, nom, prenom, adresse, tel, mail, dateAdhesion,
-									dateFinAdhesion, cni, actif, caution, observations);
+									dateFinAdhesion, actif, caution, observations);
 			donnees.put(id, adherent);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -213,6 +213,97 @@ public class AdherentDAO extends DAO<Adherent> {
 			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
 		}
 		return rep;
+	}
+	
+	public String getPasswordById(int id) {
+		String password = null;
+		try{
+			// Requête SQL pour récupérer le mot de passe par ID
+            String requete = "SELECT "+MOT_DE_PASSE+" FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
+            pst.setInt(1, id);
+
+            // Exécution de la requête
+            ResultSet resultSet = pst.executeQuery();
+
+            // Récupération du mot de passe s'il existe
+            if (resultSet.next()) {
+                password = resultSet.getString(MOT_DE_PASSE);
+            }
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+		return password;
+		
+	}
+	
+	public String getSaltById(int id) {
+		String password = null;
+		try{
+            String requete = "SELECT "+SALT+" FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
+            pst.setInt(1, id);
+
+            // Exécution de la requête
+            ResultSet resultSet = pst.executeQuery();
+
+            // Récupération du mot de passe s'il existe
+            if (resultSet.next()) {
+                password = resultSet.getString(SALT);
+            }
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+		return password;
+		
+	}
+	
+	public String getEmailById(int id) {
+		String email = null;
+		try{
+			// Requête SQL pour récupérer le mot de passe par ID
+            String requete = "SELECT "+MAIL+" FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
+            pst.setInt(1, id);
+
+            // Exécution de la requête
+            ResultSet resultSet = pst.executeQuery();
+
+            // Récupération du mot de passe s'il existe
+            if (resultSet.next()) {
+                email = resultSet.getString(MAIL);
+            }
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+		return email;
+		
+	}
+	
+	public int getIdByEmail(String email) {
+		int id = 0;
+		try{
+			// Requête SQL pour récupérer le mot de passe par ID
+            String requete = "SELECT "+CLE_PRIMAIRE+" FROM "+TABLE+" WHERE "+MAIL+" = ?";
+            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
+            pst.setString(1, email);
+
+            // Exécution de la requête
+            ResultSet resultSet = pst.executeQuery();
+
+            // Récupération du mot de passe s'il existe
+            if (resultSet.next()) {
+                id = resultSet.getInt(CLE_PRIMAIRE);
+            }
+		}
+		catch(SQLException e){
+			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
+		}
+		return id;
+		
 	}
 
 }

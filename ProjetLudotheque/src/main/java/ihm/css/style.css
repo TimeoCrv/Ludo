@@ -1,57 +1,97 @@
 @font-face {
-	font-family: "Bigelow Rules";
-	src: url("BigelowRules-Regular.ttf");
+	font-family: "Englebert";
+	src: url("Englebert-Regular.ttf");
 }
-.root {
-    -fx-background-color: #9B9B9B;
-
-}
-
-.profilBtn {
-	-fx-width: min-content;
-	-fx-height: min-content;
-	-fx-padding: 4px 4px 4px 8px;
-    -fx-border-color: #E8C600;
-	-fx-border-width: 2;
-	-fx-border-radius: 16px;
-}
-.account-icon {
-	-fx-fill:#E8C600;
+@font-face {
+	font-family: "Sofia Sans Extra Condensed";
+	src: url("SofiaSansExtraCondensed-Regular.ttf");
 }
 
-.close-icon {
-	-fx-fill:#FFFFFF;
-}
-/* ------------------- *\
-|      HEADER PAGE      |
-\* --------------------*/
-
-#MainTitle {
-	-fx-font-family: "Bigelow Rules";
-	-fx-font-size: 48;
-	-fx-font-weight: bold;
-    -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 1, 1);
+.label-level-1
+{
+	-fx-font-family: "Englebert";
+	-fx-font-size: 18px; 
+	-fx-text-fill : #a9a9a9;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 2, 2);
 }
 
-#ContainerPane {
-	-fx-width: 276;
-}
-/* ------------------- *\
-|      FORMULAIRE       |
-\* --------------------*/
-
-#ConnexionForm {
-    -fx-background-radius: 8;
-    -fx-background-color: #6e6e6e;
-    -fx-effect: dropshadow(gaussian, black, 2, 0.5, 0, 1);
+.button
+{
+	-fx-font-family: "Sofia Sans Extra Condensed";
+	-fx-font-size: 18px; 
+	-fx-text-fill : #7c7c7c;
+	-fx-background-color : #202020;
+	-fx-background-raduis : 0em;
 }
 
-#ConnexionForm .title,
-#ConnexionForm .label {
-    -fx-text-fill: white;
+.button:hover
+{
+	-fx-text-fill : #DDDDDD;
+	-fx-background-color : #303030;
+	-fx-background-raduis : 0em;
 }
 
-#ConnexionForm .text-field {
-    -fx-max-width: 160;
+.button:focused
+{
+	-fx-text-fill : #DDDDDD;
+	-fx-background-color : #303030;
+	-fx-background-raduis : 0em;
+}
+.icon {
+	 -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 1.5, 1.5);
+}
+
+.account
+{
+	-fx-fill: #00b9ee;
+}
+
+.add-game
+{
+	-fx-fill: #00b9ee;
+}
+
+.game
+{
+	-fx-fill: #ec69a4;
+}
+
+.give-back
+{
+	-fx-fill: #3faf6c;
+}
+
+.history
+{
+	-fx-fill: #f9b256;
+}
+
+.login
+{
+	-fx-fill: #3faf6c;
+}
+
+.logout
+{
+	-fx-fill: #f52e02;
+}
+
+.user-add
+{
+	-fx-fill: #3faf6c;
+}
+
+.user-list
+{
+	-fx-fill: #00b9ee;
+}
+
+.worker-add
+{
+	-fx-fill: #3faf6c;
+}
+
+.worker-list
+{
+	-fx-fill: #ec69a4;
 }
