@@ -15,7 +15,7 @@ public abstract class PageInit {
 	@FXML
     private AnchorPane childWindow;
 
-    public void initialize() {
+    protected void setAnchors() {
         
         AnchorPane.setTopAnchor(childWindow, 0.0);
         AnchorPane.setBottomAnchor(childWindow, 0.0);
