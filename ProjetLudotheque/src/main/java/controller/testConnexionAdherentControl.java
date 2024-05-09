@@ -24,6 +24,10 @@ public class testConnexionAdherentControl extends PageInit {
 
 	@FXML
 	private PasswordField loginPassword;
+	
+	public void initialize() {
+		setAnchors();
+	}
 
 	@FXML
 	public void userConnexion(ActionEvent event) {
