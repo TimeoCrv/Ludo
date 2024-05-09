@@ -9,7 +9,7 @@ import java.util.Random;
 import javax.crypto.SecretKeyFactory;  
 import javax.crypto.spec.PBEKeySpec; 
 
-public class PassEncTech4 {
+public class PasswordManager {
 	
 	  /* Declaration of variables */   
     private static final Random random = new SecureRandom();  

@@ -15,7 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.AdherentDAO;
 import model.Connexion;
-import utils.PassEncTech4;
+import utils.PasswordManager;
 
 public class testConnexionAdherentControl extends PageInit {
 
@@ -59,7 +59,7 @@ public class testConnexionAdherentControl extends PageInit {
 	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
 	    		
 	    		System.out.println(storedPassword);
-	            connexionOk = PassEncTech4.verifyUserPassword(password, storedPassword, storedSalt);
+	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
 	            Connexion.fermer();
 
 			} catch (Exception e) {

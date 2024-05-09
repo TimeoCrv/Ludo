@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import model.Adherent;
 import model.AdherentDAO;
 import model.Connexion;
-import utils.PassEncTech4;
+import utils.PasswordManager;
 
 public class testAjoutAdherentControl extends PageInit{
 
@@ -46,9 +46,9 @@ public class testAjoutAdherentControl extends PageInit{
 			String observationsSaisi = observations.getText();
 
 			String passwordToHash = "sio";
-			String salt = PassEncTech4.getSaltvalue(30);
+			String salt = PasswordManager.getSaltvalue(30);
 			
-			String hashedPassword = PassEncTech4.generateSecurePassword(passwordToHash, salt);
+			String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
 			
 
 			Connexion.getInstance();
