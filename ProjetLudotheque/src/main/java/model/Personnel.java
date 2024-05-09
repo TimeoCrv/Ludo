@@ -2,18 +2,43 @@ package model;
 
 public class Personnel {
 	
-	private int id_Personnel;
+	private int idPersonnel;
 	private String nom;
 	private String prenom;
 	private String tel;
 	private String email;
 	private String adresse;
-	private String password;
+	
+	
+	
+	public Personnel(int idPersonnel, String nom, String prenom, String tel, String email, String adresse) {
+		super();
+		this.idPersonnel = idPersonnel;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.tel = tel;
+		this.email = email;
+		this.adresse = adresse;
+	}
+	
+	
+	
+	public Personnel(String nom, String prenom, String tel, String email, String adresse) {
+		super();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.tel = tel;
+		this.email = email;
+		this.adresse = adresse;
+	}
+
+
+
 	public int getIdPersonnel() {
 		return idPersonnel;
 	}
-	public void setid_Personnel(int idPersonnel) {
-		this.id_Personnel = idPersonnel;
+	public void setid_Personnel(int id_Personnel) {
+		this.idPersonnel = idPersonnel;
 	}
 	public String getNom() {
 		return nom;
@@ -45,12 +70,8 @@ public class Personnel {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
+
 	
 	
 

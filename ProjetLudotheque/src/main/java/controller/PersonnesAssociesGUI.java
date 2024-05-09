@@ -11,7 +11,7 @@ public class PersonnesAssociesGUI extends Application {
 
 	public void start(Stage primaryStage) throws Exception {
 		// Charger le fichier FXML
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/personnesAssocies.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/personneAssocie.fxml"));
 		Parent root = loader.load();
 
 		// Créer une scène avec le contenu chargé depuis le FXML
@@ -19,7 +19,7 @@ public class PersonnesAssociesGUI extends Application {
 
 		// Définir la scène sur la fenêtre principale
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("PersonnesAssocies");
+		primaryStage.setTitle("PersonneAssocie");
 		primaryStage.show();
 	}
 
