@@ -81,7 +81,10 @@ public class testAjoutAdherentControl extends PageInit{
 			Adherent adherent = AdherentDAO.getInstance().read(3);
 			System.out.println(adherent);
 			
+			adherent.setEmail("a");
 			adherent.setCaution(30);
+			
+			System.out.println(adherent);
 			AdherentDAO.getInstance().update(adherent);
 			
 			System.out.println(AdherentDAO.getInstance().read(3));

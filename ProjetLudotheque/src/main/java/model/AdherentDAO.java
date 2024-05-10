@@ -1,10 +1,11 @@
 package model;
 
-import java.sql.Timestamp;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,13 +53,18 @@ public class AdherentDAO extends DAO<Adherent> {
 	@Override
 	public boolean create(Adherent adherent) {
 		boolean succes=true;
+		
+		Connection connexion = Connexion.getInstance();
+		
 		try {
+			
+			connexion.setAutoCommit(false);
 			
 			String requeteUtilisateur = "INSERT INTO "+TABLE_UTILISATEUR+" ("+EMAIL+" , "+MOT_DE_PASSE+
 					" , "+SALT+" , "+ROLE+") VALUES (?, ?, ?, ?)";
 
 			//Ajout dans la table utilisateur
-			PreparedStatement pstForUser = Connexion.getInstance().prepareStatement(requeteUtilisateur, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstForUser = connexion.prepareStatement(requeteUtilisateur, Statement.RETURN_GENERATED_KEYS);
 			
 			pstForUser.setString(1, adherent.getEmail());
 			pstForUser.setString(2, adherent.getPassword());
@@ -80,7 +86,7 @@ public class AdherentDAO extends DAO<Adherent> {
 					" , "+DATE_INSCRIPTION+" , "+DATE_INSCRIPTION_FIN+" , "+NO_CNI+" , "+ACTIF+" , "+CAUTION+
 					" , "+OBSERVATIONS+") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
-			PreparedStatement pstForProfil = Connexion.getInstance().prepareStatement(requeteProfil, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement pstForProfil = connexion.prepareStatement(requeteProfil, Statement.RETURN_GENERATED_KEYS);
 			
 			pstForProfil.setInt(1, adherent.getIdProfil());
 			pstForProfil.setString(2, adherent.getNom());
@@ -106,8 +112,17 @@ public class AdherentDAO extends DAO<Adherent> {
 
 			pstForProfil.executeUpdate();
 			donnees.put(adherent.getIdProfil(), adherent);
+			
+			connexion.commit();
 
 		} catch (SQLException e) {
+			try {
+				connexion.rollback();
+				System.out.println("Create annulé");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			succes=false;
 			e.printStackTrace();
 		}
@@ -118,21 +133,36 @@ public class AdherentDAO extends DAO<Adherent> {
 	@Override
 	public boolean delete(Adherent adherent) {
 		boolean succes = true;
+		
+		Connection connexion = Connexion.getInstance();
+		
 		try {
+			
+			connexion.setAutoCommit(false);
+			
 			int id = adherent.getIdProfil();
 			
 			String requeteForUser = "DELETE FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
-			PreparedStatement pstForUser = Connexion.getInstance().prepareStatement(requeteForUser);
+			PreparedStatement pstForUser = connexion.prepareStatement(requeteForUser);
 			pstForUser.setInt(1, id);
 			pstForUser.executeUpdate();
 			
 			String requeteForProfil = "DELETE FROM "+TABLE_PROFIL+" WHERE "+ID_PROFIL+" = ?";
-			PreparedStatement pstForProfil = Connexion.getInstance().prepareStatement(requeteForProfil);
+			PreparedStatement pstForProfil = connexion.prepareStatement(requeteForProfil);
 			pstForProfil.setInt(1, id);
 			pstForProfil.executeUpdate();
 			
 			donnees.remove(id);
+			
+			connexion.commit();
 		} catch (SQLException e) {
+			try {
+				connexion.rollback();
+				System.out.println("Delete annulé");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			succes=false;
 			e.printStackTrace();
 		}
@@ -141,6 +171,9 @@ public class AdherentDAO extends DAO<Adherent> {
 
 	@Override
 	public boolean update(Adherent adherent) {
+		
+		System.out.println(donnees);
+		
 		boolean succes=true;
 		
 		int id = adherent.getIdProfil();
@@ -164,24 +197,29 @@ public class AdherentDAO extends DAO<Adherent> {
 		System.out.println("adherentupdate");
 		System.out.println(adherent);
 
+		Connection connexion = Connexion.getInstance();
+		
 		try {
+			
+			connexion.setAutoCommit(false);
+			
 			String requeteUtilisateur = "UPDATE "+TABLE_UTILISATEUR+" SET "+EMAIL+" = ?, "+MOT_DE_PASSE+" = ?, "
 					+SALT+" = ?, "+ROLE+" = ?"+" WHERE "+ID_UTILISATEUR+" = ?";
-			PreparedStatement pstForUser = Connexion.getInstance().prepareStatement(requeteUtilisateur) ;
+			PreparedStatement pstForUser = connexion.prepareStatement(requeteUtilisateur) ;
 			pstForUser.setString(1,email) ; 
 			pstForUser.setString(2,mdp) ;
 			pstForUser.setString(3,salt) ;
 			pstForUser.setString(4,role) ;
 			pstForUser.setInt(5,id) ;
 			pstForUser.executeUpdate() ;
-			donnees.put(id, adherent);
+//			donnees.put(id, adherent);
 			
 			
 			String requeteProfil = "UPDATE "+TABLE_PROFIL+" SET "+NOM+" = ?, "+PRENOM+" = ?, "
 							+TEL+" = ?, "+ADRESSE+" = ?, "+DATE_INSCRIPTION+" = ?, "
 							+DATE_INSCRIPTION_FIN+" = ?, "+NO_CNI+" = ?, "+ACTIF+" = ?, "+CAUTION+" = ?, "
 							+OBSERVATIONS+" = ?"+" WHERE "+ID_PROFIL+" = ?";
-			PreparedStatement pstForProfil = Connexion.getInstance().prepareStatement(requeteProfil) ;
+			PreparedStatement pstForProfil = connexion.prepareStatement(requeteProfil) ;
 			pstForProfil.setString(1,nom) ; 
 			pstForProfil.setString(2,prenom) ;
 			pstForProfil.setString(3,tel) ;
@@ -194,8 +232,17 @@ public class AdherentDAO extends DAO<Adherent> {
 			pstForProfil.setString(10,observations) ;
 			pstForProfil.setInt(11, id);
 			pstForProfil.executeUpdate() ;
-			donnees.put(id, adherent);
+//			donnees.put(id, adherent);
+			
+			connexion.commit();
 		} catch (SQLException e) {
+			try {
+				connexion.rollback();
+				System.out.println("Update annulé");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			succes = false;
 			e.printStackTrace();
 		} 
@@ -231,7 +278,7 @@ public class AdherentDAO extends DAO<Adherent> {
 			adherent = new Adherent (id, nom, prenom, tel, adresse, email, dateInscription,
 									dateInscriptionFin, noCNI, actif, caution, observations,
 									password, salt, role);
-			donnees.put(id, adherent);
+//			donnees.put(id, adherent);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
