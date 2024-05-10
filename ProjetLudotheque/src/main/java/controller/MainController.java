@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import utils.SessionManager;
 
 public class MainController {
 
@@ -93,7 +94,11 @@ public class MainController {
 				loadFXML("testConnexionAdherent");
 				break;
 			case "Historique":
-				loadFXML("testAjoutAdherent");
+				if(SessionManager.getCurrentUser()!=null) {
+					loadFXML("testAjoutAdherent");
+				} else {
+					loadFXML("monCompte");
+				}
 				break;
 			case "Liste des adhérents":
 				loadFXML("monCompte");

@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.SessionManager;
 
 public abstract class PageInit {
 	
@@ -16,6 +17,8 @@ public abstract class PageInit {
 	private AnchorPane childWindow;
 
     protected void setAnchors() {
+    	
+    	SessionManager.startSessionTimer();
         
         AnchorPane.setTopAnchor(childWindow, 0.0);
         AnchorPane.setBottomAnchor(childWindow, 0.0);
