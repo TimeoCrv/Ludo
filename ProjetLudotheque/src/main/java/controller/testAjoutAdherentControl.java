@@ -18,13 +18,16 @@ public class testAjoutAdherentControl extends PageInit{
 	private TextField prenom;
 
 	@FXML
+	private TextField telephone;
+	
+	@FXML
 	private TextField adresse;
 
 	@FXML
-	private TextField telephone;
-
-	@FXML
 	private TextField email;
+	
+	@FXML
+	private TextField noCNI;
 
 	@FXML
 	private TextArea observations;
@@ -40,9 +43,10 @@ public class testAjoutAdherentControl extends PageInit{
 
 			String nomSaisi = nom.getText();
 			String prenomSaisi = prenom.getText();
-			String adresseSaisi = adresse.getText();
 			String telephoneSaisi = telephone.getText();
+			String adresseSaisi = adresse.getText();
 			String emailSaisi = email.getText();
+			String noCNISaisi = noCNI.getText();
 			String observationsSaisi = observations.getText();
 
 			String passwordToHash = "sio";
@@ -52,11 +56,10 @@ public class testAjoutAdherentControl extends PageInit{
 			
 
 			Connexion.getInstance();
-			Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, adresseSaisi, telephoneSaisi, emailSaisi,
-												40, observationsSaisi, hashedPassword, salt);
+			Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
+												noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
 			AdherentDAO.getInstance().create(adherentCree);
 			System.out.println(hashedPassword);
-			Connexion.fermer();
 
 		} catch (Exception e) {
 			e.printStackTrace();

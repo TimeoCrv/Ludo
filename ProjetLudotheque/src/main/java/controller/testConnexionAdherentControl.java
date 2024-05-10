@@ -4,15 +4,8 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.AdherentDAO;
 import model.Connexion;
 import utils.PasswordManager;
@@ -60,7 +53,6 @@ public class testConnexionAdherentControl extends PageInit {
 	    		
 	    		System.out.println(storedPassword);
 	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
-	            Connexion.fermer();
 
 			} catch (Exception e) {
 				e.printStackTrace();
