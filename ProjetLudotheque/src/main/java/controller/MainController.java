@@ -51,9 +51,10 @@ public class MainController {
 
 	@FXML
 	private AnchorPane mainWindow;
+	
 
 	@FXML
-	public void initialize() {
+	public void initialize() {	
 		// Masquer certains boutons et labels au démarrage de l'application
 		btnProfil.setVisible(false);
 		btnProfil.setManaged(false);
@@ -67,8 +68,8 @@ public class MainController {
 		btnRendreJeu.setManaged(false);
 		labelAdmin.setVisible(false);
 		labelAdmin.setManaged(false);
-		btnListeAdherent.setVisible(false);
-		btnListeAdherent.setManaged(false);
+		btnListeAdherent.setVisible(true);
+		btnListeAdherent.setManaged(true);
 		btnAddAdherent.setVisible(false);
 		btnAddAdherent.setManaged(false);
 		btnListeEmploye.setVisible(false);
@@ -93,6 +94,9 @@ public class MainController {
 				break;
 			case "Historique":
 				loadFXML("testAjoutAdherent");
+				break;
+			case "Liste des adhérents":
+				loadFXML("monCompte");
 				break;
 
 			default:

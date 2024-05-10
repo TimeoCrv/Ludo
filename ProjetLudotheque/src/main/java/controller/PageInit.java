@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 public abstract class PageInit {
 	
 	@FXML
-    private AnchorPane childWindow;
+	private AnchorPane childWindow;
 
     protected void setAnchors() {
         
@@ -53,6 +53,11 @@ public abstract class PageInit {
         // Retourne le contrôleur de la fenêtre pop-up
         return loader.getController();
     }
+    
+	public void loadOtherFXML(String fxml) throws IOException {
+		AnchorPane content = FXMLLoader.load(getClass().getResource("/ihm/" + fxml + ".fxml"));
+		childWindow.getChildren().setAll(content);
+	}
     
     protected void closePopup() {
         Stage stage = (Stage) childWindow.getScene().getWindow();

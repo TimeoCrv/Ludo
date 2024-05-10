@@ -14,7 +14,7 @@ public class Adherent {
 		private Timestamp dateInscriptionFin;
 		private String noCNI;
 		private boolean actif;
-		private float caution;
+		private double caution;
 		private String observations;
 		private String password;
 		private String salt;
@@ -22,7 +22,7 @@ public class Adherent {
 		
 		//Constructeur pour Create
 		public Adherent(String nom, String prenom, String tel, String adresse, String email, String noCNI,
-				float caution, String observations, String password, String salt) {
+				double caution, String observations, String password, String salt) {
 			super();
 			this.nom = nom;
 			this.prenom = prenom;
@@ -30,6 +30,7 @@ public class Adherent {
 			this.adresse = adresse;
 			this.email = email;
 			this.noCNI = noCNI;
+			this.caution = caution;
 			this.observations = observations;
 			this.password = password;
 			this.salt = salt;
@@ -37,7 +38,7 @@ public class Adherent {
 
 		//Constructeur pour Read et Update
 		public Adherent(int idProfil, String nom, String prenom, String tel, String adresse, String email,
-				Timestamp dateInscription, Timestamp dateInscriptionFin, String noCNI, boolean actif, float caution,
+				Timestamp dateInscription, Timestamp dateInscriptionFin, String noCNI, boolean actif, double caution,
 				String observations, String password, String salt, String role) {
 			super();
 			this.idProfil = idProfil;
@@ -138,7 +139,7 @@ public class Adherent {
 			this.actif = actif;
 		}
 
-		public float getCaution() {
+		public double getCaution() {
 			return caution;
 		}
 
@@ -180,7 +181,10 @@ public class Adherent {
 
 		@Override
 		public String toString() {
-			return "Adherent [idProfil=" + idProfil + ", nom=" + nom + ", prenom=" + prenom + "]";
+			return "Adherent [idProfil=" + idProfil + ", nom=" + nom + ", prenom=" + prenom + ", dateInscription="
+					+ dateInscription + ", dateInscriptionFin=" + dateInscriptionFin + ", caution=" + caution + "]";
 		}
+
+		
 
 }

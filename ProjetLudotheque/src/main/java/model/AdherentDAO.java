@@ -99,7 +99,7 @@ public class AdherentDAO extends DAO<Adherent> {
 			pstForProfil.setTimestamp(7, new Timestamp(endDate.getTime()));
 			pstForProfil.setString(8, adherent.getNoCNI());
 			pstForProfil.setBoolean(9, true);
-			pstForProfil.setFloat(10, adherent.getCaution());
+			pstForProfil.setDouble(10, adherent.getCaution());
 			
 			String observations = (adherent.getObservations() != null) ? adherent.getObservations() : "";
 			pstForProfil.setString(11, observations);
@@ -142,41 +142,63 @@ public class AdherentDAO extends DAO<Adherent> {
 	@Override
 	public boolean update(Adherent adherent) {
 		boolean succes=true;
+		
+		int id = adherent.getIdProfil();
+		
+		String email = adherent.getEmail();
+		String mdp = adherent.getPassword();
+		String salt = adherent.getSalt();
+		String role = adherent.getRole();
 
-//		String nom =adherent.getNom();
-//		String prenom =adherent.getPrenom();
-//		String adresse =adherent.getAdresse();
-//		String tel =adherent.getTel();
-//		String mail =adherent.getMail();
-//		Timestamp dateAdhesion =adherent.getDateAdhesion();
-//		Timestamp dateFinAdhesion =adherent.getDateFinAdhesion();
-//		Boolean actif =adherent.isActif();
-//		float caution =adherent.getCaution();
-//		String observations =adherent.getObservations();
-//		int id = adherent.getNumero();
-//
-//		try {
-//			String requete = "UPDATE "+TABLE+" SET "+NOM_ADHERENT+" = ?, "+PRENOM_ADHERENT+" = ?, "
-//							+ADRESSE+" = ?, "+TEL+" = ?, "+MAIL+" = ?, "+DATE_ADHESION+" = ?, "
-//							+DATE_FIN_ADHESION+" = ?, "+ACTIF+" = ?"+CAUTION+" = ?"
-//							+OBSERVATIONS+" = ?"+"WHERE "+CLE_PRIMAIRE+" = ?";
-//			PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
-//			pst.setString(1,nom) ; 
-//			pst.setString(2,prenom) ;
-//			pst.setString(3,adresse) ;
-//			pst.setString(4,tel) ;
-//			pst.setString(5,mail) ;
-//			pst.setTimestamp(6,dateAdhesion) ;
-//			pst.setTimestamp(7,dateFinAdhesion) ;
-//			pst.setBoolean(8,actif) ;
-//			pst.setFloat(9, caution) ;
-//			pst.setString(10,observations) ;
-//			pst.executeUpdate() ;
-//			donnees.put(id, adherent);
-//		} catch (SQLException e) {
-//			succes = false;
-//			e.printStackTrace();
-//		} 
+		String nom =adherent.getNom();
+		String prenom =adherent.getPrenom();
+		String tel =adherent.getTel();
+		String adresse =adherent.getAdresse();
+		Timestamp dateInscription =adherent.getDateInscription();
+		Timestamp dateFinInscription =adherent.getDateInscriptionFin();
+		String noCNI = adherent.getNoCNI();
+		Boolean actif =adherent.isActif();
+		double caution =adherent.getCaution();
+		String observations =adherent.getObservations();
+		
+		System.out.println("adherentupdate");
+		System.out.println(adherent);
+
+		try {
+			String requeteUtilisateur = "UPDATE "+TABLE_UTILISATEUR+" SET "+EMAIL+" = ?, "+MOT_DE_PASSE+" = ?, "
+					+SALT+" = ?, "+ROLE+" = ?"+" WHERE "+ID_UTILISATEUR+" = ?";
+			PreparedStatement pstForUser = Connexion.getInstance().prepareStatement(requeteUtilisateur) ;
+			pstForUser.setString(1,email) ; 
+			pstForUser.setString(2,mdp) ;
+			pstForUser.setString(3,salt) ;
+			pstForUser.setString(4,role) ;
+			pstForUser.setInt(5,id) ;
+			pstForUser.executeUpdate() ;
+			donnees.put(id, adherent);
+			
+			
+			String requeteProfil = "UPDATE "+TABLE_PROFIL+" SET "+NOM+" = ?, "+PRENOM+" = ?, "
+							+TEL+" = ?, "+ADRESSE+" = ?, "+DATE_INSCRIPTION+" = ?, "
+							+DATE_INSCRIPTION_FIN+" = ?, "+NO_CNI+" = ?, "+ACTIF+" = ?, "+CAUTION+" = ?, "
+							+OBSERVATIONS+" = ?"+" WHERE "+ID_PROFIL+" = ?";
+			PreparedStatement pstForProfil = Connexion.getInstance().prepareStatement(requeteProfil) ;
+			pstForProfil.setString(1,nom) ; 
+			pstForProfil.setString(2,prenom) ;
+			pstForProfil.setString(3,tel) ;
+			pstForProfil.setString(4,adresse) ;
+			pstForProfil.setTimestamp(5,dateInscription) ;
+			pstForProfil.setTimestamp(6,dateFinInscription) ;
+			pstForProfil.setString(7, noCNI);
+			pstForProfil.setBoolean(8,actif) ;
+			pstForProfil.setDouble(9, caution) ;
+			pstForProfil.setString(10,observations) ;
+			pstForProfil.setInt(11, id);
+			pstForProfil.executeUpdate() ;
+			donnees.put(id, adherent);
+		} catch (SQLException e) {
+			succes = false;
+			e.printStackTrace();
+		} 
 		return succes;	
 	}
 

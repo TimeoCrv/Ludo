@@ -60,6 +60,9 @@ public class testAjoutAdherentControl extends PageInit{
 												noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
 			AdherentDAO.getInstance().create(adherentCree);
 			System.out.println(hashedPassword);
+			
+			System.out.println(adherentCree);
+			System.out.println(AdherentDAO.getInstance().read(adherentCree.getIdProfil()));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,7 +74,21 @@ public class testAjoutAdherentControl extends PageInit{
 	public void allerVersConnexion(ActionEvent event) {
 	  
 		try {
-			closePopup();
+			
+			//test update
+			
+			Connexion.getInstance();
+			Adherent adherent = AdherentDAO.getInstance().read(3);
+			System.out.println(adherent);
+			
+			adherent.setCaution(30);
+			AdherentDAO.getInstance().update(adherent);
+			
+			System.out.println(AdherentDAO.getInstance().read(3));
+			
+			
+			
+//			closePopup();
 //            // Charger la scène accueil.fxml
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
 //            Parent accueilRoot = loader.load();
