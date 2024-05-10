@@ -12,12 +12,13 @@ public class SessionManager {
 	private static SessionManager instance;
 	private static User currentUser;
 	private static long startTime;
+	private static Timer sessionTimer;
 	
 	private SessionManager() {
 		
 	}
 	
-	public static synchronized SessionManager getInstance() {
+	public static SessionManager getInstance() {
 		if (instance == null) {
 			instance = new SessionManager();
 		}
@@ -32,11 +33,13 @@ public class SessionManager {
 	public static void closeSession() {
 		currentUser = null;
 		instance = null;
+		initTimer();
 	}
 	
 	public static void startSessionTimer() {
-		Timer timer = new Timer();
-		timer.schedule(new TimerTask() {
+		initTimer();
+		sessionTimer = new Timer();
+		sessionTimer.schedule(new TimerTask() {
 
 			@Override
 			public void run() {
@@ -50,7 +53,7 @@ public class SessionManager {
 		}, DELAY);
 	}
 	
-	public synchronized static void checkSessionActivity() {
+	public static void checkSessionActivity() {
 		long currentTime = System.currentTimeMillis();
 		if (currentTime - startTime > DELAY) {
 			closeSession();
@@ -61,6 +64,13 @@ public class SessionManager {
 
 	public static User getCurrentUser() {
 		return currentUser;
+	}
+	
+	private static void initTimer() {
+		if (sessionTimer != null) {
+			sessionTimer.cancel();
+			sessionTimer=null;
+		}
 	}
 	
 }
