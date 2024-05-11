@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -65,5 +67,27 @@ public abstract class PageInit {
     protected void closePopup() {
         Stage stage = (Stage) childWindow.getScene().getWindow();
         stage.close();
+    }
+    
+    protected boolean demanderConfirmation(String message) {
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        ButtonType confirmerButton = new ButtonType("Confirmer");
+        ButtonType annulerButton = new ButtonType("Annuler");
+
+        alert.getButtonTypes().setAll(confirmerButton, annulerButton);
+
+        return alert.showAndWait().get() == confirmerButton;
+    }
+
+    protected void afficherMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

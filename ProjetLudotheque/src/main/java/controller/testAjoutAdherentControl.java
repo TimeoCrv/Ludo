@@ -55,14 +55,25 @@ public class testAjoutAdherentControl extends PageInit{
 			String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
 			
 
-			Connexion.getInstance();
-			Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
-												noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
-			AdherentDAO.getInstance().create(adherentCree);
-			System.out.println(hashedPassword);
-			
-			System.out.println(adherentCree);
-			System.out.println(AdherentDAO.getInstance().read(adherentCree.getIdProfil()));
+			if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
+					&& !adresseSaisi.isBlank() && !emailSaisi.isBlank() && !noCNISaisi.isBlank()) {
+				boolean confirmation = demanderConfirmation("Ajouter l'adhérent ?");
+				if(confirmation) {
+					Connexion.getInstance();
+					Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
+							noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
+					AdherentDAO.getInstance().create(adherentCree);
+					System.out.println(hashedPassword);
+					
+					System.out.println(adherentCree);
+					System.out.println(AdherentDAO.getInstance().read(adherentCree.getIdProfil()));
+					
+					afficherMessage("Adhérent ajouté avec succès");
+					loadOtherFXML("monCompte");
+				}
+			} else {
+				afficherMessage("Veuillez remplir tous les champs");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();

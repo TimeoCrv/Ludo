@@ -56,6 +56,14 @@ public class MainController {
 
 	@FXML
 	public void initialize() {	
+		
+		try {
+			loadFXML("monCompte");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Masquer certains boutons et labels au démarrage de l'application
 		btnProfil.setVisible(false);
 		btnProfil.setManaged(false);
