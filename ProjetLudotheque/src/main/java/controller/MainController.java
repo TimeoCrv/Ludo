@@ -58,7 +58,7 @@ public class MainController {
 	public void initialize() {	
 		
 		try {
-			loadFXML("monCompte");
+			loadFXML("testAjoutAdherent");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
