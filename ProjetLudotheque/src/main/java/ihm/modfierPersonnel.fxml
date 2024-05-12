@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.testAjoutPersonnelControl" fx:id="childWindow">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListePersonnel" fx:id="childWindow">
    <children>
       <ImageView fitHeight="529.0" fitWidth="600.0" opacity="0.11" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -26,7 +26,7 @@
             <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="464.0" layoutY="271.0" mnemonicParsing="false" onAction="#ajouterPersonnel" text="Ajouter" />
+      <Button layoutX="464.0" layoutY="271.0" mnemonicParsing="false" onAction="#modifierPersonnel" text="modifier" />
       <TextField fx:id="nom" layoutX="46.0" layoutY="74.0" prefHeight="25.0" prefWidth="109.0" promptText="nom" />
       <TextField fx:id="prenom" layoutX="174.0" layoutY="74.0" prefHeight="25.0" prefWidth="109.0" promptText="prénom" />
       <TextField fx:id="adresse" layoutX="46.0" layoutY="112.0" prefHeight="25.0" prefWidth="242.0" promptText="adresse" />

@@ -66,16 +66,14 @@ public class MainController {
 	@FXML
 	public void initialize() {
 
-
+		
 		try {
 			loadFXML("Accueil"); // Chargement d'une vue au lancement de l'application
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-
-
-
+		
 		// Masquer certains boutons et labels au démarrage de l'application
 		initializeButtons();
 	}
@@ -234,6 +232,7 @@ public class MainController {
 	}
 	
 
+
 	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour divers affichages dans l'application
 	// A ajouter isAdherent()
 	// Ecriture en ternaire que je trouve plus simple lorsqu'on a des résultats de conditions if qui ne sont pas longues
@@ -241,6 +240,7 @@ public class MainController {
 	public static boolean isPersonnel() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;}
 
+		
 	
 	public static boolean isAdmin() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;

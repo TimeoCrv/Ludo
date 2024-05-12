@@ -17,7 +17,11 @@ import utils.SessionManager;
 // Classe héritée par toutes les IHM
 // Regroupe les fonctions communes à toutes
 
+import utils.SessionManager;
+
+
 public abstract class PageInit {
+
 
 	@FXML
 	private AnchorPane childWindow;
@@ -34,6 +38,19 @@ public abstract class PageInit {
 	}
 	
 	// Fonctions qui peuvent créer et fermer des modal à décommenter si besoin
+
+    //protected void setAnchors() {
+    	
+    	//SessionManager.startSessionTimer();
+        
+       // AnchorPane.setTopAnchor(childWindow, 0.0);
+       // AnchorPane.setBottomAnchor(childWindow, 0.0);
+       // AnchorPane.setLeftAnchor(childWindow, 0.0);
+       // AnchorPane.setRightAnchor(childWindow, 0.0);
+        
+   // }
+
+
 
 //    protected void loadModal(String fxml, String title) throws IOException {
 //    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
@@ -89,9 +106,15 @@ public abstract class PageInit {
 	public void loadUpdateAdherentFXML(String fxml, Adherent adherent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
         Parent content = loader.load();
+        Parent popupRoot = loader.load();
+        Scene popupScene = new Scene(popupRoot);
+        
+        
+
 
         UpdateAdherentController updateController = loader.getController();
         updateController.setAdherent(adherent);
+
 
         childWindow.getChildren().setAll(content);
     }
@@ -120,5 +143,6 @@ public abstract class PageInit {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
-	}
-}
+	}}
+
+        

@@ -15,23 +15,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.testAjoutPersonnelControl" fx:id="childWindow">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFE4C4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListePersonnel">
    <children>
       <ImageView fitHeight="408.0" fitWidth="606.0" layoutX="-2.0" layoutY="-1.0" opacity="0.06" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../Desktop/2fb861e_1668788142068-dsc00978.jpg" />
          </image>
       </ImageView>
-      <Text layoutX="237.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personne Associe" textAlignment="CENTER">
+      <Text layoutX="237.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste personnel" textAlignment="CENTER">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
       <Button layoutX="500.0" layoutY="14.0" mnemonicParsing="false" text="Déconnexion" />
-      <TextArea layoutX="76.0" layoutY="74.0" prefHeight="121.0" prefWidth="439.0" promptText="Info personne associe" />
-      <Button id="rechercherPersonneAssocie" fx:id="rechercherPersonneAssocieButton" layoutX="486.0" layoutY="242.0" mnemonicParsing="false" text="Rechercher" />
-      <Button layoutX="524.0" layoutY="356.0" mnemonicParsing="false" text="Retour" />
-      <TableView fx:id="personneAssocieList" layoutX="76.0" layoutY="203.0" prefHeight="176.0" prefWidth="294.0">
+      <TextArea layoutX="76.0" layoutY="74.0" prefHeight="121.0" prefWidth="439.0" promptText="Info utilisateur" />
+      <Button layoutX="388.0" layoutY="241.0" mnemonicParsing="false" text="Retour" />
+      <Button id="supprimerPersonnel" fx:id="supprimerPersonnel" layoutX="471.0" layoutY="203.0" mnemonicParsing="false" onAction="#supprimerPersonnel" text="Supprimer" />
+      <Button id="modifierPersonnel" fx:id="modifierPersonnel" layoutX="383.0" layoutY="203.0" mnemonicParsing="false" onAction="#modifierPersonnel" text="Modifier" />
+      <TextField fx:id="prenom" layoutX="174.0" layoutY="74.0" prefHeight="25.0" prefWidth="109.0" promptText="prénom" />
+      <TableView fx:id="personnelList" layoutX="76.0" layoutY="203.0" onMouseClicked="#getIndex" prefHeight="176.0" prefWidth="294.0">
         <columns>
           <TableColumn fx:id="nomPersonnel" prefWidth="75.0" text="Nom" />
           <TableColumn fx:id="prenomPersonnel" prefWidth="75.0" text="Prénom" />
@@ -39,6 +41,5 @@
             <TableColumn fx:id="tel" prefWidth="75.0" text="Tel" />
         </columns>
       </TableView>
-      <TextField id="cherchePersonneAssocie" layoutX="413.0" layoutY="203.0" />
    </children>
 </AnchorPane>
