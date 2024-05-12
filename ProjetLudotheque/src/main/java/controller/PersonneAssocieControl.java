@@ -15,7 +15,7 @@ import javafx.util.Callback;
 import model.PersonneAssocie;
 import model.PersonneAssocieDAO;
 
-public class PersonneAssocieControl extends IhmControl{
+public class PersonneAssocieControl extends PageInit{
 	
 	@FXML
 	private TableView<PersonneAssocie> personneAssocieList;
@@ -48,7 +48,7 @@ public class PersonneAssocieControl extends IhmControl{
 	}
 	
 	@FXML
-	private void initialize() {
+	public void initialize() {
 		nomPersonneAssocie.setCellValueFactory(new Callback<CellDataFeatures<PersonneAssocie, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<PersonneAssocie, String> cellData) {

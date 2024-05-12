@@ -2,77 +2,105 @@ package model;
 
 public class Personnel {
 	
-	private int idPersonnel;
+	private int idUtilisateur;
 	private String nom;
 	private String prenom;
 	private String tel;
-	private String email;
 	private String adresse;
+	private boolean isAdmin;
 	
 	
 	
-	public Personnel(int idPersonnel, String nom, String prenom, String tel, String email, String adresse) {
-		super();
-		this.idPersonnel = idPersonnel;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.tel = tel;
-		this.email = email;
-		this.adresse = adresse;
-	}
-	
-	
-	
-	public Personnel(String nom, String prenom, String tel, String email, String adresse) {
+	public Personnel(String nom, String prenom, String tel, String adresse) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.tel = tel;
-		this.email = email;
+		this.adresse = adresse;
+		//this.isAdmin = isAdmin;
+		
+	}
+	
+	
+	
+	public Personnel(int idUtilisateur,String nom, String prenom, String tel, String adresse) {
+		super();
+		this.idUtilisateur=idUtilisateur;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.tel = tel;
 		this.adresse = adresse;
 	}
 
 
+	public int getIdutilisateur() {
+		return idUtilisateur;
+	}
 
-	public int getIdPersonnel() {
-		return idPersonnel;
+
+
+	public void setIdutilisateur(int idUtilisateur) {
+		this.idUtilisateur = idUtilisateur;
 	}
-	public void setid_Personnel(int id_Personnel) {
-		this.idPersonnel = idPersonnel;
-	}
+
+
+
 	public String getNom() {
 		return nom;
 	}
+
+
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+
+
 	public String getPrenom() {
 		return prenom;
 	}
+
+
+
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
+
+
 	public String getTel() {
 		return tel;
 	}
+
+
+
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	public String getAdresse() {
 		return adresse;
 	}
+
+
+
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
 
 
-	
-	
+
+	public boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+
+
+	public void setIsAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
 
 }
+
+	
