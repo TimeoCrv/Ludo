@@ -118,10 +118,10 @@ import java.util.List;
 				pst.setInt(4, annee) ;
 				pst.setInt(5,ageMin) ;
 				pst.setInt(7,dureeMin) ;
-				pst.setString(9,descriptif) ;
-				pst.setString(10, editeur) ;
-				pst.setInt(11, disponible) ;
-				pst.setInt(12, nombre) ;
+				pst.setString(8,descriptif) ;
+				pst.setString(9, editeur) ;
+				pst.setInt(10, disponible) ;
+				pst.setInt(11, nombre) ;
 				pst.executeUpdate() ;
 				// TODO donnees.put(id, jeu);
 			} catch (SQLException e) {

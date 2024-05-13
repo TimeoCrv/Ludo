@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,6 +17,7 @@ import model.Jeu;
 import model.JeuDAO;
 
 public class ListJeuControl extends PageInit {
+	
 	
 	@FXML
 	private TableView<Jeu> jeuList;
@@ -44,13 +46,13 @@ public class ListJeuControl extends PageInit {
 	
 	
 	@FXML
-	private void start() {
-		System.out.println("oui");
+	private void initialize() {
+		setAnchors();
 		nomJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {
-				return new SimpleStringProperty(cellData.getValue().getNom());
-			}
+		    @Override
+		    public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {
+		        return new SimpleStringProperty(cellData.getValue().getNom());
+		    }
 		});
 		descriptifJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
 			@Override
@@ -103,6 +105,30 @@ public class ListJeuControl extends PageInit {
 	private void supprimerUnJeu() {
 		JeuDAO.getInstance().delete(getIndex());
 	}
-
 	
+	
+	@FXML
+	public void openPageAdd() {
+		try {
+			loadOtherFXML("ajouterJeu");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void openPageUpdate() {
+		Jeu jeuSelectionne = getIndex();
+	    if (jeuSelectionne != null) {
+		try {
+			loadOtherFXML("modifierJeu");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    }
+
+	}
+
 }
