@@ -18,13 +18,16 @@ public class testAjoutAdherentControl extends PageInit{
 	private TextField prenom;
 
 	@FXML
+	private TextField telephone;
+	
+	@FXML
 	private TextField adresse;
 
 	@FXML
-	private TextField telephone;
-
-	@FXML
 	private TextField email;
+	
+	@FXML
+	private TextField noCNI;
 
 	@FXML
 	private TextArea observations;
@@ -40,9 +43,10 @@ public class testAjoutAdherentControl extends PageInit{
 
 			String nomSaisi = nom.getText();
 			String prenomSaisi = prenom.getText();
-			String adresseSaisi = adresse.getText();
 			String telephoneSaisi = telephone.getText();
+			String adresseSaisi = adresse.getText();
 			String emailSaisi = email.getText();
+			String noCNISaisi = noCNI.getText();
 			String observationsSaisi = observations.getText();
 
 			String passwordToHash = "sio";
@@ -51,12 +55,25 @@ public class testAjoutAdherentControl extends PageInit{
 			String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
 			
 
-			Connexion.getInstance();
-			Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, adresseSaisi, telephoneSaisi, emailSaisi,
-												40, observationsSaisi, hashedPassword, salt);
-			AdherentDAO.getInstance().create(adherentCree);
-			System.out.println(hashedPassword);
-			Connexion.fermer();
+			if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
+					&& !adresseSaisi.isBlank() && !emailSaisi.isBlank() && !noCNISaisi.isBlank()) {
+				boolean confirmation = demanderConfirmation("Ajouter l'adhérent ?");
+				if(confirmation) {
+					Connexion.getInstance();
+					Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
+							noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
+					AdherentDAO.getInstance().create(adherentCree);
+					System.out.println(hashedPassword);
+					
+					System.out.println(adherentCree);
+					System.out.println(AdherentDAO.getInstance().read(adherentCree.getIdProfil()));
+					
+					afficherMessage("Adhérent ajouté avec succès");
+					loadOtherFXML("monCompte");
+				}
+			} else {
+				afficherMessage("Veuillez remplir tous les champs");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +85,24 @@ public class testAjoutAdherentControl extends PageInit{
 	public void allerVersConnexion(ActionEvent event) {
 	  
 		try {
-			closePopup();
+			
+			//test update
+			
+			Connexion.getInstance();
+			Adherent adherent = AdherentDAO.getInstance().read(3);
+			System.out.println(adherent);
+			
+			adherent.setEmail("a");
+			adherent.setCaution(30);
+			
+			System.out.println(adherent);
+			AdherentDAO.getInstance().update(adherent);
+			
+			System.out.println(AdherentDAO.getInstance().read(3));
+			
+			
+			
+//			closePopup();
 //            // Charger la scène accueil.fxml
 //            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
 //            Parent accueilRoot = loader.load();

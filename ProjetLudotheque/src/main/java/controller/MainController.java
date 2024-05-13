@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import utils.SessionManager;
 
 public class MainController {
 
@@ -51,9 +52,18 @@ public class MainController {
 
 	@FXML
 	private AnchorPane mainWindow;
+	
 
 	@FXML
-	public void initialize() {
+	public void initialize() {	
+		
+		try {
+			loadFXML("testAjoutAdherent");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Masquer certains boutons et labels au démarrage de l'application
 		btnProfil.setVisible(false);
 		btnProfil.setManaged(false);
@@ -67,8 +77,8 @@ public class MainController {
 		btnRendreJeu.setManaged(false);
 		labelAdmin.setVisible(false);
 		labelAdmin.setManaged(false);
-		btnListeAdherent.setVisible(false);
-		btnListeAdherent.setManaged(false);
+		btnListeAdherent.setVisible(true);
+		btnListeAdherent.setManaged(true);
 		btnAddAdherent.setVisible(false);
 		btnAddAdherent.setManaged(false);
 		btnListeEmploye.setVisible(false);
@@ -92,7 +102,14 @@ public class MainController {
 				loadFXML("testConnexionAdherent");
 				break;
 			case "Historique":
-				loadFXML("testAjoutAdherent");
+				if(SessionManager.getCurrentUser()!=null) {
+					loadFXML("testAjoutAdherent");
+				} else {
+					loadFXML("monCompte");
+				}
+				break;
+			case "Liste des adhérents":
+				loadFXML("monCompte");
 				break;
 
 			default:

@@ -4,58 +4,67 @@ import java.sql.Timestamp;
 
 public class Adherent {
 
-		private int numero;
+		private int idProfil;
 		private String nom;
 		private String prenom;
-		private String adresse;
 		private String tel;
-		private String mail;
-		private Timestamp dateAdhesion;
-		private Timestamp dateFinAdhesion;
+		private String adresse;
+		private String email;
+		private Timestamp dateInscription;
+		private Timestamp dateInscriptionFin;
+		private String noCNI;
 		private boolean actif;
-		private float caution;
+		private double caution;
 		private String observations;
 		private String password;
 		private String salt;
+		private String role = "adherent";
 		
-		public Adherent(String nom, String prenom, String adresse, String tel,String mail,
-						float caution, String observations, String password, String salt) {
+		//Constructeur pour Create
+		public Adherent(String nom, String prenom, String tel, String adresse, String email, String noCNI,
+				double caution, String observations, String password, String salt) {
 			super();
 			this.nom = nom;
 			this.prenom = prenom;
-			this.adresse = adresse;
 			this.tel = tel;
-			this.mail = mail;
+			this.adresse = adresse;
+			this.email = email;
+			this.noCNI = noCNI;
 			this.caution = caution;
 			this.observations = observations;
 			this.password = password;
 			this.salt = salt;
-}
-		
-		public Adherent(int numero, String nom, String prenom, String adresse, String tel, String mail,
-						Timestamp dateAdhesion, Timestamp dateFinAdhesion, 
-						boolean actif, float caution, String observations) {
+		}
+
+		//Constructeur pour Read et Update
+		public Adherent(int idProfil, String nom, String prenom, String tel, String adresse, String email,
+				Timestamp dateInscription, Timestamp dateInscriptionFin, String noCNI, boolean actif, double caution,
+				String observations, String password, String salt, String role) {
 			super();
-			this.numero = numero;
+			this.idProfil = idProfil;
 			this.nom = nom;
 			this.prenom = prenom;
-			this.adresse = adresse;
 			this.tel = tel;
-			this.mail = mail;
-			this.dateAdhesion = dateAdhesion;
-			this.dateFinAdhesion = dateFinAdhesion;
+			this.adresse = adresse;
+			this.email = email;
+			this.dateInscription = dateInscription;
+			this.dateInscriptionFin = dateInscriptionFin;
+			this.noCNI = noCNI;
 			this.actif = actif;
 			this.caution = caution;
 			this.observations = observations;
-		}
-		
-
-		public int getNumero() {
-			return numero;
+			this.password = password;
+			this.salt = salt;
+			this.role = role;
 		}
 
-		public void setNumero(int numero) {
-			this.numero = numero;
+
+		public int getIdProfil() {
+			return idProfil;
+		}
+
+		public void setIdProfil(int idProfil) {
+			this.idProfil = idProfil;
 		}
 
 		public String getNom() {
@@ -74,14 +83,6 @@ public class Adherent {
 			this.prenom = prenom;
 		}
 
-		public String getAdresse() {
-			return adresse;
-		}
-
-		public void setAdresse(String adresse) {
-			this.adresse = adresse;
-		}
-
 		public String getTel() {
 			return tel;
 		}
@@ -90,28 +91,44 @@ public class Adherent {
 			this.tel = tel;
 		}
 
-		public String getMail() {
-			return mail;
+		public String getAdresse() {
+			return adresse;
 		}
 
-		public void setMail(String mail) {
-			this.mail = mail;
+		public void setAdresse(String adresse) {
+			this.adresse = adresse;
 		}
 
-		public Timestamp getDateAdhesion() {
-			return dateAdhesion;
+		public String getEmail() {
+			return email;
 		}
 
-		public void setDateAdhesion(Timestamp dateAdhesion) {
-			this.dateAdhesion = dateAdhesion;
+		public void setEmail(String email) {
+			this.email = email;
 		}
 
-		public Timestamp getDateFinAdhesion() {
-			return dateFinAdhesion;
+		public Timestamp getDateInscription() {
+			return dateInscription;
 		}
 
-		public void setDateFinAdhesion(Timestamp dateFinAdhesion) {
-			this.dateFinAdhesion = dateFinAdhesion;
+		public void setDateInscription(Timestamp dateInscription) {
+			this.dateInscription = dateInscription;
+		}
+
+		public Timestamp getDateInscriptionFin() {
+			return dateInscriptionFin;
+		}
+
+		public void setDateInscriptionFin(Timestamp dateInscriptionFin) {
+			this.dateInscriptionFin = dateInscriptionFin;
+		}
+
+		public String getNoCNI() {
+			return noCNI;
+		}
+
+		public void setNoCNI(String noCNI) {
+			this.noCNI = noCNI;
 		}
 
 		public boolean isActif() {
@@ -122,7 +139,7 @@ public class Adherent {
 			this.actif = actif;
 		}
 
-		public float getCaution() {
+		public double getCaution() {
 			return caution;
 		}
 
@@ -137,7 +154,7 @@ public class Adherent {
 		public void setObservations(String observations) {
 			this.observations = observations;
 		}
-		
+
 		public String getPassword() {
 			return password;
 		}
@@ -145,7 +162,7 @@ public class Adherent {
 		public void setPassword(String password) {
 			this.password = password;
 		}
-		
+
 		public String getSalt() {
 			return salt;
 		}
@@ -154,9 +171,20 @@ public class Adherent {
 			this.salt = salt;
 		}
 
+		public String getRole() {
+			return role;
+		}
+
+		public void setRole(String role) {
+			this.role = role;
+		}
+
 		@Override
 		public String toString() {
-			return "Adhérent [numero = " + numero + ", nom = " + nom + ", prenom = " + prenom + "]";
+			return "Adherent [idProfil=" + idProfil + ", nom=" + nom + ", prenom=" + prenom + ", dateInscription="
+					+ dateInscription + ", dateInscriptionFin=" + dateInscriptionFin + ", caution=" + caution + "]";
 		}
+
+		
 
 }

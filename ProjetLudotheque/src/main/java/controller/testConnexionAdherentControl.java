@@ -4,20 +4,16 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import model.AdherentDAO;
-import model.Connexion;
+import model.User;
+import model.UserDAO;
 import utils.PasswordManager;
+import utils.SessionManager;
 
 public class testConnexionAdherentControl extends PageInit {
+	
+	public static SessionManager sessionManager;
 
 	@FXML
 	private TextField loginEmail;
@@ -35,10 +31,18 @@ public class testConnexionAdherentControl extends PageInit {
 		String emailSaisi = loginEmail.getText();
 		String motDePasseSaisi = loginPassword.getText();
 
-		if (authenticate(emailSaisi, motDePasseSaisi)) {
+		if (PasswordManager.authenticate(emailSaisi, motDePasseSaisi)) {
 
 			try {
-			
+				
+				int idUser = UserDAO.getInstance().getIdByEmail(emailSaisi);
+				User user = UserDAO.getInstance().read(idUser);
+				
+				sessionManager = SessionManager.getInstance();
+				sessionManager.createSession(user);
+				
+				System.out.println(user);
+				
 				loadModal("testAjoutAdherent", "test pop up");
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -48,25 +52,6 @@ public class testConnexionAdherentControl extends PageInit {
 		}
 	}
 
-	private static boolean authenticate(String email, String password) {
-		boolean connexionOk = false;
 
-
-	        try {
-	        	Connexion.getInstance();
-	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
-	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);
-	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
-	    		
-	    		System.out.println(storedPassword);
-	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
-	            Connexion.fermer();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-	    
-		return connexionOk;
-	}
 	
 }

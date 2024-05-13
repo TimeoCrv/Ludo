@@ -7,7 +7,10 @@ import java.util.Arrays;
 import java.util.Base64;  
 import java.util.Random;  
 import javax.crypto.SecretKeyFactory;  
-import javax.crypto.spec.PBEKeySpec; 
+import javax.crypto.spec.PBEKeySpec;
+
+import model.AdherentDAO;
+import model.Connexion; 
 
 public class PasswordManager {
 	
@@ -77,6 +80,26 @@ public class PasswordManager {
         finalval = newSecurePassword.equalsIgnoreCase(securedPassword);  
           
         return finalval;  
-    }  
+    } 
+    
+	public static boolean authenticate(String email, String password) {
+		boolean connexionOk = false;
+
+
+	        try {
+	        	Connexion.getInstance();
+	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
+	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);
+	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
+	    		
+	    		System.out.println(storedPassword);
+	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+	    
+		return connexionOk;
+	}
 
 }

@@ -6,16 +6,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.SessionManager;
 
 public abstract class PageInit {
 	
 	@FXML
-    private AnchorPane childWindow;
+	private AnchorPane childWindow;
 
     protected void setAnchors() {
+    	
+    	SessionManager.startSessionTimer();
         
         AnchorPane.setTopAnchor(childWindow, 0.0);
         AnchorPane.setBottomAnchor(childWindow, 0.0);
@@ -54,8 +59,35 @@ public abstract class PageInit {
         return loader.getController();
     }
     
+	public void loadOtherFXML(String fxml) throws IOException {
+		AnchorPane content = FXMLLoader.load(getClass().getResource("/ihm/" + fxml + ".fxml"));
+		childWindow.getChildren().setAll(content);
+	}
+    
     protected void closePopup() {
         Stage stage = (Stage) childWindow.getScene().getWindow();
         stage.close();
+    }
+    
+    protected boolean demanderConfirmation(String message) {
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        ButtonType confirmerButton = new ButtonType("Confirmer");
+        ButtonType annulerButton = new ButtonType("Annuler");
+
+        alert.getButtonTypes().setAll(confirmerButton, annulerButton);
+
+        return alert.showAndWait().get() == confirmerButton;
+    }
+
+    protected void afficherMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
