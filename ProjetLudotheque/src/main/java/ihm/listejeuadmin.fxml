@@ -34,7 +34,7 @@
                               <Insets bottom="8.0" />
                            </VBox.margin>
                         </Button>
-                        <Button id="modifierJeu" fx:id="modifierJeu" mnemonicParsing="false" text="Modifier">
+                        <Button id="modifierJeu" fx:id="modifierJeu" mnemonicParsing="false" onAction="#openPageUpdate" text="Modifier">
                            <opaqueInsets>
                               <Insets bottom="8.0" />
                            </opaqueInsets>

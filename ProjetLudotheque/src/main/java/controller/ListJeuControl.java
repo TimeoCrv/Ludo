@@ -128,7 +128,5 @@ public class ListJeuControl extends PageInit {
 			e.printStackTrace();
 		}
 	    }
-
 	}
-
 }

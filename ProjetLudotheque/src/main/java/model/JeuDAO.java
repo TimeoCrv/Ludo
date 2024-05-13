@@ -39,41 +39,40 @@ import java.util.List;
 		
 		@Override
 		public boolean create(Jeu jeu) {
-			boolean succes=true;
-			try {
+		    boolean succes = true;
+		    try {
+		        String requete = "INSERT INTO " + TABLE + " (" + NOM_JEU + ", " + NOMBRE_JOUEURS_MAX + ", " + NOMBRE_JOUEURS_MIN +
+		                ", " + ANNEE + ", " + AGE_MIN + ", " + DUREE_MIN + ", " + DESCRIPTIF +
+		                ", " + EDITEUR + ", " + DISPONIBLE + ", " + NOMBRE + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		        PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
+		        pst.setString(1, jeu.getNom());
+		        pst.setInt(2, jeu.getNombreJoueursMax());
+		        pst.setInt(3, jeu.getNombreJoueursMin());
+		        pst.setInt(4, jeu.getAnnee());
+		        pst.setInt(5, jeu.getAgeMin());
+		        pst.setInt(6, jeu.getDureeMin()); // Index 6 pour la durée minimale
+		        pst.setString(7, jeu.getDescriptif());
+		        pst.setString(8, jeu.getEditeur()); // Correction de l'index pour le nom de l'éditeur
+		        pst.setInt(9, jeu.getDisponible()); // Correction de l'index pour la disponibilité
+		        pst.setInt(10, jeu.getNombre());
 
-				String requete = "INSERT INTO "+TABLE+" ("+NOM_JEU+","+NOMBRE_JOUEURS_MAX+" , "+NOMBRE_JOUEURS_MIN+
-								" , "+ANNEE+" , "+AGE_MIN+" , "+DUREE_MIN+"  , "+DESCRIPTIF+
-								" , "+EDITEUR+" , "+DISPONIBLE+" , "+NOMBRE+") VALUES (?, ?, ?,?, ?, ?,?, ?, ?, ?)";
-				PreparedStatement pst = Connexion.getInstance().prepareStatement(requete, Statement.RETURN_GENERATED_KEYS);
-				// on pose un String en param�tre 1 -1er '?'- et ce String est le nom de l'avion
-				pst.setString(1, jeu.getNom());
-				pst.setInt(2, jeu.getNombreJoueursMax());
-				pst.setInt(3, jeu.getNombreJoueursMin());
-				pst.setInt(4, jeu.getAnnee());
-				pst.setInt(5, jeu.getAgeMin());
-				pst.setInt(7, jeu.getDureeMin());
-				pst.setString(9, jeu.getDescriptif());
-				pst.setString(10, jeu.getEditeur());
-				pst.setInt(11, jeu.getDisponible());
-				pst.setInt(12, jeu.getNombre());
-				// on ex�cute la mise � jour
-				pst.executeUpdate();
+		        pst.executeUpdate();
 
-				//R�cup�rer la cl� qui a �t� g�n�r�e et la pousser dans l'objet initial
-				ResultSet rs = pst.getGeneratedKeys();
-				if (rs.next()) {
-					jeu.setIdJeu(rs.getInt(1));
-				}
-				donnees.put(jeu.getIdJeu(), jeu);
+		        ResultSet rs = pst.getGeneratedKeys();
+		        if (rs.next()) {
+		            jeu.setIdJeu(rs.getInt(1));
+		        }
 
-			} catch (SQLException e) {
-				succes=false;
-				e.printStackTrace();
-			}
+		        donnees.put(jeu.getIdJeu(), jeu);
 
-			return succes;
+		    } catch (SQLException e) {
+		        succes = false;
+		        e.printStackTrace();
+		    }
+
+		    return succes;
 		}
+
 		
 		@Override
 		public boolean delete(Jeu jeu) {
@@ -94,42 +93,48 @@ import java.util.List;
 
 		@Override
 		public boolean update(Jeu jeu) {
-			boolean succes=true;
+		    boolean succes = true;
 
-			String nom =jeu.getNom();
-			int nombreJoueursMax =jeu.getNombreJoueursMax();
-			int nombreJoueursMin =jeu.getNombreJoueursMin();
-			int annee =jeu.getAnnee();;
-			int ageMin =jeu.getAgeMin();
-			int dureeMin =jeu.getDureeMin();
-			String descriptif =jeu.getDescriptif();
-			String editeur =jeu.getEditeur();
-			int disponible =jeu.getDisponible();
-			int nombre =jeu.getNombre();
+		    String nom = jeu.getNom();
+		    int nombreJoueursMax = jeu.getNombreJoueursMax();
+		    int nombreJoueursMin = jeu.getNombreJoueursMin();
+		    int annee = jeu.getAnnee();
+		    int ageMin = jeu.getAgeMin();
+		    int dureeMin = jeu.getDureeMin();
+		    String descriptif = jeu.getDescriptif();
+		    String editeur = jeu.getEditeur();
+		    int disponible = jeu.getDisponible();
+		    int nombre = jeu.getNombre();
+		    int id = jeu.getIdJeu(); // Suppose que vous avez une méthode getId() pour récupérer l'identifiant de l'objet Jeu
 
-			try {
-				String requete = "UPDATE "+TABLE+" SET "+NOM_JEU+" = ?, "+NOMBRE_JOUEURS_MAX+" = ?, "
-								+NOMBRE_JOUEURS_MIN+" = ?, "+ANNEE+" = ?, "+AGE_MIN+" = ?, "+DUREE_MIN+" = ?,  "+DESCRIPTIF+" = ?, "+EDITEUR+" = ?, "+DISPONIBLE+" = ?, "+NOMBRE+" = ?"
-										+ "WHERE "+CLE_PRIMAIRE+" = ?";
-				PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
-				pst.setString(1,nom) ; 
-				pst.setInt(2,nombreJoueursMax) ;
-				pst.setInt(3,nombreJoueursMin) ;
-				pst.setInt(4, annee) ;
-				pst.setInt(5,ageMin) ;
-				pst.setInt(7,dureeMin) ;
-				pst.setString(8,descriptif) ;
-				pst.setString(9, editeur) ;
-				pst.setInt(10, disponible) ;
-				pst.setInt(11, nombre) ;
-				pst.executeUpdate() ;
-				// TODO donnees.put(id, jeu);
-			} catch (SQLException e) {
-				succes = false;
-				e.printStackTrace();
-			} 
-			return succes;	
+		    try {
+		        String requete = "UPDATE " + TABLE + " SET " + NOM_JEU + " = ?, " + NOMBRE_JOUEURS_MAX + " = ?, "
+		                + NOMBRE_JOUEURS_MIN + " = ?, " + ANNEE + " = ?, " + AGE_MIN + " = ?, " + DUREE_MIN + " = ?,  "
+		                + DESCRIPTIF + " = ?, " + EDITEUR + " = ?, " + DISPONIBLE + " = ?, " + NOMBRE + " = ?"
+		                + " WHERE " + CLE_PRIMAIRE + " = ?";
+
+		        PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+		        pst.setString(1, nom);
+		        pst.setInt(2, nombreJoueursMax);
+		        pst.setInt(3, nombreJoueursMin);
+		        pst.setInt(4, annee);
+		        pst.setInt(5, ageMin);
+		        pst.setInt(6, dureeMin);
+		        pst.setString(7, descriptif);
+		        pst.setString(8, editeur);
+		        pst.setInt(9, disponible);
+		        pst.setInt(10, nombre);
+		        pst.setInt(11, id); // Liez la valeur de l'identifiant à la fin
+
+		        pst.executeUpdate();
+		        // TODO donnees.put(id, jeu);
+		    } catch (SQLException e) {
+		        succes = false;
+		        e.printStackTrace();
+		    }
+		    return succes;
 		}
+
 
 		@Override
 		public Jeu read(int idJeu) {

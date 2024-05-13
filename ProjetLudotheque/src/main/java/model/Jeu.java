@@ -3,7 +3,7 @@ package model;
 public class Jeu {
 
 	private int idJeu;
-	private String nom;
+	private String nom = "";
 	private int nombreJoueursMax;
 	private int nombreJoueursMin;
 	private int annee;

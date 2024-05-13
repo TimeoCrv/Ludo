@@ -62,6 +62,7 @@ public class ajouterJeuController extends PageInit{
 			e.printStackTrace();
 		}
 	}
+
 	
 	@FXML
 	private void annulerCreationJeu() {
@@ -72,3 +73,4 @@ public class ajouterJeuController extends PageInit{
 	    }
 	}
 }
+
