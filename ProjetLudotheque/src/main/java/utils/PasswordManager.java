@@ -73,8 +73,6 @@ public class PasswordManager {
           
         /* Generate New secure password with the same salt */  
         String newSecurePassword = generateSecurePassword(providedPassword, salt);  
-        
-        System.out.println(newSecurePassword);
           
         /* Check if two passwords are equal */  
         finalval = newSecurePassword.equalsIgnoreCase(securedPassword);  
@@ -91,8 +89,7 @@ public class PasswordManager {
 	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
 	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);
 	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
-	    		
-	    		System.out.println(storedPassword);
+
 	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
 
 			} catch (Exception e) {

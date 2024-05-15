@@ -53,7 +53,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnConnexion" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" onMouseClicked="#onBtnConnexionClicked" stylesheets="@css/style.css" text="Connexion">
+                  <Button fx:id="btnConnexion" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Connexion">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -85,7 +85,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" onMouseClicked="#onBtnConnexionClicked" stylesheets="@css/style.css" text="Deconnexion" visible="false">
+                  <Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Deconnexion" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>

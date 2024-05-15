@@ -11,7 +11,7 @@ import model.UserDAO;
 import utils.PasswordManager;
 import utils.SessionManager;
 
-public class testConnexionAdherentControl extends PageInit {
+public class ConnexionFormController extends PageInit {
 	
 	public static SessionManager sessionManager;
 
@@ -41,9 +41,7 @@ public class testConnexionAdherentControl extends PageInit {
 				sessionManager = SessionManager.getInstance();
 				sessionManager.createSession(user);
 				
-				System.out.println(user);
-				
-				loadModal("testAjoutAdherent", "test pop up");
+				loadOtherFXML("listeAdherents");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

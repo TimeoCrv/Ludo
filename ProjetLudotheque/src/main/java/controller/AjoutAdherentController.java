@@ -9,7 +9,7 @@ import model.AdherentDAO;
 import model.Connexion;
 import utils.PasswordManager;
 
-public class testAjoutAdherentControl extends PageInit{
+public class AjoutAdherentController extends PageInit{
 
 	@FXML
 	private TextField nom;
@@ -65,11 +65,8 @@ public class testAjoutAdherentControl extends PageInit{
 					AdherentDAO.getInstance().create(adherentCree);
 					System.out.println(hashedPassword);
 					
-					System.out.println(adherentCree);
-					System.out.println(AdherentDAO.getInstance().read(adherentCree.getIdProfil()));
-					
 					afficherMessage("Adhérent ajouté avec succès");
-					loadOtherFXML("monCompte");
+					loadOtherFXML("ListeAdherents");
 				}
 			} else {
 				afficherMessage("Veuillez remplir tous les champs");
@@ -84,37 +81,11 @@ public class testAjoutAdherentControl extends PageInit{
 	@FXML
 	public void allerVersConnexion(ActionEvent event) {
 	  
-		try {
-			
-			//test update
-			
-			Connexion.getInstance();
-			Adherent adherent = AdherentDAO.getInstance().read(3);
-			System.out.println(adherent);
-			
-			adherent.setEmail("a");
-			adherent.setCaution(30);
-			
-			System.out.println(adherent);
-			AdherentDAO.getInstance().update(adherent);
-			
-			System.out.println(AdherentDAO.getInstance().read(3));
-			
-			
-			
-//			closePopup();
-//            // Charger la scène accueil.fxml
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
-//            Parent accueilRoot = loader.load();
-//            
-//            // Récupérer la fenêtre principale (stage)
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Récupérer la scène du bouton
-//            
-//            stage.setScene(new Scene(accueilRoot));
-//            stage.setTitle("Connexion");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//		try {
+//			loadOtherFXML("ListeAdherents");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 	}
     
 }
