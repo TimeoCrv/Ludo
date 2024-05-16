@@ -8,6 +8,7 @@ import model.Adherent;
 import model.AdherentDAO;
 import model.Connexion;
 import utils.PasswordManager;
+import utils.ValidatorManager;
 
 public class AjoutAdherentController extends PageInit{
 
@@ -42,7 +43,9 @@ public class AjoutAdherentController extends PageInit{
 		try {
 
 			String emailSaisi = email.getText();
-			if (isAdherentEmailInBD(emailSaisi)) {
+			if(!ValidatorManager.isValidEmail(emailSaisi)) {
+				afficherMessage("E-mail invalide");
+			} else if (ValidatorManager.isAdherentEmailInBD(emailSaisi)) {
 				afficherMessage("Cet e-mail est déjà utilisé");
 			} else {
 				String nomSaisi = nom.getText();
