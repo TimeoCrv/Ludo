@@ -4,14 +4,20 @@ package controller;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import utils.SessionManager;
 
 public class Main extends Application {
 
@@ -36,7 +42,23 @@ public class Main extends Application {
         stage.setTitle("BETTON LUDIQUE");
         stage.getIcons().add(icone);
         stage.show();
+        
+        // Fermeture par la croix
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent event) {
+				event.consume();
+				closeProperly();
+			}
+        });
+        
     }
+    
+    private void closeProperly() {
+    	if (SessionManager.getCurrentUser()!=null) SessionManager.closeSession();
+		Platform.exit();
+		System.exit(0);
+	}
   
     public static void main(String[] args) {
         launch(args);

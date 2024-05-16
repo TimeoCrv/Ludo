@@ -63,7 +63,6 @@ public class AjoutAdherentController extends PageInit{
 					Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
 							noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
 					AdherentDAO.getInstance().create(adherentCree);
-					System.out.println(hashedPassword);
 					
 					afficherMessage("Adhérent ajouté avec succès");
 					loadOtherFXML("ListeAdherents");

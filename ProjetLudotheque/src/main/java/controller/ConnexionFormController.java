@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
@@ -20,6 +21,9 @@ public class ConnexionFormController extends PageInit {
 
 	@FXML
 	private PasswordField loginPassword;
+	
+	@FXML
+	private Label errorMessage;
 	
 	public void initialize() {
 		setAnchors();
@@ -46,7 +50,8 @@ public class ConnexionFormController extends PageInit {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Email ou mot de passe incorrect.");
+			errorMessage.setVisible(true);
+			errorMessage.setManaged(true);
 		}
 	}
 
