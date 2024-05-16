@@ -41,34 +41,38 @@ public class AjoutAdherentController extends PageInit{
 
 		try {
 
-			String nomSaisi = nom.getText();
-			String prenomSaisi = prenom.getText();
-			String telephoneSaisi = telephone.getText();
-			String adresseSaisi = adresse.getText();
 			String emailSaisi = email.getText();
-			String noCNISaisi = noCNI.getText();
-			String observationsSaisi = observations.getText();
-
-			String passwordToHash = "sio";
-			String salt = PasswordManager.getSaltvalue(30);
-			
-			String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
-			
-
-			if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
-					&& !adresseSaisi.isBlank() && !emailSaisi.isBlank() && !noCNISaisi.isBlank()) {
-				boolean confirmation = demanderConfirmation("Ajouter l'adhérent ?");
-				if(confirmation) {
-					Connexion.getInstance();
-					Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
-							noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
-					AdherentDAO.getInstance().create(adherentCree);
-					
-					afficherMessage("Adhérent ajouté avec succès");
-					loadOtherFXML("ListeAdherents");
-				}
+			if (isAdherentEmailInBD(emailSaisi)) {
+				afficherMessage("Cet e-mail est déjà utilisé");
 			} else {
-				afficherMessage("Veuillez remplir tous les champs");
+				String nomSaisi = nom.getText();
+				String prenomSaisi = prenom.getText();
+				String telephoneSaisi = telephone.getText();
+				String adresseSaisi = adresse.getText();
+				String noCNISaisi = noCNI.getText();
+				String observationsSaisi = observations.getText();
+				
+				String passwordToHash = "sio";
+				String salt = PasswordManager.getSaltvalue(30);
+				
+				String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
+				
+				
+				if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
+						&& !adresseSaisi.isBlank() && !emailSaisi.isBlank() && !noCNISaisi.isBlank()) {
+					boolean confirmation = demanderConfirmation("Ajouter l'adhérent ?");
+					if(confirmation) {
+						Connexion.getInstance();
+						Adherent adherentCree = new Adherent(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
+								noCNISaisi, 40, observationsSaisi, hashedPassword, salt);
+						AdherentDAO.getInstance().create(adherentCree);
+						
+						afficherMessage("Adhérent ajouté avec succès");
+						loadOtherFXML("ListeAdherents");
+					}
+				} else {
+					afficherMessage("Veuillez remplir tous les champs");
+				}
 			}
 
 		} catch (Exception e) {

@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.AdherentDAO;
 import utils.SessionManager;
 
 public abstract class PageInit {
@@ -89,5 +90,10 @@ public abstract class PageInit {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+	
+	// Probablement à changer en isEmailInBD et faire une DAO sur la table utilisateur seulement
+	protected boolean isAdherentEmailInBD(String email) {
+		return AdherentDAO.getInstance().getIdByEmail(email)!=0;
 	}
 }
