@@ -11,6 +11,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Adherent;
 import utils.SessionManager;
 
 public abstract class PageInit {
@@ -28,6 +29,8 @@ public abstract class PageInit {
 		AnchorPane.setRightAnchor(childWindow, 0.0);
 
 	}
+	
+	// Fonctions modal
 
 //    protected void loadModal(String fxml, String title) throws IOException {
 //    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
@@ -43,31 +46,48 @@ public abstract class PageInit {
 //        
 //    }
 
-	protected Object loadModal(String fxml, String title) throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
-		Parent popupRoot = loader.load();
-		Scene popupScene = new Scene(popupRoot);
-
-		// Création de la fenêtre de pop-up
-		Stage popupStage = new Stage();
-		popupStage.initModality(Modality.APPLICATION_MODAL);
-		popupStage.setTitle(title);
-		popupStage.setScene(popupScene);
-		popupStage.show();
-
-		// Retourne le contrôleur de la fenêtre pop-up
-		return loader.getController();
-	}
-
+//	protected Object loadModal(String fxml, String title) throws IOException {
+//		FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+//		Parent popupRoot = loader.load();
+//		Scene popupScene = new Scene(popupRoot);
+//
+//		// Création de la fenêtre de pop-up
+//		Stage popupStage = new Stage();
+//		popupStage.initModality(Modality.APPLICATION_MODAL);
+//		popupStage.setTitle(title);
+//		popupStage.setScene(popupScene);
+//		popupStage.show();
+//
+//		// Retourne le contrôleur de la fenêtre pop-up
+//		return loader.getController();
+//	}
+//
+//	protected void closePopup() {
+//		Stage stage = (Stage) childWindow.getScene().getWindow();
+//		stage.close();
+//	}
+	
+	
+	
+	// Fonctions no modal
+	
 	public void loadOtherFXML(String fxml) throws IOException {
 		AnchorPane content = FXMLLoader.load(getClass().getResource("/ihm/" + fxml + ".fxml"));
 		childWindow.getChildren().setAll(content);
 	}
+	
+	public void loadUpdateAdherentFXML(String fxml, Adherent adherent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
 
-	protected void closePopup() {
-		Stage stage = (Stage) childWindow.getScene().getWindow();
-		stage.close();
-	}
+        UpdateAdherentController updateController = loader.getController();
+        updateController.setAdherent(adherent);
+
+        childWindow.getChildren().setAll(content);
+    }
+
+
+	// Petits pop-up de confirmation
 
 	protected boolean demanderConfirmation(String message) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

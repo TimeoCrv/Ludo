@@ -43,7 +43,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modifier l'adhérent">
+                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" text="Modifier l'adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>

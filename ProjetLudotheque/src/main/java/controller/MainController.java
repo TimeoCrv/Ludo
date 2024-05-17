@@ -82,6 +82,7 @@ public class MainController {
 		Button sourceButton = (Button) event.getSource();
 		String buttonName = sourceButton.getText();
 
+		
 		try {
 			switch (buttonName) {
 			case "Connexion":
@@ -95,10 +96,14 @@ public class MainController {
 				}
 				break;
 			case "Liste des adhérents":
-				loadFXML("ListeAdherents");
+				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+					loadFXML("ListeAdherents");
+				}
 				break;
 			case "Ajouter un Adhérent":
-				loadFXML("AjoutAdherent");
+				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+					loadFXML("AjoutAdherent");
+				}
 				break;
 			case "Deconnexion":
 				SessionManager.closeSession();
@@ -208,6 +213,15 @@ public class MainController {
             }
         }, 0, 1000);
     
+	}
+	
+	
+	public static boolean isPersonnel() {
+		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;
+	}
+	
+	public static boolean isAdmin() {
+		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
 	}
 
 }

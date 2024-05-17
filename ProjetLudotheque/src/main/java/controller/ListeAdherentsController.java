@@ -12,12 +12,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import model.Adherent;
 import model.AdherentDAO;
+import utils.SessionManager;
 
 public class ListeAdherentsController extends PageInit {
 
@@ -103,11 +106,30 @@ public class ListeAdherentsController extends PageInit {
 	@FXML
 	public void toAddAdherent(ActionEvent event) {
 		try {
-			loadOtherFXML("AjoutAdherent");
+			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				loadOtherFXML("AjoutAdherent");
+			}else {
+				loadOtherFXML("ConnexionForm");
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	private Adherent getAdherent() {
+        return adherentList.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    public void toUpdateAdherent(ActionEvent event) {
+        try {
+            Adherent adherent = getAdherent();
+            if (adherent != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+                loadUpdateAdherentFXML("UpdateAdherent", adherent);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
