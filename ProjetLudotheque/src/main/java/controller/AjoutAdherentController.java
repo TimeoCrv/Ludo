@@ -55,8 +55,8 @@ public class AjoutAdherentController extends PageInit{
 				String noCNISaisi = noCNI.getText();
 				String observationsSaisi = observations.getText();
 				
-				String passwordToHash = "sio";
-				String salt = PasswordManager.getSaltvalue(30);
+				String passwordToHash = "sio"; // Mot de passe par défaut à la cration d'un adhérent
+				String salt = PasswordManager.getSaltvalue(30); //Longueur du grain de sel arbitraire
 				
 				String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
 				

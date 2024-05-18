@@ -2,14 +2,8 @@ package model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.sql.Types;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
@@ -23,10 +17,7 @@ public class Connexion {
 	private static final String ID = "ercan";
 	private static final String MDP = "toto";
 	
-	private static final int COLONNE_TEXTE = 10;
-	private static final int COLONNE_ENTIER = 6;
-	private static final int COLONNE_DATE = 11;
-
+	
 	/**
 	 * Patron de conception Singleton
 	 * @return l'instance unique de connexion
@@ -103,194 +94,6 @@ public class Connexion {
 		}
 	}
 	
-	
-//	public static void afficheSelectEtoile(String table, String clauseWhere){
-//		try{
-//			String requete = "SELECT * FROM "+table;
-//			if (clauseWhere!=null) {
-//				requete += " WHERE "+clauseWhere;
-//			}
-//			ResultSet res = Connexion.executeQuery(requete) ;
-//			ResultSetMetaData rsmd = res.getMetaData();
-//			int taille = rsmd.getColumnCount();
-//			boolean hasNext =res.next(); 
-//			if (!hasNext) {System.out.println("table vide");}
-//			else {
-//				// Affichage du nom des colonnes
-//				System.out.print("|");
-//				for (int j = 1; j <= taille; j++) {
-//					String colonneNorme = extraireNomColonneNorme(rsmd, j);
-//					System.out.print(colonneNorme+"|");							
-//				} 
-//				System.out.println();
-//
-//				// Affichage des donn�es
-//				while(hasNext){
-//					System.out.print("|");
-//					for (int j = 1; j <= taille; j++) {
-//						String valeurNormee = extraireValeurNormeeTypee(res, rsmd, j);
-//						System.out.print(valeurNormee+"|");							
-//					} 
-//					System.out.println();
-//					hasNext = res.next();
-//				}
-//			}
-//		}
-//		catch(SQLException e){
-//			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
-//		}
-//	}
-//	
-//	private static String extraireValeurNormeeTypee(ResultSet res, ResultSetMetaData rsmd, int j)
-//			throws SQLException {
-//		String valeurNormee = "";
-//		switch (rsmd.getColumnType(j)) {
-//		case Types.VARCHAR:
-//		case Types.NVARCHAR:
-//			valeurNormee = res.getString(j);
-//			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_TEXTE, Alignement.DROITE);
-//			break;
-//		case Types.DATE:
-//			valeurNormee = res.getDate(j).toString();
-//			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_DATE, Alignement.DROITE);
-//			break;
-//		case Types.TIMESTAMP:
-//			valeurNormee = res.getTimestamp(j).toString();
-//			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_DATE, Alignement.DROITE);
-//			break;
-//		case Types.INTEGER:
-//			valeurNormee = res.getInt(j)+"";
-//			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_ENTIER, Alignement.DROITE);
-//			break;
-//		case Types.DECIMAL:
-//			valeurNormee = res.getFloat(j)+"";
-//			valeurNormee = Connexion.norme(valeurNormee, Connexion.COLONNE_ENTIER, Alignement.DROITE);
-//			break;	
-//		default:
-//			break;
-//		}
-//		return valeurNormee;
-//	}
-//
-//	private static String extraireNomColonneNorme(ResultSetMetaData rsmd, int j)
-//			throws SQLException {
-//		String nomColonneNorme = rsmd.getColumnName(j);
-//		switch (rsmd.getColumnType(j)) {
-//		case Types.VARCHAR:
-//			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_TEXTE, Alignement.DROITE);
-//			break;
-//		case Types.DATE:
-//			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_DATE, Alignement.DROITE);
-//			break;
-//		case Types.TIMESTAMP:
-//			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_DATE, Alignement.DROITE);
-//			break;
-//		case Types.INTEGER:
-//			nomColonneNorme = Connexion.norme(nomColonneNorme, Connexion.COLONNE_ENTIER, Alignement.DROITE);
-//			break;
-//		default:
-//			break;
-//		}
-//		return nomColonneNorme;
-//	}
-//
-//	
-//	/** Le seul alignement pris en compte est � droite.
-//	 * 
-//	 * @param valeurNormee la chaine de texte � normaliser
-//	 * @param colonneTexte  la largeur maximale de la colonne
-//	 * @param aligne  gauche / droite / centr�
-//	 * @return la chaine de caract�re normalis� pour affichage de tableau.
-//	 */
-//	private static String norme(String valeurNormee, int colonneTexte, Alignement aligne) {
-//		String rep = "";
-//		int tailleEffective =valeurNormee.length(); 
-//		if (tailleEffective>=colonneTexte) {
-//			rep = valeurNormee.substring(0, colonneTexte);
-//		}
-//		else {
-//			rep = valeurNormee;
-//			for (int i = tailleEffective; i < colonneTexte; i++) {
-//				rep += " ";
-//			}
-//		}
-//		return rep;
-//	}
-//
-//	/**
-//	 * Requ�te qui permet de r�cup�rer le plus grand id de la table, a priori celui qui vient d'�tre affect�
-//	 * � une ligne cr��e via identity.
-//	 * @param cle
-//	 * @param table
-//	 * @return
-//	 */
-//	public static int getMaxId(String cle, String table) {
-//		String requete = "SELECT MAX("+cle+")as max FROM "+table;
-//		ResultSet rs = Connexion.executeQuery(requete);
-//		int id= -1;
-//		try {
-//			rs.next();
-//			id = rs.getInt("max");
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return id;
-//	}
-//
-//	public static List<Integer> getLesIds(String attribut, String table, String clauseWhere) {
-//		String requete = "SELECT DISTINCT "+attribut+" FROM "+table;
-//		if (clauseWhere!=null) {
-//			requete += " WHERE "+clauseWhere;
-//		}		
-//		ResultSet rs = Connexion.executeQuery(requete);
-//		List<Integer> liste = new ArrayList<Integer>();
-//		try {
-//			while (rs.next()) {
-//			int id = rs.getInt(attribut);
-//			liste.add(id);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return liste;
-//		
-//	}
-
-	
-//	public static void main(String[] args) {
-//		Connexion.getInstance();
-//		
-//		Adherent adherentCree = new Adherent("Hanma", "Baki", "Vannes", "0673952857", "h.baki@baki.com",
-//											"noCNI", 40);
-//		
-//		AdherentDAO.getInstance().create(adherentCree);
-//
-//		AdherentDAO.getInstance().afficheAdherent(adherentCree.getNumero());
-//		AdherentDAO.getInstance().afficheSelectEtoileAdherent();
-//		
-//		Adherent adherent3 = AdherentDAO.getInstance().read(adherentCree.getNumero());
-//		
-//		compareDate(adherent3);
-//        
-//		
-//		Connexion.fermer();
-//	}
-	
-//	public static void compareDate(Adherent adherent) {
-//		Date currentDate = new Date();
-//        Timestamp todayTimestamp = new Timestamp(currentDate.getTime());
-//        
-//		if (adherent.getDateFinAdhesion().before(todayTimestamp)) {
-//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
-//            + " n'est plus valide.");
-//        } else if (adherent.getDateFinAdhesion().after(todayTimestamp)) {
-//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
-//            + " est encore valide.");
-//        } else {
-//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
-//            + " termine aujourd'hui.");
-//        }
-//	}
 }
 
 

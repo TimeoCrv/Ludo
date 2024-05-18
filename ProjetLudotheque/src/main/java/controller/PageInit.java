@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 import model.Adherent;
 import utils.SessionManager;
 
+// Classe héritée par toutes les IHM
+// Regroupe les fonctions communes à toutes
+
 public abstract class PageInit {
 
 	@FXML
@@ -21,7 +24,7 @@ public abstract class PageInit {
 
 	protected void setAnchors() {
 
-		SessionManager.startSessionTimer();
+		SessionManager.startSessionTimer(); // équivalent session_start()
 
 		AnchorPane.setTopAnchor(childWindow, 0.0);
 		AnchorPane.setBottomAnchor(childWindow, 0.0);
@@ -30,7 +33,7 @@ public abstract class PageInit {
 
 	}
 	
-	// Fonctions modal
+	// Fonctions qui peuvent créer et fermer des modal à décommenter si besoin
 
 //    protected void loadModal(String fxml, String title) throws IOException {
 //    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
@@ -71,11 +74,18 @@ public abstract class PageInit {
 	
 	// Fonctions no modal
 	
+	// Fonction de chargement d'une vue
 	public void loadOtherFXML(String fxml) throws IOException {
 		AnchorPane content = FXMLLoader.load(getClass().getResource("/ihm/" + fxml + ".fxml"));
 		childWindow.getChildren().setAll(content);
 	}
 	
+	// Fonction de chargement d'une vue qui nécessite un objet adhérent
+	// (Besoin pour pouvoir aller sur la page de modification à partir de la liste des adhérents
+	// en conservant les données de l'adhérent sélectionné)
+	// Elle n'a pas sa place ici dans l'état actuel car elle ne sert qu'à UpdateAdherentController
+	// En faisant implémenter une interface les controleurs de vue où il y a du update,
+	// on pourrait tout rassembler ici et ce serait à mettre à jour avec les différents controleur de vue avec update
 	public void loadUpdateAdherentFXML(String fxml, Adherent adherent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
         Parent content = loader.load();
@@ -88,7 +98,7 @@ public abstract class PageInit {
 
 
 	// Petits pop-up de confirmation
-
+	// Pop-up confirmation d'action (actuellement utilisé comme ça ; utilisation étendue possible)
 	protected boolean demanderConfirmation(String message) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirmation");
@@ -103,6 +113,7 @@ public abstract class PageInit {
 		return alert.showAndWait().get() == confirmerButton;
 	}
 
+	// Pop-up d'information d'action effectué (actuellement utilisé comme ça ; utilisation étendue possible)
 	protected void afficherMessage(String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Information");

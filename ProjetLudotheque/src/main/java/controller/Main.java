@@ -47,13 +47,17 @@ public class Main extends Application {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			@Override
 			public void handle(WindowEvent event) {
-				event.consume();
+				event.consume(); // Empêche d'autres événements ou actions de l'utilisateur
 				closeProperly();
 			}
         });
         
     }
     
+    
+    // A la fermeture de la fenêtre de l'application, cette fonction sert à
+    // - clôturer une session s'il y en a une
+    // - arrêter le fonctionnement du terminal d'eclipse
     private void closeProperly() {
     	if (SessionManager.getCurrentUser()!=null) SessionManager.closeSession();
 		Platform.exit();
