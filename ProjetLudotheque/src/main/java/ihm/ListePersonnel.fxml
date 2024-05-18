@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
@@ -10,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="childWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListePersonnelController">
+<AnchorPane fx:id="childWindow" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListePersonnelController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des personnel" textAlignment="CENTER">
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des personnels" textAlignment="CENTER" wrappingWidth="240.20703125">
                <font>
                   <Font size="22.0" />
                </font>
@@ -24,7 +29,7 @@
             </Text>
             <HBox prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="personnelList" prefHeight="370.0" prefWidth="449.0" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="personnelList" prefHeight="350.0" prefWidth="406.0" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="nomPersonnel" prefWidth="75.0" text="Nom" />
                       <TableColumn fx:id="prenomPersonnel" prefWidth="87.0" text="Prénom" />
@@ -38,12 +43,12 @@
                   </TableView>
                   <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#supprimerPersonnel" text="Supprimer personnel">
+                        <Button mnemonicParsing="false" onAction="#supprimerPersonnel" prefHeight="25.0" prefWidth="153.0" text="Supprimer personnel">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#toUpdatePersonnel" text="Modifier personnel">
+                        <Button mnemonicParsing="false" onAction="#toUpdatePersonnel" prefHeight="25.0" prefWidth="148.0" text="Modifier personnel">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>

@@ -110,8 +110,18 @@ public class MainController {
 				}
 				break;
 			case "Ajouter un Adhérent":
-				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
 					loadFXML("AjoutAdherent");
+				}
+				break;
+			case "Ajouter un Employé":
+				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
+					loadFXML("AjoutPersonnel");
+				}
+				break;
+			case "Liste des employés":
+				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+					loadFXML("ListePersonnel");
 				}
 				break;
 			case "Deconnexion":
@@ -204,11 +214,10 @@ public class MainController {
 		btnListeAdherent.setManaged(false);
 		btnAddAdherent.setVisible(false);
 		btnAddAdherent.setManaged(false);
-		btnListeEmploye.setVisible(true);
-		btnListeEmploye.setManaged(true);
-		btnAddEmploye.setVisible(true);
-		btnAddEmploye.setManaged(true);
-	}
+		btnListeEmploye.setVisible(false);
+		btnListeEmploye.setManaged(false);
+		btnAddEmploye.setVisible(false);
+		btnAddEmploye.setManaged(false);}
 	
 	// Fonction qui donne l'illusion de la connexion et déconnexion instantanée
 	// Elle vérifie si une session est créée avec un utilisateur défini pour lancer la fonction showButtons()
@@ -227,33 +236,8 @@ public class MainController {
                 	initializeButtons();
                 }
             }
-        }, 0, 1000);
+        }, 0, 1000);}
     
-	}
-	
-
-
-		try {
-			switch (buttonName) {
-			case "Connexion":
-				loadFXML("testConnexionAdherent");
-				break;
-			case "Historique":
-				loadFXML("testAjoutAdherent");
-				break;
-			case "Ajouter un Employé":
-				loadFXML("AjoutPersonnel");
-				break;
-			case "Liste des employés":
-				loadFXML("ListePersonnel");
-				break;
-			default:
-				// code block
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour divers affichages dans l'application
 	// A ajouter isAdherent()

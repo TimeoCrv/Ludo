@@ -18,7 +18,7 @@ import utils.SessionManager;
 // Classe héritée par toutes les IHM
 // Regroupe les fonctions communes à toutes
 
-import utils.SessionManager;
+
 
 
 public abstract class PageInit {
@@ -107,8 +107,6 @@ public abstract class PageInit {
 	public void loadUpdateAdherentFXML(String fxml, Adherent adherent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
         Parent content = loader.load();
-        Parent popupRoot = loader.load();
-        Scene popupScene = new Scene(popupRoot);
         
         UpdateAdherentController updateController = loader.getController();
         updateController.setAdherent(adherent);
@@ -117,8 +115,18 @@ public abstract class PageInit {
         childWindow.getChildren().setAll(content);
     }
 
+	public void loadUpdatePersonnelFXML(String fxml, Personnel personnel) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
+        UpdatePersonnelController updateController = loader.getController();
+        updateController.setPersonnel(personnel);
 
-	// Petits pop-up de confirmation
+        childWindow.getChildren().setAll(content);
+    }
+
+    
+   
+//Petits pop-up de confirmation
 	// Pop-up confirmation d'action (actuellement utilisé comme ça ; utilisation étendue possible)
 	protected boolean demanderConfirmation(String message) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -133,30 +141,6 @@ public abstract class PageInit {
 
 		return alert.showAndWait().get() == confirmerButton;
 	}
-
-    
-
-	public void loadUpdatePersonnelFXML(String fxml, Personnel personnel) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
-        Parent content = loader.load();
-        UpdatePersonnelController updateController = loader.getController();
-        updateController.setPersonnel(personnel);
-
-        childWindow.getChildren().setAll(content);
-    }
-
-		
-    
-    protected void closePopup() {
-        Stage stage = (Stage) childWindow.getScene().getWindow();
-        stage.close();
-    }
-    protected boolean demanderConfirmation(String message) {
-    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation");
-        alert.setHeaderText(null);
-        alert.setContentText(message);}
-
 	// Pop-up d'information d'action effectué (actuellement utilisé comme ça ; utilisation étendue possible)
 	protected void afficherMessage(String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);

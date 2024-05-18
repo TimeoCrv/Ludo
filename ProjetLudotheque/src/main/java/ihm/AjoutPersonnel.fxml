@@ -28,19 +28,18 @@
          </effect>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true" />
-      <Label alignment="CENTER" layoutX="161.0" layoutY="14.0" prefHeight="35.0" prefWidth="258.0" style="-fx-background-color: #FFFFFF;" text=" Ajouter Personnel">
+      <Label alignment="CENTER" layoutX="93.0" layoutY="14.0" prefHeight="35.0" prefWidth="431.0" text=" Ajouter un nouveau membre du personnel" textFill="WHITE">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="454.0" layoutY="175.0" mnemonicParsing="false" onAction="#ajouterPersonnel" prefHeight="25.0" prefWidth="93.0" text="Ajouter" />
+      <Button layoutX="434.0" layoutY="175.0" mnemonicParsing="false" onAction="#ajouterPersonnel" prefHeight="25.0" prefWidth="149.0" text="Ajouter" />
       <TextField fx:id="nom" layoutX="53.0" layoutY="175.0" prefHeight="25.0" prefWidth="109.0" promptText="nom" />
       <TextField fx:id="prenom" layoutX="174.0" layoutY="175.0" prefHeight="25.0" prefWidth="109.0" promptText="prénom" />
       <TextField fx:id="adresse" layoutX="53.0" layoutY="246.0" prefHeight="25.0" prefWidth="242.0" promptText="adresse" />
       <TextField fx:id="telephone" layoutX="53.0" layoutY="212.0" prefHeight="25.0" prefWidth="149.0" promptText="téléphone" />
       <TextField fx:id="email" layoutX="53.0" layoutY="284.0" prefHeight="25.0" prefWidth="242.0" promptText="e-mail" />
-     <CheckBox fx:id="isAdmin" layoutX="215.0" layoutY="216.0" prefHeight="17.0" prefWidth="93.0" style="-fx-background-color: #FFFFFF;" text="admin" />
-      <Button layoutX="454.0" layoutY="225.0" mnemonicParsing="false" onAction="#allerVersConnexion" prefHeight="25.0" prefWidth="93.0" text="Se connecter" />
+     <CheckBox fx:id="isAdmin" layoutX="215.0" layoutY="216.0" prefHeight="17.0" prefWidth="93.0" text="admin" textFill="WHITE" />
       
    </children>
 </AnchorPane>

@@ -92,14 +92,8 @@ public class PasswordManager {
     // Fonction d'authentification
     // Peut-être plus de sens de placer ça dans ConnexionController
 	public static boolean authenticate(String email, String password) {
-
-    }  
-    
-    public static boolean authenticate(String email, String password) {
 		boolean connexionOk = false;
-
-
-	        try {
+		try {
 	        	Connexion.getInstance();
 	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
 	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);

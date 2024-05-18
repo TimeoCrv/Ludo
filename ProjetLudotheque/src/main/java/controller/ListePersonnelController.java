@@ -112,9 +112,12 @@ public class ListePersonnelController extends PageInit {
 	@FXML
 	private void supprimerPersonnel() {
 		try {
+			boolean confirmation = demanderConfirmation("Supprimer le membre du personnel ?");
+			if(confirmation) {
 			PersonnelDAO.getInstance().delete(getPersonnel());
 			loadOtherFXML("ListePersonnel");
-		}catch (IOException e) {
+			afficherMessage("Membre du personnel supprimé avec succès");
+		}}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -30,7 +30,7 @@
             <HBox prefHeight="353.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
                   <VBox prefHeight="349.0" prefWidth="48.0" />
-                  <VBox prefHeight="349.0" prefWidth="418.0" HBox.hgrow="ALWAYS">
+                  <VBox prefHeight="349.0" prefWidth="420.0" HBox.hgrow="ALWAYS">
                      <children>
                         <HBox prefHeight="42.0" prefWidth="418.0">
                            <children>
@@ -41,6 +41,9 @@
                               </TextField>
                               <TextField fx:id="prenom" prefHeight="25.0" prefWidth="109.0" promptText="prénom" />
                            </children>
+                           <padding>
+                              <Insets top="75.0" />
+                           </padding>
                         </HBox>
                         <HBox prefHeight="43.0" prefWidth="418.0">
                            <children>
@@ -49,8 +52,11 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </TextField>
-                              <TextField fx:id="telephone" prefHeight="25.0" prefWidth="149.0" promptText="téléphone" />
+                              <TextField fx:id="telephone" prefHeight="25.0" prefWidth="139.0" promptText="téléphone" />
                            </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
                         </HBox>
                         <HBox prefHeight="42.0" prefWidth="418.0">
                            <children>
@@ -65,17 +71,15 @@
                                  </HBox.margin>
                               </TextField>
                            </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="349.0" prefWidth="173.0">
+                  <VBox alignment="CENTER" prefHeight="349.0" prefWidth="183.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="105.0" text="Valider les changements" textAlignment="CENTER" wrapText="true" />
-                           <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="105.0" text="Renouveller l'adhésion" textAlignment="CENTER" wrapText="true">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                        </Button>
+                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="145.0" text="Valider les changements" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                </children>

@@ -10,10 +10,6 @@ import model.User;
 
 public class SessionManager {
 	
-	private final static long DELAY = 10*60*1000; // Temps d'une session si aucune action de l'utilisateur
-
-public class SessionManager {
-	
 	private final static long DELAY = 10*60*1000;
 	
 	private static SessionManager instance;
@@ -21,13 +17,10 @@ public class SessionManager {
 	private static long startTime;
 	private static Timer sessionTimer;
 	
-
 	// Constructeur privé pour ne pas pouvoir être instancié ailleurs
-
 	private SessionManager() {
 		
 	}
-	
 
 	// Singleton
 	public static SessionManager getInstance() {
@@ -68,8 +61,6 @@ public class SessionManager {
 				if (instance != null) {
 
 					checkUserActivity();
-
-					checkSessionActivity();
 				}
 				
 			}
@@ -101,7 +92,7 @@ public class SessionManager {
 		if (sessionTimer != null) {
 			sessionTimer.cancel();
 			sessionTimer=null;
-		}
-	}
+		}}}
 	
-}
+	
+

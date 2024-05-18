@@ -73,7 +73,7 @@ public class UpdatePersonnelController extends PageInit {
 
 				if (!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
 						&& !adresseSaisi.isBlank() && !emailSaisi.isBlank()) {
-					boolean confirmation = demanderConfirmation("Modifier l'adhérent ?");
+					boolean confirmation = demanderConfirmation("Modifier le membre du personnel ?");
 					if (confirmation) {
 						this.personnel.setNom(nomSaisi);
 						this.personnel.setPrenom(prenomSaisi);
@@ -86,7 +86,7 @@ public class UpdatePersonnelController extends PageInit {
 
 						PersonnelDAO.getInstance().update(this.personnel);
 
-						afficherMessage("Personnel modifié avec succès");
+						afficherMessage("Membre du personnel modifié avec succès");
 						loadOtherFXML("ListePersonnel");
 					}
 				} else {
