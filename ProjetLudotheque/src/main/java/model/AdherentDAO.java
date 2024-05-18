@@ -118,9 +118,8 @@ public class AdherentDAO extends DAO<Adherent> {
 		} catch (SQLException e) {
 			try {
 				connexion.rollback();
-				System.out.println("Create annulé");
+//				System.out.println("Create annulé");
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			succes=false;
@@ -158,9 +157,8 @@ public class AdherentDAO extends DAO<Adherent> {
 		} catch (SQLException e) {
 			try {
 				connexion.rollback();
-				System.out.println("Delete annulé");
+//				System.out.println("Delete annulé");
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			succes=false;
@@ -171,8 +169,6 @@ public class AdherentDAO extends DAO<Adherent> {
 
 	@Override
 	public boolean update(Adherent adherent) {
-		
-		System.out.println(donnees);
 		
 		boolean succes=true;
 		
@@ -193,9 +189,6 @@ public class AdherentDAO extends DAO<Adherent> {
 		Boolean actif =adherent.isActif();
 		double caution =adherent.getCaution();
 		String observations =adherent.getObservations();
-		
-		System.out.println("adherentupdate");
-		System.out.println(adherent);
 
 		Connection connexion = Connexion.getInstance();
 		
@@ -238,9 +231,8 @@ public class AdherentDAO extends DAO<Adherent> {
 		} catch (SQLException e) {
 			try {
 				connexion.rollback();
-				System.out.println("Update annulé");
+//				System.out.println("Update annulé");
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			succes = false;
@@ -253,7 +245,7 @@ public class AdherentDAO extends DAO<Adherent> {
 	public Adherent read(int id) {
 		Adherent adherent = null;
 		
-		System.out.println("recherché dans la BD");
+//		System.out.println("recherché dans la BD");
 		try {
 
 			String requete = "SELECT * FROM "+TABLE_UTILISATEUR+" JOIN "+TABLE_PROFIL+
@@ -286,20 +278,7 @@ public class AdherentDAO extends DAO<Adherent> {
 		return adherent;
 	}
 
-//	public void afficheSelectEtoileAdherent() {
-//		System.out.println("--- Liste adhérent ---");
-//		String clauseWhere = null;
-//		Connexion.afficheSelectEtoile("Adherent", clauseWhere);
-//
-//	}
-//
-//	public void afficheAdherent(int id) {
-//		System.out.println("--- Liste adhérent ---");
-//		String clauseWhere = CLE_PRIMAIRE + " = " + id;
-//		Connexion.afficheSelectEtoile("Adherent", clauseWhere);
-//
-//	}
-	
+	// Fonction qui servira à avoir la liste des adhérents
 	public List<Adherent> readAllAdherent() {
 		List<Adherent> rep = new ArrayList<Adherent>();
 		Adherent ad = null;
@@ -318,18 +297,18 @@ public class AdherentDAO extends DAO<Adherent> {
 		return rep;
 	}
 	
+	
+	// Fonction qui récupère le mot de passe hashé grâce à l'ID
 	public String getPasswordById(int id) {
 		String password = null;
 		try{
-			// Requête SQL pour récupérer le mot de passe par ID
+			
             String requete = "SELECT "+MOT_DE_PASSE+" FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
             pst.setInt(1, id);
 
-            // Exécution de la requête
             ResultSet resultSet = pst.executeQuery();
 
-            // Récupération du mot de passe s'il existe
             if (resultSet.next()) {
                 password = resultSet.getString(MOT_DE_PASSE);
             }
@@ -341,6 +320,8 @@ public class AdherentDAO extends DAO<Adherent> {
 		
 	}
 	
+	
+	// Fonction qui récupère le grain de sel grâce à l'ID
 	public String getSaltById(int id) {
 		String password = null;
 		try{
@@ -348,10 +329,8 @@ public class AdherentDAO extends DAO<Adherent> {
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
             pst.setInt(1, id);
 
-            // Exécution de la requête
             ResultSet resultSet = pst.executeQuery();
 
-            // Récupération du mot de passe s'il existe
             if (resultSet.next()) {
                 password = resultSet.getString(SALT);
             }
@@ -363,18 +342,18 @@ public class AdherentDAO extends DAO<Adherent> {
 		
 	}
 	
+	
+	// Fonction qui récupère l'email grâce à l'ID
 	public String getEmailById(int id) {
 		String email = null;
 		try{
-			// Requête SQL pour récupérer le mot de passe par ID
+
             String requete = "SELECT "+EMAIL+" FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
             pst.setInt(1, id);
 
-            // Exécution de la requête
             ResultSet resultSet = pst.executeQuery();
 
-            // Récupération du mot de passe s'il existe
             if (resultSet.next()) {
                 email = resultSet.getString(EMAIL);
             }
@@ -386,18 +365,18 @@ public class AdherentDAO extends DAO<Adherent> {
 		
 	}
 	
+	
+	// Fonciton qui récupère l'ID grâce à l'email
 	public int getIdByEmail(String email) {
 		int id = 0;
 		try{
-			// Requête SQL pour récupérer le mot de passe par ID
+
             String requete = "SELECT "+ID_UTILISATEUR+" FROM "+TABLE_UTILISATEUR+" WHERE "+EMAIL+" = ?";
             PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
             pst.setString(1, email);
 
-            // Exécution de la requête
             ResultSet resultSet = pst.executeQuery();
 
-            // Récupération du mot de passe s'il existe
             if (resultSet.next()) {
                 id = resultSet.getInt(ID_UTILISATEUR);
             }

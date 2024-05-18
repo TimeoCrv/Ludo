@@ -12,15 +12,17 @@ import javax.crypto.spec.PBEKeySpec;
 import model.AdherentDAO;
 import model.Connexion; 
 
+// Classe qui gère ce qui a trait à la création et vérification de mot de passe
+// Source : https://www.javatpoint.com/how-to-encrypt-password-in-java
+
 public class PasswordManager {
-	
-	  /* Declaration of variables */   
+	 
     private static final Random random = new SecureRandom();  
     private static final String characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";  
     private static final int iterations = 10000;  
     private static final int keylength = 256;  
       
-    /* Method to generate the salt value. */  
+    // fonction de génération d'un grain de sel  
     public static String getSaltvalue(int length)   
     {  
         StringBuilder finalval = new StringBuilder(length);  
@@ -33,7 +35,7 @@ public class PasswordManager {
         return new String(finalval);  
     }     
   
-    /* Method to generate the hash value */  
+    // Fonction de hash d'une chaîne de caractères
     public static byte[] hash(char[] password, byte[] salt)   
     {  
         PBEKeySpec spec = new PBEKeySpec(password, salt, iterations, keylength);  
@@ -53,7 +55,7 @@ public class PasswordManager {
         }  
     }  
   
-    /* Method to encrypt the password using the original password and salt value. */  
+    // Fonction de hashage du mot de passe
     public static String generateSecurePassword(String password, String salt)   
     {  
         String finalval = null;  
@@ -65,23 +67,24 @@ public class PasswordManager {
         return finalval;  
     }  
       
-    /* Method to verify if both password matches or not */  
+    // Fonction de vérification du mot de passe saisi lors de l'authentification 
     public static boolean verifyUserPassword(String providedPassword,  
             String securedPassword, String salt)  
     {  
         boolean finalval = false;  
           
-        /* Generate New secure password with the same salt */  
+        // On rehash le mot de passe fourni 
         String newSecurePassword = generateSecurePassword(providedPassword, salt);  
-        
-        System.out.println(newSecurePassword);
           
-        /* Check if two passwords are equal */  
+        // Pour le comparer à celui stocké en BDD
         finalval = newSecurePassword.equalsIgnoreCase(securedPassword);  
           
         return finalval;  
     } 
     
+    
+    // Fonction d'authentification
+    // Peut-être plus de sens de placer ça dans ConnexionController
 	public static boolean authenticate(String email, String password) {
 		boolean connexionOk = false;
 
@@ -91,8 +94,7 @@ public class PasswordManager {
 	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
 	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);
 	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
-	    		
-	    		System.out.println(storedPassword);
+
 	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
 
 			} catch (Exception e) {

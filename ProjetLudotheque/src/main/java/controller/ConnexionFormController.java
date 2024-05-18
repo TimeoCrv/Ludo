@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import model.User;
@@ -11,7 +12,7 @@ import model.UserDAO;
 import utils.PasswordManager;
 import utils.SessionManager;
 
-public class testConnexionAdherentControl extends PageInit {
+public class ConnexionFormController extends PageInit {
 	
 	public static SessionManager sessionManager;
 
@@ -20,6 +21,9 @@ public class testConnexionAdherentControl extends PageInit {
 
 	@FXML
 	private PasswordField loginPassword;
+	
+	@FXML
+	private Label errorMessage;
 	
 	public void initialize() {
 		setAnchors();
@@ -41,14 +45,13 @@ public class testConnexionAdherentControl extends PageInit {
 				sessionManager = SessionManager.getInstance();
 				sessionManager.createSession(user);
 				
-				System.out.println(user);
-				
-				loadModal("testAjoutAdherent", "test pop up");
+				loadOtherFXML("listeAdherents");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("Email ou mot de passe incorrect.");
+			errorMessage.setVisible(true);
+			errorMessage.setManaged(true);
 		}
 	}
 

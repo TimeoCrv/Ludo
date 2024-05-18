@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -20,7 +13,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #1c1c1c;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<AnchorPane style="-fx-background-color: #1c1c1c;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <HBox minHeight="480.0" minWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -53,7 +46,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnConnexion" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" onMouseClicked="#onBtnConnexionClicked" stylesheets="@css/style.css" text="Connexion">
+                  <Button fx:id="btnConnexion" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Connexion">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -85,7 +78,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" onMouseClicked="#onBtnConnexionClicked" stylesheets="@css/style.css" text="Deconnexion" visible="false">
+                  <Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Deconnexion" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -239,7 +232,7 @@
             </VBox>
             <VBox HBox.hgrow="SOMETIMES">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" />
                   <AnchorPane fx:id="mainWindow" VBox.vgrow="ALWAYS">
                      <children>
                         <TableView style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

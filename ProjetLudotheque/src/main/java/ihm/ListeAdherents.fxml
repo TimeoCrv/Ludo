@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeAdherentsController">
+<AnchorPane fx:id="childWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeAdherentsController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -27,22 +27,23 @@
                   <TableView fx:id="adherentList" prefHeight="370.0" prefWidth="449.0" HBox.hgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="nomAdherent" prefWidth="75.0" text="Nom" />
-                      <TableColumn fx:id="prenomAdherent" prefWidth="75.0" text="Prénom" />
-                        <TableColumn fx:id="emailAdherent" prefWidth="123.0" text="E-mail" />
-                        <TableColumn fx:id="tel" prefWidth="78.0" text="Tel" />
-                        <TableColumn prefWidth="75.0" text="Column X" />
-                        <TableColumn prefWidth="75.0" text="Column X" />
-                        <TableColumn prefWidth="75.0" text="Column X" />
+                      <TableColumn fx:id="prenomAdherent" prefWidth="87.0" text="Prénom" />
+                        <TableColumn fx:id="emailAdherent" prefWidth="109.0" text="E-mail" />
+                        <TableColumn fx:id="tel" minWidth="0.0" prefWidth="83.0" text="Tel" />
+                        <TableColumn fx:id="dateInscription" prefWidth="85.0" text="Date d'inscription" />
                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                   </TableView>
                   <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
                      <children>
-                        <Button mnemonicParsing="false" text="Ajouter un adhérent">
+                        <Button mnemonicParsing="false" onAction="#toAddAdherent" text="Ajouter un adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" text="Modifier l'adhérent">
+                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" text="Modifier l'adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>

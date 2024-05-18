@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAdherentController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="258.0" text="Modifier l'adhérent" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="353.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="349.0" prefWidth="48.0" />
+                  <VBox prefHeight="349.0" prefWidth="418.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox prefHeight="42.0" prefWidth="418.0">
+                           <children>
+                              <TextField fx:id="nom" prefHeight="25.0" prefWidth="109.0" promptText="nom">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="prenom" prefHeight="25.0" prefWidth="109.0" promptText="prénom" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="43.0" prefWidth="418.0">
+                           <children>
+                              <TextField fx:id="adresse" prefHeight="25.0" prefWidth="242.0" promptText="adresse">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="telephone" prefHeight="25.0" prefWidth="149.0" promptText="téléphone" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="42.0" prefWidth="418.0">
+                           <children>
+                              <TextField fx:id="email" prefHeight="25.0" prefWidth="242.0" promptText="e-mail">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField fx:id="noCNI" promptText="n° CNI" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="223.0" prefWidth="418.0">
+                           <children>
+                              <TextArea fx:id="observations" prefHeight="165.0" prefWidth="418.0" promptText="observations" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="349.0" prefWidth="173.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="105.0" text="Valider les changements" onAction="#validateUpdate" textAlignment="CENTER" wrapText="true" />
+                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="105.0" text="Renouveller l'adhésion" onAction="#renewSubscription" textAlignment="CENTER" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

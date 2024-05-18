@@ -1,23 +1,28 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import model.Adherent;
 import model.AdherentDAO;
+import utils.SessionManager;
 
-public class ListeAdherents extends PageInit {
+public class ListeAdherentsController extends PageInit {
 
 	@FXML
 	private TableView<Adherent> adherentList;
@@ -29,10 +34,12 @@ public class ListeAdherents extends PageInit {
 	private TableColumn<Adherent, String> emailAdherent;
 	@FXML
 	private TableColumn<Adherent, String> tel;
+	@FXML
+	private TableColumn<Adherent, String> dateInscription;
 	
 	private ObservableList<Adherent> adherentData = FXCollections.observableArrayList();
 	
-	public ListeAdherents() {
+	public ListeAdherentsController() {
 		super();
 		this.adherentData = getAdherentDataAdherent();
 		
@@ -73,6 +80,17 @@ public class ListeAdherents extends PageInit {
 			}
 		});
 		
+		dateInscription.setCellValueFactory(new Callback<CellDataFeatures<Adherent, String>, ObservableValue<String>>() {
+		    @Override
+		    public ObservableValue<String> call(CellDataFeatures<Adherent, String> cellData) {
+		        Timestamp inscription = cellData.getValue().getDateInscription();
+		        LocalDateTime localDateTime = inscription.toLocalDateTime();
+		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		        String formattedInscription = localDateTime.format(formatter);
+		        return new SimpleStringProperty(formattedInscription);
+		    }
+		});
+		
 		adherentList.setItems(this.getAdherentData());
 	}
 	
@@ -85,17 +103,33 @@ public class ListeAdherents extends PageInit {
 		return adherentData;
 	}
 	
-	
-	//TEST
-	
-
-	public void loadAutrePage() {
+	@FXML
+	public void toAddAdherent(ActionEvent event) {
 		try {
-			loadOtherFXML("testConnexionAdherent");
+			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				loadOtherFXML("AjoutAdherent");
+			}else {
+				loadOtherFXML("ConnexionForm");
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	private Adherent getAdherent() {
+        return adherentList.getSelectionModel().getSelectedItem();
+    }
+
+    @FXML
+    public void toUpdateAdherent(ActionEvent event) {
+        try {
+            Adherent adherent = getAdherent();
+            if (adherent != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+                loadUpdateAdherentFXML("UpdateAdherent", adherent);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
