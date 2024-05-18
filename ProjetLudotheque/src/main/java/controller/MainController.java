@@ -233,6 +233,28 @@ public class MainController {
 	
 
 
+		try {
+			switch (buttonName) {
+			case "Connexion":
+				loadFXML("testConnexionAdherent");
+				break;
+			case "Historique":
+				loadFXML("testAjoutAdherent");
+				break;
+			case "Ajouter un Employé":
+				loadFXML("AjoutPersonnel");
+				break;
+			case "Liste des employés":
+				loadFXML("ListePersonnel");
+				break;
+			default:
+				// code block
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour divers affichages dans l'application
 	// A ajouter isAdherent()
 	// Ecriture en ternaire que je trouve plus simple lorsqu'on a des résultats de conditions if qui ne sont pas longues
@@ -240,10 +262,11 @@ public class MainController {
 	public static boolean isPersonnel() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;}
 
-		
-	
+
+
 	public static boolean isAdmin() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
 	}
 
 }
+

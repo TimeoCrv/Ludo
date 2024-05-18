@@ -16,31 +16,31 @@ public class Personnel {
 	
 	
 	//Constructeur pour Create
-	public Personnel(String nom, String prenom, String tel,String email, String adresse, String password, String salt) {
+	public Personnel(String nom, String prenom,String email, String tel, String adresse, boolean isAdmin, String password, String salt) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
 		this.tel = tel;
 		this.adresse = adresse;
-		//this.isAdmin = isAdmin;
+		this.isAdmin = isAdmin;
 		this.password = password;
 		this.salt = salt;
 		
 	}
 	
 	//Constructeur pour update et read
-	public Personnel(int id_personnel, String nom, String prenom, String adresse, String tel, String email, String password, String salt,boolean isAdmin, String role) {
+	public Personnel(int id_personnel, String nom, String prenom,String email, String tel, String adresse, boolean isAdmin,String password,String salt, String role) {
 		super();
 		this.id_personnel=id_personnel;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.tel = tel;
 		this.email = email;
+		this.tel = tel;
 		this.adresse = adresse;
+		this.isAdmin = isAdmin;
 		this.password = password;
 		this.salt = salt;
-		this.isAdmin = isAdmin;
 		this.role = role;
 	}
 

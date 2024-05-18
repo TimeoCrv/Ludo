@@ -3,12 +3,13 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -16,7 +17,7 @@ import javafx.util.Callback;
 import model.Personnel;
 import model.PersonnelDAO;
 
-public class ListePersonnel extends PageInit {
+public class ListePersonnelController extends PageInit {
 
 	@FXML
 	private TableView<Personnel> personnelList;
@@ -28,11 +29,13 @@ public class ListePersonnel extends PageInit {
 	private TableColumn<Personnel, String> emailPersonnel;
 	@FXML
 	private TableColumn<Personnel, String> tel;
+	@FXML
+    private TableColumn<Personnel, Boolean> isAdmin;
 	
 	
 	private ObservableList<Personnel> personnelData = FXCollections.observableArrayList();
 	
-	public ListePersonnel() {
+	public ListePersonnelController() {
 		super();
 		this.personnelData = getPersonnelDataPersonnel();
 		
@@ -73,6 +76,21 @@ public class ListePersonnel extends PageInit {
 			}
 		});
 		
+		isAdmin.setCellValueFactory(new Callback<CellDataFeatures<Personnel, Boolean>, ObservableValue<Boolean>>() {
+            @Override
+            public ObservableValue<Boolean> call(CellDataFeatures<Personnel, Boolean> cellData) {
+                SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(cellData.getValue().isAdmin());
+                return booleanProperty.asObject();
+            }
+        });
+		
+		/*adresse.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
+				return new SimpleStringProperty(cellData.getValue().getAdresse());
+			}
+		});*/
+		
 		personnelList.setItems(this.getPersonnelData());
 	}
 	
@@ -87,30 +105,32 @@ public class ListePersonnel extends PageInit {
 	
 	
 		@FXML
-		private Personnel getIndex() {
+		private Personnel getPersonnel() {
 			return personnelList.getSelectionModel().getSelectedItem();
 		}
 	
 	@FXML
 	private void supprimerPersonnel() {
-		PersonnelDAO.getInstance().delete(getIndex());
+		try {
+			PersonnelDAO.getInstance().delete(getPersonnel());
+			loadOtherFXML("ListePersonnel");
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
-	@FXML
-	private void modifierPersonnel(){
-	    try {
-
-	        loadOtherFXML("modifierPersonnel");
-
-	        
-	
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	        // Handle the exception
-	    }
-	}
-	
-	
-	
+    @FXML
+    public void toUpdatePersonnel(ActionEvent event) {
+        try {
+            Personnel personnel = getPersonnel();
+           // if (adherent != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+                loadUpdatePersonnelFXML("UpdatePersonnel", personnel);
+            //}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 	public void loadAutrePage() {
 		try {

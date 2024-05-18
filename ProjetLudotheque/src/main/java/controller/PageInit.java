@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Adherent;
+import model.Personnel;
 import utils.SessionManager;
 
 // Classe héritée par toutes les IHM
@@ -109,9 +110,6 @@ public abstract class PageInit {
         Parent popupRoot = loader.load();
         Scene popupScene = new Scene(popupRoot);
         
-        
-
-
         UpdateAdherentController updateController = loader.getController();
         updateController.setAdherent(adherent);
 
@@ -136,6 +134,29 @@ public abstract class PageInit {
 		return alert.showAndWait().get() == confirmerButton;
 	}
 
+    
+
+	public void loadUpdatePersonnelFXML(String fxml, Personnel personnel) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
+        UpdatePersonnelController updateController = loader.getController();
+        updateController.setPersonnel(personnel);
+
+        childWindow.getChildren().setAll(content);
+    }
+
+		
+    
+    protected void closePopup() {
+        Stage stage = (Stage) childWindow.getScene().getWindow();
+        stage.close();
+    }
+    protected boolean demanderConfirmation(String message) {
+    	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText(message);}
+
 	// Pop-up d'information d'action effectué (actuellement utilisé comme ça ; utilisation étendue possible)
 	protected void afficherMessage(String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -143,6 +164,7 @@ public abstract class PageInit {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
-	}}
+	}
+}
 
-        
+

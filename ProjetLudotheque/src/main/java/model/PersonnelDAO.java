@@ -71,8 +71,8 @@ public class PersonnelDAO extends DAO<Personnel> {
 
 
 			//Ajout dans la table personnel
-			String requeteProfil = "INSERT INTO "+TABLE_PERSONNEL+" ("+ID_PERSONNEL+","+NOM+","+PRENOM+" , "+TEL+" , "+ADRESSE+
-					" , "+IS_ADMIN+") VALUES (?, ?, ?, ?, ?, ?)";
+			String requeteProfil = "INSERT INTO "+TABLE_PERSONNEL+" ("+ID_PERSONNEL+","+NOM+","+PRENOM+", "+TEL+", "+ADRESSE+
+					" , "+IS_ADMIN+") VALUES (?, ?, ?, ?, ?,?)";
 
 			PreparedStatement pstForPersonnel = connexion.prepareStatement(requeteProfil, Statement.RETURN_GENERATED_KEYS);
 
@@ -81,7 +81,7 @@ public class PersonnelDAO extends DAO<Personnel> {
 			pstForPersonnel.setString(3, personnel.getPrenom());
 			pstForPersonnel.setString(4, personnel.getTel());
 			pstForPersonnel.setString(5, personnel.getAdresse());
-			pstForPersonnel.setBoolean(6, false);
+			pstForPersonnel.setBoolean(6, personnel.isAdmin());
 			
 			pstForPersonnel.executeUpdate();
 			donnees.put(personnel.getId_personnel(), personnel);
@@ -221,15 +221,15 @@ int id = personnel.getId_personnel();
 				rs.next();
 				String nom = rs.getString(NOM);
 				String prenom = rs.getString(PRENOM);
+				String email = rs.getString(EMAIL);
 				String tel = rs.getString(TEL);
 				String adresse = rs.getString(ADRESSE);
-				String email = rs.getString(EMAIL);
+				Boolean admin = rs.getBoolean(IS_ADMIN);
 				String password = rs.getString(MOT_DE_PASSE);
 				String salt = rs.getString(SALT);
-				Boolean admin = rs.getBoolean(IS_ADMIN);
 				String role = rs.getString(ROLE);
-				personnel = new Personnel(id, nom, prenom, tel, adresse, email,  
-										password, salt,admin, role);
+				personnel = new Personnel(id, nom, prenom, email, tel, adresse,   
+										admin,password, salt, role);
 //				donnees.put(id, personnel);
 			} catch (SQLException e) {
 				e.printStackTrace();

@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import model.Connexion;
 import model.Personnel;
@@ -9,7 +10,7 @@ import model.PersonnelDAO;
 import utils.PasswordManager;
 
 
-public class  testAjoutPersonnelControl extends PageInit {
+public class  AjoutPersonnelControl extends PageInit {
 	
 	@FXML
 	private TextField nom;
@@ -19,18 +20,15 @@ public class  testAjoutPersonnelControl extends PageInit {
 	
 	@FXML
 	private TextField email;
+	
+	@FXML
+	private TextField telephone;
 
 	@FXML
 	private TextField adresse;
-
-	@FXML
-	private TextField telephone;
 	
 	@FXML
-	private TextField isAdmin;
-	
-	
-
+    private CheckBox isAdmin;
 	
 	@FXML
 	public void ajouterPersonnel(ActionEvent event) {
@@ -39,23 +37,25 @@ public class  testAjoutPersonnelControl extends PageInit {
 
 			String nomSaisi = nom.getText();
 			String prenomSaisi = prenom.getText();
-			String adresseSaisi = adresse.getText();
 			String emailSaisi = email.getText();
 			String telephoneSaisi = telephone.getText();
+			String adresseSaisi = adresse.getText();
+			
+			
 			// TODO need to figure out how to use isAdmin
-			//String isAdminSaisi = isAdmin.getText();
+			boolean isAdminSaisi = isAdmin.isSelected();
 		
 			String passwordToHash = "sio";
 			String salt = PasswordManager.getSaltvalue(30);
 			
 			String hashedPassword = PasswordManager.generateSecurePassword(passwordToHash, salt);
 			
-			if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
-					&& !adresseSaisi.isBlank() && !emailSaisi.isBlank()) {
+			if(!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !emailSaisi.isBlank() && !telephoneSaisi.isBlank()
+					&& !adresseSaisi.isBlank())  {
 				boolean confirmation = demanderConfirmation("Ajouter le membre du personnel	 ?");
 				if(confirmation) {
 					Connexion.getInstance();
-					Personnel personnelCree = new Personnel(nomSaisi, prenomSaisi, telephoneSaisi, adresseSaisi, emailSaisi,
+					Personnel personnelCree = new Personnel(nomSaisi, prenomSaisi, emailSaisi, telephoneSaisi, adresseSaisi, isAdminSaisi, 
 							 hashedPassword, salt);
 					PersonnelDAO.getInstance().create(personnelCree);
 					System.out.println(hashedPassword);
@@ -64,7 +64,7 @@ public class  testAjoutPersonnelControl extends PageInit {
 					System.out.println(PersonnelDAO.getInstance().read(personnelCree.getId_personnel()));
 					
 					afficherMessage("Membre du personnel ajouté avec succès");
-					loadOtherFXML("testListePersonnel");
+					loadOtherFXML("ListePersonnel");
 
 
 		} else {
@@ -84,15 +84,15 @@ public class  testAjoutPersonnelControl extends PageInit {
 				//test update
 				
 				Connexion.getInstance();
-				Personnel personnel = PersonnelDAO.getInstance().read(3);
+				Personnel personnel = PersonnelDAO.getInstance().read(6);
 				System.out.println(personnel);
 				
-				personnel.setEmail("a");
+				personnel.setEmail("thisisatest");
 				
 				System.out.println(personnel);
 				PersonnelDAO.getInstance().update(personnel);
 				
-				System.out.println(PersonnelDAO.getInstance().read(3));
+				System.out.println(PersonnelDAO.getInstance().read(6));
 				
 				
 				
