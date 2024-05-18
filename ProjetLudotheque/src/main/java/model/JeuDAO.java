@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,6 +96,7 @@ import java.util.List;
 		public boolean update(Jeu jeu) {
 		    boolean succes = true;
 
+		    // Retrieve fields from the 'jeu' object
 		    String nom = jeu.getNom();
 		    int nombreJoueursMax = jeu.getNombreJoueursMax();
 		    int nombreJoueursMin = jeu.getNombreJoueursMin();
@@ -105,15 +107,33 @@ import java.util.List;
 		    String editeur = jeu.getEditeur();
 		    int disponible = jeu.getDisponible();
 		    int nombre = jeu.getNombre();
-		    int id = jeu.getIdJeu(); // Suppose que vous avez une méthode getId() pour récupérer l'identifiant de l'objet Jeu
+		    int id = jeu.getIdJeu(); // Assume this method retrieves the game ID
 
+		    // Establish connection
+		    Connection connexion = Connexion.getInstance();
+		    
 		    try {
-		        String requete = "UPDATE " + TABLE + " SET " + NOM_JEU + " = ?, " + NOMBRE_JOUEURS_MAX + " = ?, "
-		                + NOMBRE_JOUEURS_MIN + " = ?, " + ANNEE + " = ?, " + AGE_MIN + " = ?, " + DUREE_MIN + " = ?,  "
-		                + DESCRIPTIF + " = ?, " + EDITEUR + " = ?, " + DISPONIBLE + " = ?, " + NOMBRE + " = ?"
-		                + " WHERE " + CLE_PRIMAIRE + " = ?";
+		        // Disable auto-commit
+		        connexion.setAutoCommit(false);
+		        
+		        // Prepare the SQL update query
+		        String requete = "UPDATE " + TABLE + " SET " 
+		            + NOM_JEU + " = ?, " 
+		            + NOMBRE_JOUEURS_MAX + " = ?, " 
+		            + NOMBRE_JOUEURS_MIN + " = ?, " 
+		            + ANNEE + " = ?, " 
+		            + AGE_MIN + " = ?, " 
+		            + DUREE_MIN + " = ?, "
+		            + DESCRIPTIF + " = ?, " 
+		            + EDITEUR + " = ?, " 
+		            + DISPONIBLE + " = ?, " 
+		            + NOMBRE + " = ? "
+		            + "WHERE " + CLE_PRIMAIRE + " = ?";
 
-		        PreparedStatement pst = Connexion.getInstance().prepareStatement(requete);
+		        // Create a PreparedStatement
+		        PreparedStatement pst = connexion.prepareStatement(requete);
+		        
+		        // Set parameters
 		        pst.setString(1, nom);
 		        pst.setInt(2, nombreJoueursMax);
 		        pst.setInt(3, nombreJoueursMin);
@@ -124,11 +144,21 @@ import java.util.List;
 		        pst.setString(8, editeur);
 		        pst.setInt(9, disponible);
 		        pst.setInt(10, nombre);
-		        pst.setInt(11, id); // Liez la valeur de l'identifiant à la fin
-
+		        pst.setInt(11, id); // Bind the ID value at the end
+		        
+		        // Execute the update
 		        pst.executeUpdate();
-		        // TODO donnees.put(id, jeu);
+		        
+		        // Commit the transaction
+		        connexion.commit();
 		    } catch (SQLException e) {
+		        try {
+		            // Rollback in case of error
+		            connexion.rollback();
+		            System.out.println("Update annulé");
+		        } catch (SQLException e1) {
+		            e1.printStackTrace();
+		        }
 		        succes = false;
 		        e.printStackTrace();
 		    }

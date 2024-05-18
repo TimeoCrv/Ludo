@@ -76,4 +76,13 @@ public class ModifierJeuController extends PageInit{
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	private void annulerModificationJeu() {
+	    try {
+	        loadOtherFXML("listejeuadmin");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
 }

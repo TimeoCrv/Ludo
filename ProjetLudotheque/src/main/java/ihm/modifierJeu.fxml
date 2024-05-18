@@ -29,6 +29,6 @@
       <Label layoutX="85.0" layoutY="202.0" text="Descriptif" />
       <TextArea fx:id="modifDescriptif" layoutX="22.0" layoutY="218.0" prefHeight="158.0" prefWidth="177.0" />
       <Button fx:id="validerModifierJeu" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#modifierUnJeu" text="Modifier" />
-      <Button fx:id="annulerModifierJeu" layoutX="522.0" layoutY="351.0" mnemonicParsing="false" text="Annuler" />
+      <Button fx:id="annulerModifierJeu" layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#annulerModificationJeu" text="Annuler" />
    </children>
 </AnchorPane>
