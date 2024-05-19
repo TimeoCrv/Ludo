@@ -8,6 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
@@ -15,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import model.Jeu;
 import model.JeuDAO;
+import utils.SessionManager;
 
 public class ListJeuControl extends PageInit {
 	
@@ -97,13 +99,19 @@ public class ListJeuControl extends PageInit {
 	}
 	
 	@FXML
-	private Jeu getIndex() {
+	private Jeu getJeu() {
 		return jeuList.getSelectionModel().getSelectedItem();
 	}
 	
 	@FXML
 	private void supprimerUnJeu() {
-		JeuDAO.getInstance().delete(getIndex());
+		JeuDAO.getInstance().delete(getJeu());
+		try {
+			loadOtherFXML("listejeuadmin");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
@@ -117,16 +125,28 @@ public class ListJeuControl extends PageInit {
 		}
 	}
 	
+//	@FXML
+//	public void openPageUpdate() {
+//		Jeu jeuSelectionne = getIndex();
+//	    if (jeuSelectionne != null) {
+//		try {
+//			loadOtherFXML("modifierJeu");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	    }
+//	}
+	
 	@FXML
-	public void openPageUpdate() {
-		Jeu jeuSelectionne = getIndex();
-	    if (jeuSelectionne != null) {
-		try {
-			loadOtherFXML("modifierJeu");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    }
-	}
+    public void toUpdateJeu(ActionEvent event) {
+        try {
+            Jeu jeu = getJeu();
+            if (jeu != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+                loadUpdateJeuFXML("modifierJeu", jeu);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

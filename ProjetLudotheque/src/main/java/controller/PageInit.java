@@ -10,6 +10,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import model.Adherent;
 import model.Personnel;
+import model.Jeu;
 import utils.SessionManager;
 
 // Classe héritée par toutes les IHM
@@ -108,6 +109,15 @@ public abstract class PageInit {
         UpdateAdherentController updateController = loader.getController();
         updateController.setAdherent(adherent);
 
+
+        childWindow.getChildren().setAll(content);
+    }
+	
+	public void loadUpdateJeuFXML(String fxml, Jeu jeu) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
+        ModifierJeuController modifierJeuController = loader.getController();
+        modifierJeuController.setJeu(jeu);
 
         childWindow.getChildren().setAll(content);
     }

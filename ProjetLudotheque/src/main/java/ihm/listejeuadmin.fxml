@@ -14,7 +14,7 @@
          <children>
             <AnchorPane>
                <children>
-                  <TableView id="jeuList" fx:id="jeuList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getIndex" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="jeuList" fx:id="jeuList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getJeu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn id="nomJeu" fx:id="nomJeu" text="Nom" />
                       <TableColumn id="descriptifJeu" fx:id="descriptifJeu" prefWidth="75.0" text="Descriptif" />
@@ -34,7 +34,7 @@
                               <Insets bottom="8.0" />
                            </VBox.margin>
                         </Button>
-                        <Button id="modifierJeu" fx:id="modifierJeu" mnemonicParsing="false" onAction="#openPageUpdate" text="Modifier">
+                        <Button id="modifierJeu" fx:id="modifierJeu" mnemonicParsing="false" onAction="#toUpdateJeu" text="Modifier">
                            <opaqueInsets>
                               <Insets bottom="8.0" />
                            </opaqueInsets>

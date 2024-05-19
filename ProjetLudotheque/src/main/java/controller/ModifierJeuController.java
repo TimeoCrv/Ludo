@@ -1,12 +1,16 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import model.Connexion;
 import model.Jeu;
 import model.JeuDAO;
 
 public class ModifierJeuController extends PageInit{
+	
+	private Jeu jeu;
 	
 	@FXML
 	private TextField modifNom;
@@ -39,43 +43,79 @@ public class ModifierJeuController extends PageInit{
 	private TextArea modifDescriptif;
 
 	
-	public void initData(Jeu jeu) {
-        modifNom.setText(jeu.getNom());
-        modifJMax.setText(String.valueOf(jeu.getNombreJoueursMax()));
-        modifJMin.setText(String.valueOf(jeu.getNombreJoueursMin()));
-        modifAnnee.setText(String.valueOf(jeu.getAnnee()));
-        modifAgeMin.setText(String.valueOf(jeu.getAgeMin()));
-        modifDureeMin.setText(String.valueOf(jeu.getDureeMin()));
-        modifDescriptif.setText(jeu.getDescriptif());
-        modifEditeur.setText(jeu.getEditeur());
-        modifDisponible.setText(String.valueOf(jeu.getDisponible()));
-        modifNombre.setText(String.valueOf(jeu.getNombre()));
-    }
-	
 	@FXML
-	private void modifierUnJeu() {
-		try {
-			String nomSaisi = modifNom.getText();
-			int joueursMaxSaisi = Integer.parseInt(modifJMax.getText());
-			int joueursMinSaisi = Integer.parseInt(modifJMin.getText());
-			int anneeSaisi = Integer.parseInt(modifAnnee.getText());
-			int ageMinSaisi = Integer.parseInt(modifAgeMin.getText());
-			int dureeMinSaisi = Integer.parseInt(modifDureeMin.getText());
-			String descriptifSaisi = modifDescriptif.getText();
-			String editeurSaisi = modifEditeur.getText();
-			int disponibleSaisi = Integer.parseInt(modifDisponible.getText());
-			int nombreSaisi = Integer.parseInt(modifNombre.getText());
-			
-			Jeu jeuModif = new Jeu(nomSaisi, joueursMaxSaisi, joueursMinSaisi, anneeSaisi, ageMinSaisi, dureeMinSaisi, editeurSaisi, descriptifSaisi, disponibleSaisi, nombreSaisi);
-			
-			JeuDAO.getInstance().update(jeuModif);
-			
-			loadOtherFXML("listejeuadmin");
-			
-		} catch (Exception e) {
-			e.printStackTrace();
+	public void initialize() {
+		setAnchors();
+	}
+	
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
+		if (this.jeu != null) {
+			initializeFields();
 		}
 	}
+	
+	private void initializeFields() {
+	    modifNom.setText(this.jeu.getNom());
+	    modifJMax.setText(Integer.toString(this.jeu.getNombreJoueursMax()));
+	    modifJMin.setText(Integer.toString(this.jeu.getNombreJoueursMin()));
+	    modifAnnee.setText(Integer.toString(this.jeu.getAnnee()));
+	    modifAgeMin.setText(Integer.toString(this.jeu.getAgeMin()));
+	    modifDureeMin.setText(Integer.toString(this.jeu.getDureeMin()));
+	    modifEditeur.setText(this.jeu.getEditeur());
+	    modifDisponible.setText(Integer.toString(this.jeu.getDisponible()));
+	    modifNombre.setText(Integer.toString(this.jeu.getNombre()));
+	    modifDescriptif.setText(this.jeu.getDescriptif());
+	}
+
+	@FXML
+	public void validateUpdate(ActionEvent event) {
+	    try {
+	        String nomSaisi = modifNom.getText();
+	        int joueursMaxSaisi = Integer.parseInt(modifJMax.getText());
+	        int joueursMinSaisi = Integer.parseInt(modifJMin.getText());
+	        int anneeSaisi = Integer.parseInt(modifAnnee.getText());
+	        int ageMinSaisi = Integer.parseInt(modifAgeMin.getText());
+	        int dureeMinSaisi = Integer.parseInt(modifDureeMin.getText());
+	        String descriptifSaisi = modifDescriptif.getText();
+	        String editeurSaisi = modifEditeur.getText();
+	        int disponibleSaisi = Integer.parseInt(modifDisponible.getText());
+	        int nombreSaisi = Integer.parseInt(modifNombre.getText());
+
+	        if (!nomSaisi.isBlank() && joueursMaxSaisi > 0 && joueursMinSaisi > 0 && anneeSaisi > 0
+	                && ageMinSaisi > 0 && dureeMinSaisi > 0 && !descriptifSaisi.isBlank() && !editeurSaisi.isBlank()
+	                && disponibleSaisi >= 0 && nombreSaisi > 0) {
+	            boolean confirmation = demanderConfirmation("Modifier le jeu ?");
+	            if (confirmation) {
+	                this.jeu.setNom(nomSaisi);
+	                this.jeu.setNombreJoueursMax(joueursMaxSaisi);
+	                this.jeu.setNombreJoueursMin(joueursMinSaisi);
+	                this.jeu.setAnnee(anneeSaisi);
+	                this.jeu.setAgeMin(ageMinSaisi);
+	                this.jeu.setDureeMin(dureeMinSaisi);
+	                this.jeu.setDescriptif(descriptifSaisi);
+	                this.jeu.setEditeur(editeurSaisi);
+	                this.jeu.setDisponible(disponibleSaisi);
+	                this.jeu.setNombre(nombreSaisi);
+
+	                Connexion.getInstance();
+
+	                JeuDAO.getInstance().update(this.jeu);
+
+	                afficherMessage("Jeu modifié avec succès");
+	                loadOtherFXML("listejeuadmin");
+	            }
+	        } else {
+	            afficherMessage("Veuillez remplir tous les champs");
+	        }
+
+	    } catch (NumberFormatException e) {
+	        afficherMessage("Veuillez entrer des valeurs valides pour les champs numériques");
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+
 	
 	@FXML
 	private void annulerModificationJeu() {

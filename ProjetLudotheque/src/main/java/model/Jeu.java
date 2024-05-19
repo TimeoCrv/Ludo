@@ -152,7 +152,7 @@ public class Jeu {
 	}
 
 
-	public void setnombre(int nombre) {
+	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
 	
