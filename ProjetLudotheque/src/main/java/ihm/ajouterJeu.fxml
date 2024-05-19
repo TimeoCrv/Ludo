@@ -28,7 +28,7 @@
       <TextField layoutX="215.0" layoutY="314.0" fx:id="ajoutNombre"/>
       <Label layoutX="85.0" layoutY="202.0" text="Descriptif" />
       <TextArea layoutX="22.0" layoutY="218.0" prefHeight="158.0" prefWidth="177.0" fx:id="ajoutDescriptif"/>
-      <Button fx:id="validerCreerJeu" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterUnJeu" text="Valider" />
+      <Button fx:id="validerCreerJeu" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#ajouterJeu" text="Valider" />
       <Button fx:id="annulerCreerJeu" layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#annulerCreationJeu" text="Annuler" />
    </children>
 </AnchorPane>

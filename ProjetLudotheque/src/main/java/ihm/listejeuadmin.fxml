@@ -29,7 +29,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Button id="ajouterJeu" fx:id="ajouterJeu" mnemonicParsing="false" onAction="#openPageAdd" text="Ajouter">
+                        <Button id="ajouterJeu" fx:id="ajouterJeu" mnemonicParsing="false" onAction="#toAddJeu" text="Ajouter">
                            <VBox.margin>
                               <Insets bottom="8.0" />
                            </VBox.margin>

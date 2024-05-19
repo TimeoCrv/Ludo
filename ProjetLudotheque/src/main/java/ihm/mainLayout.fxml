@@ -158,7 +158,7 @@
                         <Insets bottom="4.0" top="12.0" />
                      </VBox.margin>
                   </Label>
-                  <Button fx:id="btnListeAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des adhÃ©rents" visible="false">
+                  <Button fx:id="btnListeAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des adhérents" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -174,7 +174,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAddAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un AdhÃ©rent" visible="false">
+                  <Button fx:id="btnAddAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un Adhérent" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -190,7 +190,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnListeEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des employÃ©s" visible="false">
+                  <Button fx:id="btnListeEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des employés" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -206,7 +206,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAddEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un EmployÃ©" visible="false">
+                  <Button fx:id="btnAddEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un Employé" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>

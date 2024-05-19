@@ -105,38 +105,30 @@ public class ListJeuControl extends PageInit {
 	
 	@FXML
 	private void supprimerUnJeu() {
-		JeuDAO.getInstance().delete(getJeu());
-		try {
-			loadOtherFXML("listejeuadmin");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    try {
+	        boolean confirmation = demanderConfirmation("Supprimer le jeu ?");
+	        if (confirmation) {
+	            JeuDAO.getInstance().delete(getJeu());
+	            afficherMessage("Jeu supprimé avec succès");
+	            loadOtherFXML("listejeuadmin");
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
 	}
 	
 	
 	@FXML
-	public void openPageAdd() {
+	public void toAddJeu(ActionEvent event) {
 		try {
-			loadOtherFXML("ajouterJeu");
+			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				loadOtherFXML("ajouterJeu");
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-//	@FXML
-//	public void openPageUpdate() {
-//		Jeu jeuSelectionne = getIndex();
-//	    if (jeuSelectionne != null) {
-//		try {
-//			loadOtherFXML("modifierJeu");
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	    }
-//	}
 	
 	@FXML
     public void toUpdateJeu(ActionEvent event) {
