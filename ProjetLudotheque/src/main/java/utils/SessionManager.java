@@ -5,11 +5,12 @@ import java.util.TimerTask;
 
 import model.User;
 
+
 // Classe qui gère ce qui a trait à la création de session
 
 public class SessionManager {
 	
-	private final static long DELAY = 10*60*1000; // Temps d'une session si aucune action de l'utilisateur
+	private final static long DELAY = 10*60*1000;
 	
 	private static SessionManager instance;
 	private static User currentUser;
@@ -20,7 +21,7 @@ public class SessionManager {
 	private SessionManager() {
 		
 	}
-	
+
 	// Singleton
 	public static SessionManager getInstance() {
 		if (instance == null) {
@@ -29,6 +30,7 @@ public class SessionManager {
 		return instance;
 	}
 	
+
 	
 	// Création de session en renseignant ses attributs
 	public void createSession(User user) {
@@ -36,6 +38,7 @@ public class SessionManager {
 		startTime = System.currentTimeMillis();
 	}
 	
+
 	// Fermeture de session en retirant les valeurs des attributs
 	public static void closeSession() {
 		currentUser = null;
@@ -43,8 +46,10 @@ public class SessionManager {
 		initTimer();
 	}
 	
+
 	// Fonction équivalente à session_start() de php
 	// Appelé à chaque changement de page (voir classe PageInit, parente de toutes les IHM)
+
 	public static void startSessionTimer() {
 		initTimer();
 		sessionTimer = new Timer();
@@ -54,6 +59,7 @@ public class SessionManager {
 			public void run() {
 				
 				if (instance != null) {
+
 					checkUserActivity();
 				}
 				
@@ -73,18 +79,20 @@ public class SessionManager {
 		}
 	}
 
+
 	// Récupération du user à des fins de vérifications des rôles
 	public static User getCurrentUser() {
 		return currentUser;
 	}
 	
+
 	// Fonction de réinitialisation du timer
 	// Pour pouvoir en recréer un dans startSessionTimer()
 	private static void initTimer() {
 		if (sessionTimer != null) {
 			sessionTimer.cancel();
 			sessionTimer=null;
-		}
-	}
+		}}}
 	
-}
+	
+

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="childWindow" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListePersonnelController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des personnels" textAlignment="CENTER" wrappingWidth="240.20703125">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Text>
+            <HBox prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <TableView fx:id="personnelList" prefHeight="350.0" prefWidth="406.0" HBox.hgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="nomPersonnel" prefWidth="75.0" text="Nom" />
+                      <TableColumn fx:id="prenomPersonnel" prefWidth="87.0" text="Prénom" />
+                        <TableColumn fx:id="emailPersonnel" prefWidth="109.0" text="email" />
+                        <TableColumn fx:id="tel" minWidth="0.0" prefWidth="83.0" text="tel" />
+                        <TableColumn fx:id="isAdmin" prefWidth="75.0" text="Is Admin" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#supprimerPersonnel" prefHeight="25.0" prefWidth="153.0" text="Supprimer personnel">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#toUpdatePersonnel" prefHeight="25.0" prefWidth="148.0" text="Modifier personnel">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

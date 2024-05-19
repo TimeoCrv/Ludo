@@ -1,5 +1,6 @@
 package utils;
 
+
 import java.security.NoSuchAlgorithmException;  
 import java.security.SecureRandom;  
 import java.security.spec.InvalidKeySpecException;  
@@ -14,6 +15,10 @@ import model.Connexion;
 
 // Classe qui gère ce qui a trait à la création et vérification de mot de passe
 // Source : https://www.javatpoint.com/how-to-encrypt-password-in-java
+
+
+import model.PersonnelDAO; 
+
 
 public class PasswordManager {
 	 
@@ -80,6 +85,7 @@ public class PasswordManager {
         finalval = newSecurePassword.equalsIgnoreCase(securedPassword);  
           
         return finalval;  
+
     } 
     
     
@@ -87,14 +93,12 @@ public class PasswordManager {
     // Peut-être plus de sens de placer ça dans ConnexionController
 	public static boolean authenticate(String email, String password) {
 		boolean connexionOk = false;
-
-
-	        try {
+		try {
 	        	Connexion.getInstance();
 	    		int idAdherent = AdherentDAO.getInstance().getIdByEmail(email);
 	    		String storedPassword = AdherentDAO.getInstance().getPasswordById(idAdherent);
 	    		String storedSalt = AdherentDAO.getInstance().getSaltById(idAdherent);
-
+	    		
 	            connexionOk = PasswordManager.verifyUserPassword(password, storedPassword, storedSalt);
 
 			} catch (Exception e) {

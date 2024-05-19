@@ -27,9 +27,9 @@ public class UserDAO extends DAO<User>{
 		}
 
 
+
 		// User sert à la création de session actuellement :
 		// Pas de besoin de create, delete et update
-		
 		@Override
 		public boolean create(User user) {
 			//No need
@@ -51,8 +51,9 @@ public class UserDAO extends DAO<User>{
 		@Override
 		public User read(int id) {
 			User user = null;
-			
 //			System.out.println("recherché dans la BD");
+
+			System.out.println("recherché dans la BD");
 			try {
 
 				String requete = "SELECT * FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = "+id;
@@ -68,20 +69,21 @@ public class UserDAO extends DAO<User>{
 			return user;
 		}
 
+
 		
 		
 		// Répétition des fonctions d'adhérent.
-		// A voir la possibilité de extend user dans adhérent et personnel pour éviter la répétition
+		// A voir la possibilité de extend user dans adhérent et personnel pour éviter la répétition	
 		public String getPasswordById(int id) {
 			String password = null;
 			try{
-
+				// Requête SQL pour récupérer le mot de passe par ID
 	            String requete = "SELECT "+MOT_DE_PASSE+" FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
 	            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 	            pst.setInt(1, id);
-
 	            ResultSet resultSet = pst.executeQuery();
 
+	            // Récupération du mot de passe s'il existe
 	            if (resultSet.next()) {
 	                password = resultSet.getString(MOT_DE_PASSE);
 	            }
@@ -99,9 +101,9 @@ public class UserDAO extends DAO<User>{
 	            String requete = "SELECT "+SALT+" FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
 	            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 	            pst.setInt(1, id);
-
+	            // Exécution de la requête
 	            ResultSet resultSet = pst.executeQuery();
-
+	            // Récupération du mot de passe s'il existe
 	            if (resultSet.next()) {
 	                password = resultSet.getString(SALT);
 	            }
@@ -116,13 +118,14 @@ public class UserDAO extends DAO<User>{
 		public String getEmailById(int id) {
 			String email = null;
 			try{
-
+				// Requête SQL pour récupérer le mot de passe par ID
 	            String requete = "SELECT "+EMAIL+" FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
 	            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 	            pst.setInt(1, id);
-
+	            // Exécution de la requête
 	            ResultSet resultSet = pst.executeQuery();
 
+	            // Récupération du mot de passe s'il existe
 	            if (resultSet.next()) {
 	                email = resultSet.getString(EMAIL);
 	            }
@@ -136,13 +139,14 @@ public class UserDAO extends DAO<User>{
 		
 		public int getIdByEmail(String email) {
 			int id = 0;
-			try{
-
+			try {
+				// Requête SQL pour récupérer le mot de passe par ID
 	            String requete = "SELECT "+ID_UTILISATEUR+" FROM "+TABLE_UTILISATEUR+" WHERE "+EMAIL+" = ?";
 	            PreparedStatement pst = Connexion.getInstance().prepareStatement(requete) ;
 	            pst.setString(1, email);
-
+	            // Exécution de la requête
 	            ResultSet resultSet = pst.executeQuery();
+
 
 	            if (resultSet.next()) {
 	                id = resultSet.getInt(ID_UTILISATEUR);
@@ -154,5 +158,6 @@ public class UserDAO extends DAO<User>{
 			return id;
 			
 		}
+		}
 
-}
+

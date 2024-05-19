@@ -66,12 +66,14 @@ public class MainController {
 	@FXML
 	public void initialize() {
 
+		
 		try {
 			loadFXML("Accueil"); // Chargement d'une vue au lancement de l'application
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		
 		// Masquer certains boutons et labels au démarrage de l'application
 		initializeButtons();
 	}
@@ -108,8 +110,18 @@ public class MainController {
 				}
 				break;
 			case "Ajouter un Adhérent":
-				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
 					loadFXML("AjoutAdherent");
+				}
+				break;
+			case "Ajouter un Employé":
+				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
+					loadFXML("AjoutPersonnel");
+				}
+				break;
+			case "Liste des employés":
+				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+					loadFXML("ListePersonnel");
 				}
 				break;
 			case "Deconnexion":
@@ -205,8 +217,7 @@ public class MainController {
 		btnListeEmploye.setVisible(false);
 		btnListeEmploye.setManaged(false);
 		btnAddEmploye.setVisible(false);
-		btnAddEmploye.setManaged(false);
-	}
+		btnAddEmploye.setManaged(false);}
 	
 	// Fonction qui donne l'illusion de la connexion et déconnexion instantanée
 	// Elle vérifie si une session est créée avec un utilisateur défini pour lancer la fonction showButtons()
@@ -225,20 +236,21 @@ public class MainController {
                 	initializeButtons();
                 }
             }
-        }, 0, 1000);
+        }, 0, 1000);}
     
-	}
-	
+
 	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour divers affichages dans l'application
 	// A ajouter isAdherent()
 	// Ecriture en ternaire que je trouve plus simple lorsqu'on a des résultats de conditions if qui ne sont pas longues
 	// A tester si SessionManager.getCurrentUser().getRole().matches(...) est suffisant
 	public static boolean isPersonnel() {
-		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;
-	}
-	
+		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;}
+
+
+
 	public static boolean isAdmin() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
 	}
 
 }
+

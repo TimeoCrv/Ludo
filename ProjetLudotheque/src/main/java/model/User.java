@@ -1,5 +1,6 @@
 package model;
 
+
 // Classe créée pour faciliter la création de session
 // Besoin de l'ID pour identifier l'utilisateur et le rôle pour les droits sur l'application
 // Possibilité d'être étendue à d'autres fonctions de l'application si besoin
@@ -27,4 +28,6 @@ public class User {
 		return "User [id=" + id + ", role=" + role + "]";
 	}
 
+
 }
+
