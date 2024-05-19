@@ -8,6 +8,7 @@ import model.Connexion;
 import model.Personnel;
 import model.PersonnelDAO;
 import utils.PasswordManager;
+import utils.ValidatorManager;
 
 
 public class  AjoutPersonnelControl extends PageInit {
@@ -34,10 +35,14 @@ public class  AjoutPersonnelControl extends PageInit {
 	public void ajouterPersonnel(ActionEvent event) {
 
 		try {
-
+			String emailSaisi = email.getText();
+			if(!ValidatorManager.isValidEmail(emailSaisi)) {
+				afficherMessage("E-mail invalide");
+			} else if (ValidatorManager.isAdherentEmailInBD(emailSaisi)) {
+				afficherMessage("Cet e-mail est déjà utilisé");
+			} else {
 			String nomSaisi = nom.getText();
 			String prenomSaisi = prenom.getText();
-			String emailSaisi = email.getText();
 			String telephoneSaisi = telephone.getText();
 			String adresseSaisi = adresse.getText();
 			
@@ -71,7 +76,9 @@ public class  AjoutPersonnelControl extends PageInit {
 			afficherMessage("Veuillez remplir tous les champs");
 		}
 
-			}}catch (Exception e) {
+			}
+			}
+			}catch (Exception e) {
 		e.printStackTrace();
 	}
 }
