@@ -1,34 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierJeuController">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierJeuController">
    <children>
-      <Label layoutX="38.0" layoutY="29.0" text="Nom du jeu" />
-      <TextField fx:id="modifNom" layoutX="36.0" layoutY="46.0" />
-      <Label layoutX="215.0" layoutY="29.0" text="Nombre de joueurs Max" />
-      <TextField fx:id="modifJMax" layoutX="215.0" layoutY="46.0" />
-      <Label layoutX="399.0" layoutY="29.0" text="Nombre de joueurs Min" />
-      <TextField fx:id="modifJMin" layoutX="399.0" layoutY="46.0" />
-      <Label layoutX="38.0" layoutY="127.0" text="Année" />
-      <TextField fx:id="modifAnnee" layoutX="36.0" layoutY="141.0" />
-      <Label layoutX="216.0" layoutY="127.0" text="Age minimum" />
-      <TextField fx:id="modifAgeMin" layoutX="215.0" layoutY="141.0" />
-      <Label layoutX="399.0" layoutY="127.0" text="Durée minimum" />
-      <TextField fx:id="modifDureeMin" layoutX="399.0" layoutY="141.0" />
-      <Label layoutX="216.0" layoutY="214.0" text="Editeur" />
-      <TextField fx:id="modifEditeur" layoutX="215.0" layoutY="231.0" />
-      <Label layoutX="399.0" layoutY="214.0" text="Disponible" />
-      <TextField fx:id="modifDisponible" layoutX="399.0" layoutY="231.0" />
-      <Label layoutX="216.0" layoutY="297.0" text="Nombre" />
-      <TextField fx:id="modifNombre" layoutX="215.0" layoutY="314.0" />
-      <Label layoutX="85.0" layoutY="202.0" text="Descriptif" />
-      <TextArea fx:id="modifDescriptif" layoutX="22.0" layoutY="218.0" prefHeight="158.0" prefWidth="177.0" />
-      <Button fx:id="validerModifierJeu" layoutX="458.0" layoutY="351.0" mnemonicParsing="false" onAction="#validateUpdate" text="Modifier" />
-      <Button fx:id="annulerModifierJeu" layoutX="522.0" layoutY="351.0" mnemonicParsing="false" onAction="#annulerModificationJeu" text="Annuler" />
+      <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label alignment="CENTER" text="Modifier un jeu" textFill="WHITE">
+               <font>
+                  <Font name="Arial" size="22.0" />
+               </font></Label>
+            <HBox spacing="10" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox spacing="10" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label text="Nom du jeu" textFill="WHITE" />
+                        <TextField fx:id="modifNom" HBox.hgrow="ALWAYS" />
+                        <Label text="Année" textFill="WHITE" />
+                        <TextField fx:id="modifAnnee" HBox.hgrow="ALWAYS" />
+                        <Label text="Descriptif" textFill="WHITE" />
+                        <TextArea fx:id="modifDescriptif" prefHeight="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="324.0" prefWidth="413.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Nombre de joueurs Max" textFill="WHITE" />
+                                    <TextField fx:id="modifJMax" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                    <Label text="Age minimum" textFill="WHITE" />
+                                    <TextField fx:id="modifAgeMin" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                    <Label text="Editeur" textFill="WHITE" />
+                                    <TextField fx:id="modifEditeur" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                    <Label text="Nombre" textFill="WHITE" />
+                                    <TextField fx:id="modifNombre" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                              <VBox spacing="10" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label text="Nombre de joueurs Min" textFill="WHITE" />
+                                    <TextField fx:id="modifJMin" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                    <Label text="Durée minimum" textFill="WHITE" />
+                                    <TextField fx:id="modifDureeMin" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                    <Label text="Disponible" textFill="WHITE" />
+                                    <TextField fx:id="modifDisponible" HBox.hgrow="ALWAYS">
+                                       <VBox.margin>
+                                          <Insets right="10.0" />
+                                       </VBox.margin></TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="validerModifierJeu" onAction="#validateUpdate" text="Modifier">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin></Button>
+                              <Button fx:id="annulerModifierJeu" onAction="#annulerModificationJeu" text="Annuler" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

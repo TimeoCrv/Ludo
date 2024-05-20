@@ -40,6 +40,10 @@ public class ajouterJeuController extends PageInit{
 	@FXML
 	private TextArea ajoutDescriptif;
 	
+	public void initialize() {
+		setAnchors();
+	}
+	
 	@FXML
 	public void ajouterJeu(ActionEvent event) {
 
