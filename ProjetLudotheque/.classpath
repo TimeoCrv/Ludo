@@ -37,6 +37,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
 
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+>>>>>>> d41c55d (testing tests)
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
