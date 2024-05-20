@@ -98,4 +98,14 @@ public class UpdatePersonnelController extends PageInit {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void backListePersonnel(ActionEvent event) {
+	  
+		try {
+			loadOtherFXML("ListePersonnel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }

@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.util.Callback;
 import model.Adherent;
 import model.AdherentDAO;
+import model.JeuDAO;
 import utils.SessionManager;
 
 public class ListeAdherentsController extends PageInit {
@@ -34,24 +35,24 @@ public class ListeAdherentsController extends PageInit {
 	private TableColumn<Adherent, String> tel;
 	@FXML
 	private TableColumn<Adherent, String> dateInscription;
-	
+
 	private ObservableList<Adherent> adherentData = FXCollections.observableArrayList();
-	
+
 	public ListeAdherentsController() {
 		super();
 		this.adherentData = getAdherentDataAdherent();
-		
+
 	}
-	
+
 	public ObservableList<Adherent> getAdherentData() {
 		return adherentData;
 	}
-	
+
 	@FXML
 	private void initialize() {
-		
+
 		setAnchors();
-		
+
 		nomAdherent.setCellValueFactory(new Callback<CellDataFeatures<Adherent, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Adherent, String> cellData) {
@@ -64,7 +65,7 @@ public class ListeAdherentsController extends PageInit {
 				return new SimpleStringProperty(cellData.getValue().getPrenom());
 			}
 		});
-		
+
 		emailAdherent.setCellValueFactory(new Callback<CellDataFeatures<Adherent, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Adherent, String> cellData) {
@@ -77,21 +78,22 @@ public class ListeAdherentsController extends PageInit {
 				return new SimpleStringProperty(cellData.getValue().getTel());
 			}
 		});
-		
-		dateInscription.setCellValueFactory(new Callback<CellDataFeatures<Adherent, String>, ObservableValue<String>>() {
-		    @Override
-		    public ObservableValue<String> call(CellDataFeatures<Adherent, String> cellData) {
-		        Timestamp inscription = cellData.getValue().getDateInscription();
-		        LocalDateTime localDateTime = inscription.toLocalDateTime();
-		        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		        String formattedInscription = localDateTime.format(formatter);
-		        return new SimpleStringProperty(formattedInscription);
-		    }
-		});
-		
+
+		dateInscription
+				.setCellValueFactory(new Callback<CellDataFeatures<Adherent, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Adherent, String> cellData) {
+						Timestamp inscription = cellData.getValue().getDateInscription();
+						LocalDateTime localDateTime = inscription.toLocalDateTime();
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+						String formattedInscription = localDateTime.format(formatter);
+						return new SimpleStringProperty(formattedInscription);
+					}
+				});
+
 		adherentList.setItems(this.getAdherentData());
 	}
-	
+
 	public ObservableList<Adherent> getAdherentDataAdherent() {
 		adherentData = FXCollections.observableArrayList();
 		List<Adherent> lesAdherents = AdherentDAO.getInstance().readAllAdherent();
@@ -100,34 +102,53 @@ public class ListeAdherentsController extends PageInit {
 		}
 		return adherentData;
 	}
-	
+
 	@FXML
 	public void toAddAdherent(ActionEvent event) {
 		try {
-			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-				loadOtherFXML("AjoutAdherent");
-			}else {
-				loadOtherFXML("ConnexionForm");
-			}
+			loadOtherFXML("AjoutAdherent");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	private Adherent getAdherent() {
-        return adherentList.getSelectionModel().getSelectedItem();
-    }
 
-    @FXML
-    public void toUpdateAdherent(ActionEvent event) {
-        try {
-            Adherent adherent = getAdherent();
-            if (adherent != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-                loadUpdateAdherentFXML("UpdateAdherent", adherent);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	private Adherent getAdherent() {
+		return adherentList.getSelectionModel().getSelectedItem();
+	}
+
+	@FXML
+	private void deleteAdherent() {
+		if (getAdherent() != null) {
+			try {
+				boolean confirmation = demanderConfirmation("Supprimer l'adhérent ?");
+				if (confirmation) {
+					AdherentDAO.getInstance().delete(getAdherent());
+					afficherMessage("Adhérent supprimé avec succès");
+					loadOtherFXML("ListeAdherents");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste l'adhérent à supprimer.");
+		}
+	}
+
+	@FXML
+	public void toUpdateAdherent(ActionEvent event) {
+		if (getAdherent() != null) {
+			try {
+				Adherent adherent = getAdherent();
+//			if (adherent != null && SessionManager.getCurrentUser() != null
+//					&& (MainController.isAdmin() || MainController.isPersonnel())) {
+				loadUpdateAdherentFXML("UpdateAdherent", adherent);
+//			}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste l'adhérent à modifier.");
+		}
+	}
 
 }

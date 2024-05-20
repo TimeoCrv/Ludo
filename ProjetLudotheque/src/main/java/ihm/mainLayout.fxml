@@ -13,244 +13,320 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane style="-fx-background-color: #1c1c1c;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
-   <children>
-      <HBox minHeight="480.0" minWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <VBox maxWidth="250.0" minHeight="480.0" minWidth="180.0" style="-fx-background-color: #202020;">
-               <children>
-                  <Label maxWidth="1.7976931348623157E308" styleClass="label-level-1" stylesheets="@css/style.css" text="Profil">
-                     <padding>
-                        <Insets left="8.0" />
-                     </padding>
-                     <font>
-                        <Font name="Englebert" size="12.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets bottom="4.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="btnProfil" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Mon profil" visible="false" VBox.vgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M5,18.2c0.9-0.9,1.9-1.6,3.1-2.1c1.2-0.5,2.5-0.8,3.9-0.8s2.7,0.3,3.9,0.8c1.2,0.5,2.2,1.2,3.1,2.1V5.6c0-0.2-0.1-0.3-0.2-0.4C18.7,5.1,18.5,5,18.4,5H5.6C5.5,5,5.3,5.1,5.2,5.2C5.1,5.3,5,5.5,5,5.6V18.2z M12,13.1c0.8,0,1.5-0.3,2.1-0.9c0.6-0.6,0.9-1.3,0.9-2.1c0-0.8-0.3-1.5-0.9-2.1c-0.6-0.6-1.3-0.9-2.1-0.9s-1.5,0.3-2.1,0.9C9.3,8.5,9,9.2,9,10.1c0,0.8,0.3,1.5,0.9,2.1C10.5,12.8,11.2,13.1,12,13.1z M5.6,20c-0.5,0-0.8-0.2-1.2-0.5C4.2,19.2,4,18.8,4,18.4V5.6c0-0.5,0.2-0.8,0.5-1.2S5.2,4,5.6,4h12.8c0.5,0,0.8,0.2,1.2,0.5S20,5.2,20,5.6v12.8c0,0.5-0.2,0.8-0.5,1.2c-0.3,0.3-0.7,0.5-1.2,0.5H5.6z M5.9,19h12.2v-0.2c-0.9-0.8-1.8-1.4-2.9-1.8c-1-0.4-2.1-0.6-3.2-0.6c-1.1,0-2.2,0.2-3.2,0.6c-1,0.4-2,1-2.9,1.8C5.9,18.8,5.9,19,5.9,19z M12,12.1c-0.5,0-1-0.2-1.4-0.6c-0.4-0.4-0.6-0.9-0.6-1.4c0-0.5,0.2-1,0.6-1.4C11,8.3,11.5,8.1,12,8.1s1,0.2,1.4,0.6c0.4,0.4,0.6,0.9,0.6,1.4c0,0.5-0.2,1-0.6,1.4C13,11.9,12.5,12.1,12,12.1z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="account" />
-                              <String fx:value="icon" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnConnexion" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Connexion">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M12,20v-1.4h6.3c0.1,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.1,0.1-0.2V5.7c0-0.1,0-0.1-0.1-0.2c-0.1-0.1-0.1-0.1-0.2-0.1H12V4h6.3c0.5,0,0.9,0.2,1.2,0.5C19.8,4.8,20,5.2,20,5.7v12.6c0,0.5-0.2,0.9-0.5,1.2S18.8,20,18.3,20H12z M10.7,16l-1-1l2.3-2.3H4v-1.4h8L9.7,9l1-1l4,4L10.7,16z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="login" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnHistorique" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Historique" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M12,20c-2,0-3.8-0.7-5.3-2c-1.5-1.3-2.4-3-2.6-5h1c0.3,1.7,1.1,3.2,2.4,4.3C8.7,18.4,10.2,19,12,19c1.9,0,3.6-0.7,5-2c1.4-1.4,2-3,2-5s-0.7-3.6-2-5c-1.4-1.4-3-2-5-2c-1,0-2,0.2-2.9,0.7c-0.9,0.4-1.7,1-2.4,1.8h2.5v1H5V4.3h1v2.4c0.8-0.8,1.7-1.5,2.7-2C9.7,4.2,10.8,4,12,4c1.1,0,2.1,0.2,3.1,0.6c1,0.4,1.8,1,2.5,1.7c0.7,0.7,1.3,1.6,1.7,2.5c0.4,1,0.6,2,0.6,3.1s-0.2,2.1-0.6,3.1c-0.4,1-1,1.8-1.7,2.5c-0.7,0.7-1.6,1.3-2.5,1.7S13.1,20,12,20z M15.2,15.9l-3.6-3.6V7h1v4.8l3.4,3.4L15.2,15.9z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="history" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Deconnexion" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M5.7,20.5c-0.5,0-0.9-0.2-1.2-0.5C4.2,19.7,4,19.3,4,18.8V6.2C4,5.7,4.2,5.3,4.5,5c0.3-0.3,0.7-0.5,1.2-0.5H12v1.4H5.7c-0.1,0-0.1,0-0.2,0.1C5.4,6.1,5.4,6.1,5.4,6.2v12.6c0,0.1,0,0.1,0.1,0.2c0.1,0.1,0.1,0.1,0.2,0.1H12v1.4C12,20.5,5.7,20.5,5.7,20.5z M16,16.5l-1-1l2.3-2.3h-8v-1.4h8L15,9.5l1-1l4,4C20,12.5,16,16.5,16,16.5z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="logout" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label maxWidth="1.7976931348623157E308" styleClass="label-level-1" stylesheets="@css/style.css" text="Ludothèque">
-                     <padding>
-                        <Insets left="8.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="4.0" top="12.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="btnListeJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Tous les jeux">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M9.1,20H5.4c-0.3,0-0.5-0.1-0.7-0.3c-0.2-0.2-0.3-0.4-0.3-0.7v-3.7c0.5-0.2,1-0.5,1.4-0.9c0.4-0.4,0.5-0.9,0.5-1.5c0-0.6-0.2-1.1-0.5-1.5c-0.4-0.4-0.8-0.7-1.4-0.9V6.7c0-0.3,0.1-0.5,0.3-0.7c0.2-0.2,0.4-0.3,0.7-0.3h3.8c0.2-0.5,0.5-1,0.9-1.3C10.5,4.2,11,4,11.5,4c0.6,0,1,0.2,1.5,0.5c0.4,0.3,0.7,0.8,0.9,1.3h3.8c0.3,0,0.5,0.1,0.7,0.3c0.2,0.2,0.3,0.4,0.3,0.7v3.8c0.5,0.2,1,0.5,1.3,0.9c0.3,0.4,0.5,0.9,0.5,1.5s-0.2,1-0.5,1.5c-0.3,0.4-0.8,0.7-1.3,0.9v3.8c0,0.3-0.1,0.5-0.3,0.7C18.2,19.9,18,20,17.7,20H14c-0.2-0.6-0.5-1-0.9-1.4c-0.4-0.3-0.9-0.5-1.5-0.5c-0.6,0-1.1,0.2-1.5,0.5C9.6,19,9.3,19.4,9.1,20z M5.4,19.1h3.1c0.3-0.6,0.7-1.1,1.3-1.4c0.6-0.3,1.2-0.5,1.8-0.5c0.6,0,1.2,0.2,1.8,0.5c0.6,0.3,1,0.8,1.3,1.4h3.1v-4.6h0.4c0.5-0.1,0.8-0.3,1-0.6c0.2-0.3,0.3-0.6,0.3-1c0-0.3-0.1-0.7-0.3-1c-0.2-0.3-0.6-0.5-1-0.6h-0.4V6.7h-4.6V6.3c-0.1-0.5-0.3-0.8-0.6-1c-0.3-0.2-0.6-0.3-1-0.3c-0.3,0-0.7,0.1-1,0.3c-0.3,0.2-0.5,0.6-0.6,1v0.4H5.4v3.1c0.6,0.3,1,0.7,1.4,1.3c0.3,0.6,0.5,1.2,0.5,1.8c0,0.6-0.2,1.2-0.5,1.8c-0.3,0.6-0.8,1-1.4,1.3V19.1z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="game" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnAddJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un jeu" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M8.4,19.6v-8.7c0-0.4,0.1-0.7,0.4-1c0.3-0.3,0.6-0.4,1-0.4h8.7c0.4,0,0.7,0.1,1,0.4c0.3,0.3,0.4,0.6,0.4,1v6.2L16.1,21H9.9c-0.4,0-0.7-0.1-1-0.4C8.6,20.3,8.4,20,8.4,19.6z M4,8.2C3.9,7.8,4,7.4,4.3,7.1c0.2-0.3,0.5-0.5,0.9-0.6L13.7,5c0.4-0.1,0.8,0,1.1,0.2c0.3,0.2,0.5,0.5,0.6,0.9l0.2,1.1h-0.9l-0.2-1.1c0-0.1-0.1-0.2-0.2-0.3s-0.2-0.1-0.4-0.1L5.4,7.4C5.2,7.4,5.1,7.5,5,7.6C4.9,7.8,4.9,7.9,4.9,8.1l1.4,8v1.7c-0.2-0.1-0.4-0.2-0.5-0.4c-0.1-0.2-0.2-0.4-0.3-0.6L4,8.2z M9.3,10.9v8.7c0,0.2,0.1,0.3,0.2,0.4c0.1,0.1,0.2,0.2,0.4,0.2h5.7l3.6-3.6v-5.7c0-0.2-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.2-0.4-0.2H9.9c-0.2,0-0.3,0.1-0.4,0.2C9.4,10.6,9.3,10.7,9.3,10.9z M13.8,18.3h0.9v-2.7h2.7v-0.9h-2.7v-2.7h-0.9v2.7h-2.7v0.9h2.7V18.3z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="add-game" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnRendreJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Rendre un jeu" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M12.8,12.6l-3-3l0.6-0.6l2.4,2.4l4.9-4.9l0.6,0.6L12.8,12.6z M7.1,19.1l6.5,1.9l5.2-1.6c0-0.3-0.1-0.4-0.2-0.6c-0.1-0.1-0.3-0.2-0.5-0.2H14c-0.4,0-0.7,0-1,0c-0.3,0-0.6-0.1-0.9-0.2l-1.9-0.6l0.3-0.9l1.7,0.6c0.3,0.1,0.6,0.2,0.9,0.2c0.4,0,0.8,0,1.4,0c0-0.3,0-0.5-0.1-0.7s-0.2-0.3-0.4-0.3l-5-1.8c0,0-0.1,0-0.1,0C9,15,9,15,9,15H7.1C7.1,15,7.1,19.1,7.1,19.1z M3.7,21.1v-7h5.2c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0,0.2,0.1l5,1.8c0.3,0.1,0.6,0.3,0.8,0.6c0.2,0.3,0.3,0.7,0.3,1.2h2.6c0.5,0,0.9,0.2,1.2,0.5c0.3,0.3,0.4,0.7,0.4,1.2v0.5l-6,1.9L7.1,20v1.1C7.1,21.1,3.7,21.1,3.7,21.1z M4.6,20.3h1.7V15H4.6V20.3z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="give-back" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label fx:id="labelAdmin" maxWidth="1.7976931348623157E308" styleClass="label-level-1" stylesheets="@css/style.css" text="Administration" visible="false">
-                     <padding>
-                        <Insets left="8.0" />
-                     </padding>
-                     <VBox.margin>
-                        <Insets bottom="4.0" top="12.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Button fx:id="btnListeAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des adhérents" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M25.4,28.2v-0.9H32v0.9H25.4z M25.4,31.4v-0.9H32v0.9H25.4z M25.4,34.6v-0.9H32v0.9H25.4z M20.6,34.2c-0.6,0-1.1-0.2-1.5-0.6c-0.4-0.4-0.6-0.9-0.6-1.5c0-0.6,0.2-1.1,0.6-1.5c0.4-0.4,0.9-0.6,1.5-0.6s1.1,0.2,1.5,0.6c0.4,0.4,0.6,0.9,0.6,1.5c0,0.6-0.2,1.1-0.6,1.5C21.8,34,21.3,34.2,20.6,34.2z M16,38.8v-1.1c0-0.2,0.1-0.4,0.2-0.6c0.1-0.2,0.2-0.3,0.4-0.4c0.6-0.4,1.2-0.7,1.9-0.9s1.4-0.3,2.1-0.3c0.7,0,1.4,0.1,2.1,0.3c0.7,0.2,1.3,0.5,1.9,0.9c0.2,0.1,0.3,0.3,0.4,0.4c0.1,0.2,0.2,0.4,0.2,0.6v1.1C25.3,38.8,16,38.8,16,38.8z M16.9,37.6v0.3h7.6v-0.3c-0.6-0.4-1.2-0.6-1.9-0.8c-0.7-0.2-1.3-0.3-1.9-0.3c-0.6,0-1.3,0.1-1.9,0.3C18,37,17.4,37.3,16.9,37.6z M20.6,33.2c0.3,0,0.6-0.1,0.9-0.3c0.2-0.2,0.3-0.5,0.3-0.9c0-0.3-0.1-0.6-0.3-0.9c-0.2-0.2-0.5-0.3-0.9-0.3c-0.4,0-0.6,0.1-0.9,0.3c-0.2,0.2-0.3,0.5-0.3,0.9c0,0.3,0.1,0.6,0.3,0.9C20,33.1,20.3,33.2,20.6,33.2z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="user-list" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnAddAdherent" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un Adhérent" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M16.7,15.1v-2.3h-2.3v-1.1h2.3V9.4h1.1v2.3h2.3v1.1h-2.3v2.3H16.7z M9.7,13.5c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9c0-0.7,0.3-1.4,0.8-1.9C8.4,8.5,9,8.2,9.7,8.2c0.7,0,1.4,0.3,1.9,0.8c0.5,0.5,0.8,1.1,0.8,1.9c0,0.7-0.3,1.4-0.8,1.9C11.1,13.3,10.5,13.5,9.7,13.5z M4.1,19.3v-1.7c0-0.4,0.1-0.7,0.3-1c0.2-0.3,0.5-0.6,0.8-0.7c0.7-0.4,1.5-0.6,2.3-0.8c0.8-0.2,1.5-0.3,2.3-0.3c0.8,0,1.5,0.1,2.3,0.3s1.5,0.5,2.3,0.8c0.3,0.2,0.6,0.4,0.8,0.7c0.2,0.3,0.3,0.7,0.3,1v1.7H4.1z M5.2,18.2h9.1v-0.5c0-0.2,0-0.3-0.1-0.4c-0.1-0.1-0.2-0.2-0.4-0.3c-0.7-0.3-1.3-0.6-2-0.7c-0.7-0.2-1.4-0.2-2.1-0.2c-0.7,0-1.4,0.1-2.1,0.2c-0.7,0.2-1.3,0.4-2,0.7c-0.2,0.1-0.3,0.2-0.4,0.3c-0.1,0.1-0.1,0.3-0.1,0.4C5.2,17.6,5.2,18.2,5.2,18.2z M9.7,12.4c0.4,0,0.8-0.1,1.1-0.4c0.3-0.3,0.4-0.7,0.4-1.1c0-0.4-0.1-0.8-0.4-1.1c-0.3-0.3-0.7-0.4-1.1-0.4S9,9.5,8.7,9.8c-0.3,0.3-0.4,0.7-0.4,1.1c0,0.4,0.1,0.8,0.4,1.1C9,12.3,9.3,12.4,9.7,12.4z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="user-add" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnListeEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Liste des employés" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M25.4,28.2v-0.9H32v0.9H25.4z M25.4,31.4v-0.9H32v0.9H25.4z M25.4,34.6v-0.9H32v0.9H25.4z M20.6,34.2c-0.6,0-1.1-0.2-1.5-0.6c-0.4-0.4-0.6-0.9-0.6-1.5c0-0.6,0.2-1.1,0.6-1.5c0.4-0.4,0.9-0.6,1.5-0.6s1.1,0.2,1.5,0.6c0.4,0.4,0.6,0.9,0.6,1.5c0,0.6-0.2,1.1-0.6,1.5C21.8,34,21.3,34.2,20.6,34.2z M16,38.8v-1.1c0-0.2,0.1-0.4,0.2-0.6c0.1-0.2,0.2-0.3,0.4-0.4c0.6-0.4,1.2-0.7,1.9-0.9s1.4-0.3,2.1-0.3c0.7,0,1.4,0.1,2.1,0.3c0.7,0.2,1.3,0.5,1.9,0.9c0.2,0.1,0.3,0.3,0.4,0.4c0.1,0.2,0.2,0.4,0.2,0.6v1.1C25.3,38.8,16,38.8,16,38.8z M16.9,37.6v0.3h7.6v-0.3c-0.6-0.4-1.2-0.6-1.9-0.8c-0.7-0.2-1.3-0.3-1.9-0.3c-0.6,0-1.3,0.1-1.9,0.3C18,37,17.4,37.3,16.9,37.6z M20.6,33.2c0.3,0,0.6-0.1,0.9-0.3c0.2-0.2,0.3-0.5,0.3-0.9c0-0.3-0.1-0.6-0.3-0.9c-0.2-0.2-0.5-0.3-0.9-0.3c-0.4,0-0.6,0.1-0.9,0.3c-0.2,0.2-0.3,0.5-0.3,0.9c0,0.3,0.1,0.6,0.3,0.9C20,33.1,20.3,33.2,20.6,33.2z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="worker-list" />
-                              <String fx:value="icon" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="btnAddEmploye" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un Employé" visible="false">
-                     <padding>
-                        <Insets bottom="1.0" left="16.0" top="1.0" />
-                     </padding>
-                     <graphic>
-                        <SVGPath content="M25.1,43c-2-0.5-3.7-1.7-5-3.5c-1.3-1.8-2-3.9-2-6.3v-5.3l7.1-2.6l7.1,2.6v6.1c-0.2-0.1-0.3-0.1-0.5-0.2c-0.2-0.1-0.4-0.1-0.5-0.1v-5l-6-2.2l-6,2.2v4.6c0,1.2,0.2,2.2,0.6,3.2c0.4,1,0.9,1.9,1.4,2.6c0.6,0.8,1.3,1.4,2,1.9c0.7,0.5,1.5,0.9,2.2,1.1l0,0c0.1,0.1,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.4c-0.1,0.1-0.3,0.1-0.4,0.2C25.3,42.9,25.2,42.9,25.1,43z M30,43c-1.1,0-2.1-0.4-2.8-1.2C26.4,41,26,40.1,26,39c0-1.1,0.4-2.1,1.2-2.9c0.8-0.8,1.7-1.2,2.9-1.2c1.1,0,2,0.4,2.8,1.2c0.8,0.8,1.2,1.7,1.2,2.9c0,1.1-0.4,2-1.2,2.8C32,42.6,31.1,43,30,43z M29.7,41.4h0.7v-2h2v-0.7h-2v-2h-0.7v2h-2v0.7h2V41.4z" style="-fx-translate-x: -4;">
-                           <styleClass>
-                              <String fx:value="icon" />
-                              <String fx:value="worker-add" />
-                           </styleClass>
-                        </SVGPath>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" top="8.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </VBox>
-            <VBox HBox.hgrow="SOMETIMES">
-               <children>
-                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" />
-                  <AnchorPane fx:id="mainWindow" VBox.vgrow="ALWAYS">
-                     <children>
-                        <TableView style="-fx-background-color: #202020;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columns>
-                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="250.0" prefWidth="-1.0" resizable="false" text="Nom" />
-                              <TableColumn maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="DurÃ©e min" />
-                              <TableColumn maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Age min" />
-                              <TableColumn maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Disponible" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-               </children>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" />
-               </padding>
-            </VBox>
-         </children>
-      </HBox>
-   </children>
+<AnchorPane style="-fx-background-color: #1c1c1c;"
+	stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="controller.MainController">
+	<children>
+		<HBox minHeight="480.0" minWidth="640.0"
+			AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+			AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<children>
+				<VBox maxWidth="250.0" minHeight="480.0" minWidth="180.0"
+					style="-fx-background-color: #202020;">
+					<children>
+						<Label maxWidth="1.7976931348623157E308"
+							styleClass="label-level-1" stylesheets="@css/style.css"
+							text="Profil">
+							<padding>
+								<Insets left="8.0" />
+							</padding>
+							<font>
+								<Font name="Englebert" size="12.0" />
+							</font>
+							<VBox.margin>
+								<Insets bottom="4.0" />
+							</VBox.margin>
+						</Label>
+						<Button fx:id="btnProfil" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Mon profil" visible="false" VBox.vgrow="ALWAYS">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M5,18.2c0.9-0.9,1.9-1.6,3.1-2.1c1.2-0.5,2.5-0.8,3.9-0.8s2.7,0.3,3.9,0.8c1.2,0.5,2.2,1.2,3.1,2.1V5.6c0-0.2-0.1-0.3-0.2-0.4C18.7,5.1,18.5,5,18.4,5H5.6C5.5,5,5.3,5.1,5.2,5.2C5.1,5.3,5,5.5,5,5.6V18.2z M12,13.1c0.8,0,1.5-0.3,2.1-0.9c0.6-0.6,0.9-1.3,0.9-2.1c0-0.8-0.3-1.5-0.9-2.1c-0.6-0.6-1.3-0.9-2.1-0.9s-1.5,0.3-2.1,0.9C9.3,8.5,9,9.2,9,10.1c0,0.8,0.3,1.5,0.9,2.1C10.5,12.8,11.2,13.1,12,13.1z M5.6,20c-0.5,0-0.8-0.2-1.2-0.5C4.2,19.2,4,18.8,4,18.4V5.6c0-0.5,0.2-0.8,0.5-1.2S5.2,4,5.6,4h12.8c0.5,0,0.8,0.2,1.2,0.5S20,5.2,20,5.6v12.8c0,0.5-0.2,0.8-0.5,1.2c-0.3,0.3-0.7,0.5-1.2,0.5H5.6z M5.9,19h12.2v-0.2c-0.9-0.8-1.8-1.4-2.9-1.8c-1-0.4-2.1-0.6-3.2-0.6c-1.1,0-2.2,0.2-3.2,0.6c-1,0.4-2,1-2.9,1.8C5.9,18.8,5.9,19,5.9,19z M12,12.1c-0.5,0-1-0.2-1.4-0.6c-0.4-0.4-0.6-0.9-0.6-1.4c0-0.5,0.2-1,0.6-1.4C11,8.3,11.5,8.1,12,8.1s1,0.2,1.4,0.6c0.4,0.4,0.6,0.9,0.6,1.4c0,0.5-0.2,1-0.6,1.4C13,11.9,12.5,12.1,12,12.1z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="account" />
+										<String fx:value="icon" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnConnexion" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Connexion">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M12,20v-1.4h6.3c0.1,0,0.1,0,0.2-0.1c0.1-0.1,0.1-0.1,0.1-0.2V5.7c0-0.1,0-0.1-0.1-0.2c-0.1-0.1-0.1-0.1-0.2-0.1H12V4h6.3c0.5,0,0.9,0.2,1.2,0.5C19.8,4.8,20,5.2,20,5.7v12.6c0,0.5-0.2,0.9-0.5,1.2S18.8,20,18.3,20H12z M10.7,16l-1-1l2.3-2.3H4v-1.4h8L9.7,9l1-1l4,4L10.7,16z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="login" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnHistorique" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Historique" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M12,20c-2,0-3.8-0.7-5.3-2c-1.5-1.3-2.4-3-2.6-5h1c0.3,1.7,1.1,3.2,2.4,4.3C8.7,18.4,10.2,19,12,19c1.9,0,3.6-0.7,5-2c1.4-1.4,2-3,2-5s-0.7-3.6-2-5c-1.4-1.4-3-2-5-2c-1,0-2,0.2-2.9,0.7c-0.9,0.4-1.7,1-2.4,1.8h2.5v1H5V4.3h1v2.4c0.8-0.8,1.7-1.5,2.7-2C9.7,4.2,10.8,4,12,4c1.1,0,2.1,0.2,3.1,0.6c1,0.4,1.8,1,2.5,1.7c0.7,0.7,1.3,1.6,1.7,2.5c0.4,1,0.6,2,0.6,3.1s-0.2,2.1-0.6,3.1c-0.4,1-1,1.8-1.7,2.5c-0.7,0.7-1.6,1.3-2.5,1.7S13.1,20,12,20z M15.2,15.9l-3.6-3.6V7h1v4.8l3.4,3.4L15.2,15.9z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="history" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnDeconnexion" alignment="BASELINE_LEFT"
+							layoutX="10.0" layoutY="67.0" maxWidth="1.7976931348623157E308"
+							mnemonicParsing="false" onAction="#handleButtonClick"
+							stylesheets="@css/style.css" text="Deconnexion" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M5.7,20.5c-0.5,0-0.9-0.2-1.2-0.5C4.2,19.7,4,19.3,4,18.8V6.2C4,5.7,4.2,5.3,4.5,5c0.3-0.3,0.7-0.5,1.2-0.5H12v1.4H5.7c-0.1,0-0.1,0-0.2,0.1C5.4,6.1,5.4,6.1,5.4,6.2v12.6c0,0.1,0,0.1,0.1,0.2c0.1,0.1,0.1,0.1,0.2,0.1H12v1.4C12,20.5,5.7,20.5,5.7,20.5z M16,16.5l-1-1l2.3-2.3h-8v-1.4h8L15,9.5l1-1l4,4C20,12.5,16,16.5,16,16.5z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="logout" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Label maxWidth="1.7976931348623157E308"
+							styleClass="label-level-1" stylesheets="@css/style.css"
+							text="Ludothèque">
+							<padding>
+								<Insets left="8.0" />
+							</padding>
+							<VBox.margin>
+								<Insets bottom="4.0" top="12.0" />
+							</VBox.margin>
+						</Label>
+						<Button fx:id="btnListeJeu" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Tous les jeux">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M9.1,20H5.4c-0.3,0-0.5-0.1-0.7-0.3c-0.2-0.2-0.3-0.4-0.3-0.7v-3.7c0.5-0.2,1-0.5,1.4-0.9c0.4-0.4,0.5-0.9,0.5-1.5c0-0.6-0.2-1.1-0.5-1.5c-0.4-0.4-0.8-0.7-1.4-0.9V6.7c0-0.3,0.1-0.5,0.3-0.7c0.2-0.2,0.4-0.3,0.7-0.3h3.8c0.2-0.5,0.5-1,0.9-1.3C10.5,4.2,11,4,11.5,4c0.6,0,1,0.2,1.5,0.5c0.4,0.3,0.7,0.8,0.9,1.3h3.8c0.3,0,0.5,0.1,0.7,0.3c0.2,0.2,0.3,0.4,0.3,0.7v3.8c0.5,0.2,1,0.5,1.3,0.9c0.3,0.4,0.5,0.9,0.5,1.5s-0.2,1-0.5,1.5c-0.3,0.4-0.8,0.7-1.3,0.9v3.8c0,0.3-0.1,0.5-0.3,0.7C18.2,19.9,18,20,17.7,20H14c-0.2-0.6-0.5-1-0.9-1.4c-0.4-0.3-0.9-0.5-1.5-0.5c-0.6,0-1.1,0.2-1.5,0.5C9.6,19,9.3,19.4,9.1,20z M5.4,19.1h3.1c0.3-0.6,0.7-1.1,1.3-1.4c0.6-0.3,1.2-0.5,1.8-0.5c0.6,0,1.2,0.2,1.8,0.5c0.6,0.3,1,0.8,1.3,1.4h3.1v-4.6h0.4c0.5-0.1,0.8-0.3,1-0.6c0.2-0.3,0.3-0.6,0.3-1c0-0.3-0.1-0.7-0.3-1c-0.2-0.3-0.6-0.5-1-0.6h-0.4V6.7h-4.6V6.3c-0.1-0.5-0.3-0.8-0.6-1c-0.3-0.2-0.6-0.3-1-0.3c-0.3,0-0.7,0.1-1,0.3c-0.3,0.2-0.5,0.6-0.6,1v0.4H5.4v3.1c0.6,0.3,1,0.7,1.4,1.3c0.3,0.6,0.5,1.2,0.5,1.8c0,0.6-0.2,1.2-0.5,1.8c-0.3,0.6-0.8,1-1.4,1.3V19.1z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="game" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnAddJeu" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Ajouter un jeu" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M8.4,19.6v-8.7c0-0.4,0.1-0.7,0.4-1c0.3-0.3,0.6-0.4,1-0.4h8.7c0.4,0,0.7,0.1,1,0.4c0.3,0.3,0.4,0.6,0.4,1v6.2L16.1,21H9.9c-0.4,0-0.7-0.1-1-0.4C8.6,20.3,8.4,20,8.4,19.6z M4,8.2C3.9,7.8,4,7.4,4.3,7.1c0.2-0.3,0.5-0.5,0.9-0.6L13.7,5c0.4-0.1,0.8,0,1.1,0.2c0.3,0.2,0.5,0.5,0.6,0.9l0.2,1.1h-0.9l-0.2-1.1c0-0.1-0.1-0.2-0.2-0.3s-0.2-0.1-0.4-0.1L5.4,7.4C5.2,7.4,5.1,7.5,5,7.6C4.9,7.8,4.9,7.9,4.9,8.1l1.4,8v1.7c-0.2-0.1-0.4-0.2-0.5-0.4c-0.1-0.2-0.2-0.4-0.3-0.6L4,8.2z M9.3,10.9v8.7c0,0.2,0.1,0.3,0.2,0.4c0.1,0.1,0.2,0.2,0.4,0.2h5.7l3.6-3.6v-5.7c0-0.2-0.1-0.3-0.2-0.4c-0.1-0.1-0.2-0.2-0.4-0.2H9.9c-0.2,0-0.3,0.1-0.4,0.2C9.4,10.6,9.3,10.7,9.3,10.9z M13.8,18.3h0.9v-2.7h2.7v-0.9h-2.7v-2.7h-0.9v2.7h-2.7v0.9h2.7V18.3z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="add-game" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnRendreJeu" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Rendre un jeu" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M12.8,12.6l-3-3l0.6-0.6l2.4,2.4l4.9-4.9l0.6,0.6L12.8,12.6z M7.1,19.1l6.5,1.9l5.2-1.6c0-0.3-0.1-0.4-0.2-0.6c-0.1-0.1-0.3-0.2-0.5-0.2H14c-0.4,0-0.7,0-1,0c-0.3,0-0.6-0.1-0.9-0.2l-1.9-0.6l0.3-0.9l1.7,0.6c0.3,0.1,0.6,0.2,0.9,0.2c0.4,0,0.8,0,1.4,0c0-0.3,0-0.5-0.1-0.7s-0.2-0.3-0.4-0.3l-5-1.8c0,0-0.1,0-0.1,0C9,15,9,15,9,15H7.1C7.1,15,7.1,19.1,7.1,19.1z M3.7,21.1v-7h5.2c0.1,0,0.2,0,0.2,0c0.1,0,0.2,0,0.2,0.1l5,1.8c0.3,0.1,0.6,0.3,0.8,0.6c0.2,0.3,0.3,0.7,0.3,1.2h2.6c0.5,0,0.9,0.2,1.2,0.5c0.3,0.3,0.4,0.7,0.4,1.2v0.5l-6,1.9L7.1,20v1.1C7.1,21.1,3.7,21.1,3.7,21.1z M4.6,20.3h1.7V15H4.6V20.3z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="give-back" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Label fx:id="labelAdmin" maxWidth="1.7976931348623157E308"
+							styleClass="label-level-1" stylesheets="@css/style.css"
+							text="Administration" visible="false">
+							<padding>
+								<Insets left="8.0" />
+							</padding>
+							<VBox.margin>
+								<Insets bottom="4.0" top="12.0" />
+							</VBox.margin>
+						</Label>
+						<Button fx:id="btnListeAdherent" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Liste des adhérents" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M25.4,28.2v-0.9H32v0.9H25.4z M25.4,31.4v-0.9H32v0.9H25.4z M25.4,34.6v-0.9H32v0.9H25.4z M20.6,34.2c-0.6,0-1.1-0.2-1.5-0.6c-0.4-0.4-0.6-0.9-0.6-1.5c0-0.6,0.2-1.1,0.6-1.5c0.4-0.4,0.9-0.6,1.5-0.6s1.1,0.2,1.5,0.6c0.4,0.4,0.6,0.9,0.6,1.5c0,0.6-0.2,1.1-0.6,1.5C21.8,34,21.3,34.2,20.6,34.2z M16,38.8v-1.1c0-0.2,0.1-0.4,0.2-0.6c0.1-0.2,0.2-0.3,0.4-0.4c0.6-0.4,1.2-0.7,1.9-0.9s1.4-0.3,2.1-0.3c0.7,0,1.4,0.1,2.1,0.3c0.7,0.2,1.3,0.5,1.9,0.9c0.2,0.1,0.3,0.3,0.4,0.4c0.1,0.2,0.2,0.4,0.2,0.6v1.1C25.3,38.8,16,38.8,16,38.8z M16.9,37.6v0.3h7.6v-0.3c-0.6-0.4-1.2-0.6-1.9-0.8c-0.7-0.2-1.3-0.3-1.9-0.3c-0.6,0-1.3,0.1-1.9,0.3C18,37,17.4,37.3,16.9,37.6z M20.6,33.2c0.3,0,0.6-0.1,0.9-0.3c0.2-0.2,0.3-0.5,0.3-0.9c0-0.3-0.1-0.6-0.3-0.9c-0.2-0.2-0.5-0.3-0.9-0.3c-0.4,0-0.6,0.1-0.9,0.3c-0.2,0.2-0.3,0.5-0.3,0.9c0,0.3,0.1,0.6,0.3,0.9C20,33.1,20.3,33.2,20.6,33.2z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="user-list" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnAddAdherent" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Ajouter un Adhérent" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M16.7,15.1v-2.3h-2.3v-1.1h2.3V9.4h1.1v2.3h2.3v1.1h-2.3v2.3H16.7z M9.7,13.5c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9c0-0.7,0.3-1.4,0.8-1.9C8.4,8.5,9,8.2,9.7,8.2c0.7,0,1.4,0.3,1.9,0.8c0.5,0.5,0.8,1.1,0.8,1.9c0,0.7-0.3,1.4-0.8,1.9C11.1,13.3,10.5,13.5,9.7,13.5z M4.1,19.3v-1.7c0-0.4,0.1-0.7,0.3-1c0.2-0.3,0.5-0.6,0.8-0.7c0.7-0.4,1.5-0.6,2.3-0.8c0.8-0.2,1.5-0.3,2.3-0.3c0.8,0,1.5,0.1,2.3,0.3s1.5,0.5,2.3,0.8c0.3,0.2,0.6,0.4,0.8,0.7c0.2,0.3,0.3,0.7,0.3,1v1.7H4.1z M5.2,18.2h9.1v-0.5c0-0.2,0-0.3-0.1-0.4c-0.1-0.1-0.2-0.2-0.4-0.3c-0.7-0.3-1.3-0.6-2-0.7c-0.7-0.2-1.4-0.2-2.1-0.2c-0.7,0-1.4,0.1-2.1,0.2c-0.7,0.2-1.3,0.4-2,0.7c-0.2,0.1-0.3,0.2-0.4,0.3c-0.1,0.1-0.1,0.3-0.1,0.4C5.2,17.6,5.2,18.2,5.2,18.2z M9.7,12.4c0.4,0,0.8-0.1,1.1-0.4c0.3-0.3,0.4-0.7,0.4-1.1c0-0.4-0.1-0.8-0.4-1.1c-0.3-0.3-0.7-0.4-1.1-0.4S9,9.5,8.7,9.8c-0.3,0.3-0.4,0.7-0.4,1.1c0,0.4,0.1,0.8,0.4,1.1C9,12.3,9.3,12.4,9.7,12.4z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="user-add" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnListeEmploye" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Liste des employés" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M25.4,28.2v-0.9H32v0.9H25.4z M25.4,31.4v-0.9H32v0.9H25.4z M25.4,34.6v-0.9H32v0.9H25.4z M20.6,34.2c-0.6,0-1.1-0.2-1.5-0.6c-0.4-0.4-0.6-0.9-0.6-1.5c0-0.6,0.2-1.1,0.6-1.5c0.4-0.4,0.9-0.6,1.5-0.6s1.1,0.2,1.5,0.6c0.4,0.4,0.6,0.9,0.6,1.5c0,0.6-0.2,1.1-0.6,1.5C21.8,34,21.3,34.2,20.6,34.2z M16,38.8v-1.1c0-0.2,0.1-0.4,0.2-0.6c0.1-0.2,0.2-0.3,0.4-0.4c0.6-0.4,1.2-0.7,1.9-0.9s1.4-0.3,2.1-0.3c0.7,0,1.4,0.1,2.1,0.3c0.7,0.2,1.3,0.5,1.9,0.9c0.2,0.1,0.3,0.3,0.4,0.4c0.1,0.2,0.2,0.4,0.2,0.6v1.1C25.3,38.8,16,38.8,16,38.8z M16.9,37.6v0.3h7.6v-0.3c-0.6-0.4-1.2-0.6-1.9-0.8c-0.7-0.2-1.3-0.3-1.9-0.3c-0.6,0-1.3,0.1-1.9,0.3C18,37,17.4,37.3,16.9,37.6z M20.6,33.2c0.3,0,0.6-0.1,0.9-0.3c0.2-0.2,0.3-0.5,0.3-0.9c0-0.3-0.1-0.6-0.3-0.9c-0.2-0.2-0.5-0.3-0.9-0.3c-0.4,0-0.6,0.1-0.9,0.3c-0.2,0.2-0.3,0.5-0.3,0.9c0,0.3,0.1,0.6,0.3,0.9C20,33.1,20.3,33.2,20.6,33.2z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="worker-list" />
+										<String fx:value="icon" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+						<Button fx:id="btnAddEmploye" alignment="BASELINE_LEFT"
+							maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+							onAction="#handleButtonClick" stylesheets="@css/style.css"
+							text="Ajouter un Employé" visible="false">
+							<padding>
+								<Insets bottom="1.0" left="16.0" top="1.0" />
+							</padding>
+							<graphic>
+								<SVGPath
+									content="M25.1,43c-2-0.5-3.7-1.7-5-3.5c-1.3-1.8-2-3.9-2-6.3v-5.3l7.1-2.6l7.1,2.6v6.1c-0.2-0.1-0.3-0.1-0.5-0.2c-0.2-0.1-0.4-0.1-0.5-0.1v-5l-6-2.2l-6,2.2v4.6c0,1.2,0.2,2.2,0.6,3.2c0.4,1,0.9,1.9,1.4,2.6c0.6,0.8,1.3,1.4,2,1.9c0.7,0.5,1.5,0.9,2.2,1.1l0,0c0.1,0.1,0.2,0.3,0.3,0.4c0.1,0.2,0.2,0.3,0.3,0.4c-0.1,0.1-0.3,0.1-0.4,0.2C25.3,42.9,25.2,42.9,25.1,43z M30,43c-1.1,0-2.1-0.4-2.8-1.2C26.4,41,26,40.1,26,39c0-1.1,0.4-2.1,1.2-2.9c0.8-0.8,1.7-1.2,2.9-1.2c1.1,0,2,0.4,2.8,1.2c0.8,0.8,1.2,1.7,1.2,2.9c0,1.1-0.4,2-1.2,2.8C32,42.6,31.1,43,30,43z M29.7,41.4h0.7v-2h2v-0.7h-2v-2h-0.7v2h-2v0.7h2V41.4z"
+									style="-fx-translate-x: -4;">
+									<styleClass>
+										<String fx:value="icon" />
+										<String fx:value="worker-add" />
+									</styleClass>
+								</SVGPath>
+							</graphic>
+							<cursor>
+								<Cursor fx:constant="HAND" />
+							</cursor>
+						</Button>
+					</children>
+					<padding>
+						<Insets bottom="8.0" top="8.0" />
+					</padding>
+					<HBox.margin>
+						<Insets />
+					</HBox.margin>
+				</VBox>
+				<VBox HBox.hgrow="SOMETIMES">
+					<children>
+						<HBox alignment="CENTER_RIGHT" prefHeight="100.0"
+							prefWidth="200.0">
+						</HBox>
+						<AnchorPane fx:id="mainWindow" VBox.vgrow="ALWAYS">
+							<children>
+								<TableView style="-fx-background-color: #202020;"
+									AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+									AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+									<columns>
+										<TableColumn maxWidth="1.7976931348623157E308"
+											minWidth="250.0" prefWidth="-1.0" resizable="false"
+											text="Nom" />
+										<TableColumn maxWidth="75.0" minWidth="75.0"
+											prefWidth="75.0" text="DurÃ©e min" />
+										<TableColumn maxWidth="75.0" minWidth="75.0"
+											prefWidth="75.0" text="Age min" />
+										<TableColumn maxWidth="75.0" minWidth="75.0"
+											prefWidth="75.0" text="Disponible" />
+									</columns>
+								</TableView>
+							</children>
+						</AnchorPane>
+					</children>
+					<padding>
+						<Insets bottom="8.0" left="8.0" right="8.0" />
+					</padding>
+				</VBox>
+			</children>
+		</HBox>
+	</children>
 </AnchorPane>

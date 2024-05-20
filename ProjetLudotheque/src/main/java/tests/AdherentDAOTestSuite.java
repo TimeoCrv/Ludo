@@ -64,8 +64,8 @@ class AdherentDAOTestSuite {
 	@Order(4)
 	void testDelete() {
 		boolean deleteSuccess = false;
-		Adherent adherentRead = AdherentDAO.getInstance().read(idAdherent);
-		assertTrue(adherentRead.getCaution()==30);
+		Adherent adherentToDelete = AdherentDAO.getInstance().read(idAdherent);
+		assertTrue(AdherentDAO.getInstance().delete(adherentToDelete));
 		try {
 			AdherentDAO.getInstance().read(idAdherent);
 		} catch (Exception e) {

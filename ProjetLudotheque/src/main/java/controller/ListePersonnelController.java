@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import model.AdherentDAO;
 import model.Personnel;
 import model.PersonnelDAO;
 
@@ -30,70 +31,73 @@ public class ListePersonnelController extends PageInit {
 	@FXML
 	private TableColumn<Personnel, String> tel;
 	@FXML
-    private TableColumn<Personnel, Boolean> isAdmin;
-	
-	
+	private TableColumn<Personnel, Boolean> isAdmin;
+
 	private ObservableList<Personnel> personnelData = FXCollections.observableArrayList();
-	
+
 	public ListePersonnelController() {
 		super();
 		this.personnelData = getPersonnelDataPersonnel();
-		
+
 	}
-	
+
 	public ObservableList<Personnel> getPersonnelData() {
 		return personnelData;
 	}
-	
+
 	@FXML
 	private void initialize() {
-		
+
 		setAnchors();
-		
+
 		nomPersonnel.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
 				return new SimpleStringProperty(cellData.getValue().getNom());
 			}
 		});
-		prenomPersonnel.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
-				return new SimpleStringProperty(cellData.getValue().getPrenom());
-			}
-		});
-		
-		emailPersonnel.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
-				return new SimpleStringProperty(cellData.getValue().getEmail());
-			}
-		});
+		prenomPersonnel
+				.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
+						return new SimpleStringProperty(cellData.getValue().getPrenom());
+					}
+				});
+
+		emailPersonnel
+				.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
+					@Override
+					public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
+						return new SimpleStringProperty(cellData.getValue().getEmail());
+					}
+				});
 		tel.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
 				return new SimpleStringProperty(cellData.getValue().getTel());
 			}
 		});
-		
+
 		isAdmin.setCellValueFactory(new Callback<CellDataFeatures<Personnel, Boolean>, ObservableValue<Boolean>>() {
-            @Override
-            public ObservableValue<Boolean> call(CellDataFeatures<Personnel, Boolean> cellData) {
-                SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(cellData.getValue().isAdmin());
-                return booleanProperty.asObject();
-            }
-        });
-		
-		/*adresse.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>, ObservableValue<String>>() {
 			@Override
-			public ObservableValue<String> call(CellDataFeatures<Personnel, String> cellData) {
-				return new SimpleStringProperty(cellData.getValue().getAdresse());
+			public ObservableValue<Boolean> call(CellDataFeatures<Personnel, Boolean> cellData) {
+				SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(cellData.getValue().isAdmin());
+				return booleanProperty.asObject();
 			}
-		});*/
-		
+		});
+
+		/*
+		 * adresse.setCellValueFactory(new Callback<CellDataFeatures<Personnel, String>,
+		 * ObservableValue<String>>() {
+		 * 
+		 * @Override public ObservableValue<String> call(CellDataFeatures<Personnel,
+		 * String> cellData) { return new
+		 * SimpleStringProperty(cellData.getValue().getAdresse()); } });
+		 */
+
 		personnelList.setItems(this.getPersonnelData());
 	}
-	
+
 	public ObservableList<Personnel> getPersonnelDataPersonnel() {
 		personnelData = FXCollections.observableArrayList();
 		List<Personnel> lePersonnel = PersonnelDAO.getInstance().readAllPersonnel();
@@ -102,45 +106,55 @@ public class ListePersonnelController extends PageInit {
 		}
 		return personnelData;
 	}
-	
-	
-		@FXML
-		private Personnel getPersonnel() {
-			return personnelList.getSelectionModel().getSelectedItem();
+
+	@FXML
+	public void toAddPersonnel(ActionEvent event) {
+		try {
+			loadOtherFXML("AjoutPersonnel");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-	
+	}
+
+	@FXML
+	private Personnel getPersonnel() {
+		return personnelList.getSelectionModel().getSelectedItem();
+	}
+
 	@FXML
 	private void supprimerPersonnel() {
-		try {
-			boolean confirmation = demanderConfirmation("Supprimer le membre du personnel ?");
-			if(confirmation) {
-			PersonnelDAO.getInstance().delete(getPersonnel());
-			loadOtherFXML("ListePersonnel");
-			afficherMessage("Membre du personnel supprimé avec succès");
-		}}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (getPersonnel() != null) {
+			try {
+				boolean confirmation = demanderConfirmation("Supprimer le membre du personnel ?");
+				if (confirmation) {
+					PersonnelDAO.getInstance().delete(getPersonnel());
+					loadOtherFXML("ListePersonnel");
+					afficherMessage("Membre du personnel supprimé avec succès");
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste l'employé à retirer.");
 		}
-		
-	}
-    @FXML
-    public void toUpdatePersonnel(ActionEvent event) {
-        try {
-            Personnel personnel = getPersonnel();
-           // if (adherent != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-                loadUpdatePersonnelFXML("UpdatePersonnel", personnel);
-            //}
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-	public void loadAutrePage() {
-		try {
-			loadOtherFXML("testConnexionAdherent");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	}
+
+	@FXML
+	public void toUpdatePersonnel(ActionEvent event) {
+		if (getPersonnel() != null) {
+			try {
+				Personnel personnel = getPersonnel();
+				// if (adherent != null && SessionManager.getCurrentUser() != null &&
+				// (MainController.isAdmin() || MainController.isPersonnel())) {
+				loadUpdatePersonnelFXML("UpdatePersonnel", personnel);
+				// }
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste l'employé à modifier.");
 		}
 	}
 

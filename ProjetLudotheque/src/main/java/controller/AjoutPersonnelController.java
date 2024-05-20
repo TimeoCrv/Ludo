@@ -31,6 +31,11 @@ public class AjoutPersonnelController extends PageInit {
 	private CheckBox isAdmin;
 
 	@FXML
+	public void initialize() {
+		setAnchors();
+	}
+	
+	@FXML
 	public void ajouterPersonnel(ActionEvent event) {
 
 		try {
@@ -81,36 +86,13 @@ public class AjoutPersonnelController extends PageInit {
 	}
 
 	@FXML
-	public void allerVersConnexion(ActionEvent event) {
-
+	public void backListePersonnel(ActionEvent event) {
+	  
 		try {
-
-			// test update
-
-			Connexion.getInstance();
-			Personnel personnel = PersonnelDAO.getInstance().read(6);
-			System.out.println(personnel);
-
-			personnel.setEmail("thisisatest");
-
-			System.out.println(personnel);
-			PersonnelDAO.getInstance().update(personnel);
-
-			System.out.println(PersonnelDAO.getInstance().read(6));
-
-//				closePopup();
-//	            // Charger la scène accueil.fxml
-//	            FXMLLoader loader = new FXMLLoader(getClass().getResource("../ihm/testConnexionAdherent.fxml"));
-//	            Parent accueilRoot = loader.load();
-//	            
-//	            // Récupérer la fenêtre principale (stage)
-//	            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // Récupérer la scène du bouton
-//	            
-//	            stage.setScene(new Scene(accueilRoot));
-//	            stage.setTitle("Connexion");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			loadOtherFXML("ListePersonnel");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
 
 }

@@ -137,4 +137,14 @@ public class UpdateAdherentController extends PageInit {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void backListeAdherents(ActionEvent event) {
+	  
+		try {
+			loadOtherFXML("ListeAdherents");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+	}
 }

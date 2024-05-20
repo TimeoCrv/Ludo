@@ -94,7 +94,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="annulerCreerJeu" mnemonicParsing="false" onAction="#annulerCreationJeu" text="Annuler">
+                              <Button fx:id="annulerCreerJeu" mnemonicParsing="false" onAction="#annulerCreationJeu" text="Retour à la liste des jeux">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
