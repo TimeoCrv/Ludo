@@ -10,7 +10,7 @@ import model.PersonnelDAO;
 import utils.PasswordManager;
 import utils.ValidatorManager;
 
-public class AjoutPersonnelControl extends PageInit {
+public class AjoutPersonnelController extends PageInit {
 
 	@FXML
 	private TextField nom;

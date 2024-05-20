@@ -8,7 +8,7 @@ import model.Connexion;
 import model.Jeu;
 import model.JeuDAO;
 
-public class ModifierJeuController extends PageInit{
+public class UpdateJeuController extends PageInit{
 	
 	private Jeu jeu;
 	
@@ -103,7 +103,7 @@ public class ModifierJeuController extends PageInit{
 	                JeuDAO.getInstance().update(this.jeu);
 
 	                afficherMessage("Jeu modifié avec succès");
-	                loadOtherFXML("listejeuadmin");
+	                loadOtherFXML("ListeJeux");
 	            }
 	        } else {
 	            afficherMessage("Veuillez remplir tous les champs");
@@ -120,7 +120,7 @@ public class ModifierJeuController extends PageInit{
 	@FXML
 	private void annulerModificationJeu() {
 	    try {
-	        loadOtherFXML("listejeuadmin");
+	        loadOtherFXML("ListeJeux");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

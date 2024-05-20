@@ -18,7 +18,7 @@ import model.Jeu;
 import model.JeuDAO;
 import utils.SessionManager;
 
-public class ListJeuControl extends PageInit {
+public class ListeJeuxController extends PageInit {
 	
 	
 	@FXML
@@ -36,7 +36,7 @@ public class ListJeuControl extends PageInit {
 	
 	private ObservableList<Jeu> jeuData = FXCollections.observableArrayList();
 	
-	public ListJeuControl() {
+	public ListeJeuxController() {
 		super();
 		this.jeuData = getJeuDataJeu();
 		
@@ -110,7 +110,7 @@ public class ListJeuControl extends PageInit {
 	        if (confirmation) {
 	            JeuDAO.getInstance().delete(getJeu());
 	            afficherMessage("Jeu supprimé avec succès");
-	            loadOtherFXML("listejeuadmin");
+	            loadOtherFXML("ListeJeux");
 	        }
 	    } catch (IOException e) {
 	        e.printStackTrace();
@@ -122,7 +122,7 @@ public class ListJeuControl extends PageInit {
 	public void toAddJeu(ActionEvent event) {
 		try {
 			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-				loadOtherFXML("ajouterJeu");
+				loadOtherFXML("AjoutJeu");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -135,7 +135,7 @@ public class ListJeuControl extends PageInit {
         try {
             Jeu jeu = getJeu();
             if (jeu != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-                loadUpdateJeuFXML("modifierJeu", jeu);
+                loadUpdateJeuFXML("UpdateJeu", jeu);
             }
         } catch (IOException e) {
             e.printStackTrace();

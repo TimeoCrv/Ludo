@@ -96,6 +96,7 @@ public class MainController {
 				loadFXML("ConnexionForm");
 				break;
 			// Historique : à but de test pour l'instant
+			// Quand les emprunts seront implémentés, historique différent entre adhérent et personnel
 			case "Historique":
 				if (SessionManager.getCurrentUser() != null) {
 					loadFXML("ListeAdherents");
@@ -124,15 +125,15 @@ public class MainController {
 					loadFXML("ListePersonnel");
 				}
 				break;
+			case "Tous les jeux":
+				loadFXML("ListeJeux");
+				break;
+			case "Ajouter un jeu":
+				loadFXML("AjoutJeu");
+				break;
 			case "Deconnexion":
 				SessionManager.closeSession();
 				loadFXML("Accueil");
-				break;
-			case "Tous les jeux":
-				loadFXML("listejeuadmin");
-				break;
-			case "Ajouter un jeux":
-				loadFXML("ajouterJeu");
 				break;
 
 			default:

@@ -94,7 +94,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Label maxWidth="1.7976931348623157E308" styleClass="label-level-1" stylesheets="@css/style.css" text="LudothÃ¨que">
+                  <Label maxWidth="1.7976931348623157E308" styleClass="label-level-1" stylesheets="@css/style.css" text="Ludothèque">
                      <padding>
                         <Insets left="8.0" />
                      </padding>
@@ -118,7 +118,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnAddJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un jeux" visible="false">
+                  <Button fx:id="btnAddJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Ajouter un jeu" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>
@@ -134,7 +134,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="btnRendreJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Rendre un jeux" visible="false">
+                  <Button fx:id="btnRendreJeu" alignment="BASELINE_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonClick" stylesheets="@css/style.css" text="Rendre un jeu" visible="false">
                      <padding>
                         <Insets bottom="1.0" left="16.0" top="1.0" />
                      </padding>

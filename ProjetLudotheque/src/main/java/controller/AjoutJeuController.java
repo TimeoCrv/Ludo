@@ -8,7 +8,7 @@ import model.Connexion;
 import model.Jeu;
 import model.JeuDAO;
 
-public class ajouterJeuController extends PageInit{
+public class AjoutJeuController extends PageInit{
 
 	@FXML
 	private TextField ajoutNom;
@@ -69,7 +69,7 @@ public class ajouterJeuController extends PageInit{
 	                JeuDAO.getInstance().create(jeuCree);
 
 	                afficherMessage("Jeu ajouté avec succès");
-	                loadOtherFXML("listejeuadmin");
+	                loadOtherFXML("ListeJeux");
 	            }
 	        } else {
 	            afficherMessage("Veuillez remplir tous les champs");
@@ -84,7 +84,7 @@ public class ajouterJeuController extends PageInit{
 	@FXML
 	private void annulerCreationJeu() {
 	    try {
-	        loadOtherFXML("listejeuadmin");
+	        loadOtherFXML("ListeJeux");
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }

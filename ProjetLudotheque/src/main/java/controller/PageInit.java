@@ -116,7 +116,7 @@ public abstract class PageInit {
 	public void loadUpdateJeuFXML(String fxml, Jeu jeu) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
         Parent content = loader.load();
-        ModifierJeuController modifierJeuController = loader.getController();
+        UpdateJeuController modifierJeuController = loader.getController();
         modifierJeuController.setJeu(jeu);
 
         childWindow.getChildren().setAll(content);
