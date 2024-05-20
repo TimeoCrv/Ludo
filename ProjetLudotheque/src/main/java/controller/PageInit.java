@@ -5,14 +5,12 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import model.Adherent;
 import model.Personnel;
+import model.Jeu;
 import utils.SessionManager;
 
 // Classe héritée par toutes les IHM
@@ -114,6 +112,15 @@ public abstract class PageInit {
 
         childWindow.getChildren().setAll(content);
     }
+	
+	public void loadUpdateJeuFXML(String fxml, Jeu jeu) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
+        ModifierJeuController modifierJeuController = loader.getController();
+        modifierJeuController.setJeu(jeu);
+
+        childWindow.getChildren().setAll(content);
+    }
 
 	public void loadUpdatePersonnelFXML(String fxml, Personnel personnel) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
@@ -149,6 +156,5 @@ public abstract class PageInit {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+	
 }
-
-
