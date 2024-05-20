@@ -85,13 +85,13 @@ public class AjoutAdherentController extends PageInit{
 	
 	
 	@FXML
-	public void allerVersConnexion(ActionEvent event) {
+	public void backListeAdherents(ActionEvent event) {
 	  
-//		try {
-//			loadOtherFXML("ListeAdherents");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+		try {
+			loadOtherFXML("ListeAdherents");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
     
 }

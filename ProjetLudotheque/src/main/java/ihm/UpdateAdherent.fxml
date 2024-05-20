@@ -66,8 +66,13 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="349.0" prefWidth="173.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="105.0" text="Valider les changements" onAction="#validateUpdate" textAlignment="CENTER" wrapText="true" />
-                        <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="105.0" text="Renouveller l'adhésion" onAction="#renewSubscription" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="105.0" text="Valider les changements" textAlignment="CENTER" wrapText="true" />
+                        <Button mnemonicParsing="false" onAction="#renewSubscription" prefHeight="90.0" prefWidth="105.0" text="Renouveller l'adhésion" textAlignment="CENTER" wrapText="true">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#backListeAdherents" prefHeight="80.0" prefWidth="107.0" text="Retour à la liste des adhérents" textAlignment="CENTER" wrapText="true">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>

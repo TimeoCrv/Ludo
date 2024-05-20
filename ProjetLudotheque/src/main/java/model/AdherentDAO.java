@@ -141,15 +141,15 @@ public class AdherentDAO extends DAO<Adherent> {
 			
 			int id = adherent.getIdProfil();
 			
-			String requeteForUser = "DELETE FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
-			PreparedStatement pstForUser = connexion.prepareStatement(requeteForUser);
-			pstForUser.setInt(1, id);
-			pstForUser.executeUpdate();
-			
 			String requeteForProfil = "DELETE FROM "+TABLE_PROFIL+" WHERE "+ID_PROFIL+" = ?";
 			PreparedStatement pstForProfil = connexion.prepareStatement(requeteForProfil);
 			pstForProfil.setInt(1, id);
 			pstForProfil.executeUpdate();
+			
+			String requeteForUser = "DELETE FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = ?";
+			PreparedStatement pstForUser = connexion.prepareStatement(requeteForUser);
+			pstForUser.setInt(1, id);
+			pstForUser.executeUpdate();
 			
 			donnees.remove(id);
 			

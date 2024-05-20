@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifierJeuController">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateJeuController">
    <children>
       <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -85,7 +85,7 @@
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin></Button>
-                              <Button fx:id="annulerModifierJeu" onAction="#annulerModificationJeu" text="Annuler" />
+                              <Button fx:id="annulerModifierJeu" onAction="#annulerModificationJeu" text="Retour à la liste des jeux" />
                            </children>
                         </HBox>
                      </children>

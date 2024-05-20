@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -18,9 +19,8 @@ import model.Jeu;
 import model.JeuDAO;
 import utils.SessionManager;
 
-public class ListJeuControl extends PageInit {
-	
-	
+public class ListeJeuxController extends PageInit {
+
 	@FXML
 	private TableView<Jeu> jeuList;
 	@FXML
@@ -33,28 +33,44 @@ public class ListJeuControl extends PageInit {
 	private TableColumn<Jeu, Integer> disponibleJeu;
 	@FXML
 	private TableColumn<Jeu, Integer> nombreJeu;
-	
+	@FXML
+	private Button ajouterJeu;
+	@FXML
+	private Button modifierJeu;
+	@FXML
+	private Button supprimerJeu;
+
 	private ObservableList<Jeu> jeuData = FXCollections.observableArrayList();
-	
-	public ListJeuControl() {
+
+	public ListeJeuxController() {
 		super();
 		this.jeuData = getJeuDataJeu();
-		
+
 	}
-	
+
 	public ObservableList<Jeu> getJeuData() {
 		return jeuData;
 	}
-	
-	
+
 	@FXML
 	private void initialize() {
 		setAnchors();
+
+		if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+			ajouterJeu.setVisible(true);
+			modifierJeu.setVisible(true);
+			supprimerJeu.setVisible(true);
+		} else {
+			ajouterJeu.setVisible(false);
+			modifierJeu.setVisible(false);
+			supprimerJeu.setVisible(false);
+		}
+
 		nomJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
-		    @Override
-		    public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {
-		        return new SimpleStringProperty(cellData.getValue().getNom());
-		    }
+			@Override
+			public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {
+				return new SimpleStringProperty(cellData.getValue().getNom());
+			}
 		});
 		descriptifJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
 			@Override
@@ -62,33 +78,31 @@ public class ListJeuControl extends PageInit {
 				return new SimpleStringProperty(cellData.getValue().getDescriptif());
 			}
 		});
-		
+
 		editeurJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(CellDataFeatures<Jeu, String> cellData) {
 				return new SimpleStringProperty(cellData.getValue().getEditeur());
 			}
 		});
-		
+
 		disponibleJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, Integer>, ObservableValue<Integer>>() {
-		    @Override
-		    public ObservableValue<Integer> call(CellDataFeatures<Jeu, Integer> cellData) {
-		        return new SimpleObjectProperty<>(cellData.getValue().getDisponible());
-		    }
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<Jeu, Integer> cellData) {
+				return new SimpleObjectProperty<>(cellData.getValue().getDisponible());
+			}
 		});
-		
+
 		nombreJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, Integer>, ObservableValue<Integer>>() {
-		    @Override
-		    public ObservableValue<Integer> call(CellDataFeatures<Jeu, Integer> cellData) {
-		        return new SimpleObjectProperty<>(cellData.getValue().getNombre());
-		    }
+			@Override
+			public ObservableValue<Integer> call(CellDataFeatures<Jeu, Integer> cellData) {
+				return new SimpleObjectProperty<>(cellData.getValue().getNombre());
+			}
 		});
-		
-		
-		
+
 		jeuList.setItems(this.getJeuData());
 	}
-	
+
 	public ObservableList<Jeu> getJeuDataJeu() {
 		jeuData = FXCollections.observableArrayList();
 		List<Jeu> lesJeux = JeuDAO.getInstance().readTable();
@@ -97,48 +111,55 @@ public class ListJeuControl extends PageInit {
 		}
 		return jeuData;
 	}
-	
+
 	@FXML
 	private Jeu getJeu() {
 		return jeuList.getSelectionModel().getSelectedItem();
 	}
-	
+
 	@FXML
 	private void supprimerUnJeu() {
-	    try {
-	        boolean confirmation = demanderConfirmation("Supprimer le jeu ?");
-	        if (confirmation) {
-	            JeuDAO.getInstance().delete(getJeu());
-	            afficherMessage("Jeu supprimé avec succès");
-	            loadOtherFXML("listejeuadmin");
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    }
+		if (getJeu() != null) {
+			try {
+				boolean confirmation = demanderConfirmation("Supprimer le jeu ?");
+				if (confirmation) {
+					JeuDAO.getInstance().delete(getJeu());
+					afficherMessage("Jeu supprimé avec succès");
+					loadOtherFXML("ListeJeux");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste le jeu à supprimer.");
+		}
 	}
-	
-	
+
 	@FXML
 	public void toAddJeu(ActionEvent event) {
 		try {
 			if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-				loadOtherFXML("ajouterJeu");
+				loadOtherFXML("AjoutJeu");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	@FXML
-    public void toUpdateJeu(ActionEvent event) {
-        try {
-            Jeu jeu = getJeu();
-            if (jeu != null && SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
-                loadUpdateJeuFXML("modifierJeu", jeu);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+	public void toUpdateJeu(ActionEvent event) {
+		if (getJeu() != null) {
+			try {
+				Jeu jeu = getJeu();
+				if (jeu != null && SessionManager.getCurrentUser() != null
+						&& (MainController.isAdmin() || MainController.isPersonnel())) {
+					loadUpdateJeuFXML("UpdateJeu", jeu);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste le jeu à modifier.");
+		}
+	}
 }

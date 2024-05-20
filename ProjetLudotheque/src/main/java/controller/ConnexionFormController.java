@@ -45,7 +45,7 @@ public class ConnexionFormController extends PageInit {
 				sessionManager = SessionManager.getInstance();
 				sessionManager.createSession(user);
 				
-				loadOtherFXML("listeAdherents");
+				loadOtherFXML("ListeJeux");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

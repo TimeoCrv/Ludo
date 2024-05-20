@@ -34,7 +34,7 @@ public class AccueilController extends PageInit {
 	public void toGameList(ActionEvent event) {
 		try {
 			// Remplacer par liste jeu
-			loadOtherFXML("ListeAdherents");
+			loadOtherFXML("ListeJeux");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
