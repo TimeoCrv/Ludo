@@ -16,7 +16,7 @@
 				<artifactId>javafx-maven-plugin</artifactId>
 				<version>0.0.8</version> <!-- Remplacez avec votre version -->
 				<configuration>
-					<mainClass>controller.testConnexionAdherent</mainClass>
+					<mainClass>controller.Main</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>
