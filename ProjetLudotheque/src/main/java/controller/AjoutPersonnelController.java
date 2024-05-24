@@ -50,8 +50,8 @@ public class AjoutPersonnelController extends PageInit {
 				String telephoneSaisi = telephone.getText();
 				String adresseSaisi = adresse.getText();
 
-				// TODO need to figure out how to use isAdmin
 				boolean isAdminSaisi = isAdmin.isSelected();
+				String role = isAdminSaisi ? "admin":"personnel";
 
 				String passwordToHash = "sio";
 				String salt = PasswordManager.getSaltvalue(30);
@@ -64,7 +64,7 @@ public class AjoutPersonnelController extends PageInit {
 					if (confirmation) {
 						Connexion.getInstance();
 						Personnel personnelCree = new Personnel(nomSaisi, prenomSaisi, emailSaisi, telephoneSaisi,
-								adresseSaisi, isAdminSaisi, hashedPassword, salt);
+								adresseSaisi, isAdminSaisi, hashedPassword, salt, role);
 						PersonnelDAO.getInstance().create(personnelCree);
 						System.out.println(hashedPassword);
 
