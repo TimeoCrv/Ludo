@@ -2,26 +2,22 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="childWindow" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeAdherentsController">
+<AnchorPane fx:id="childWindow" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ListeAdherentsController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des adhérents" textAlignment="CENTER">
-               <font>
-                  <Font size="22.0" />
-               </font>
+            <Label styleClass="title-page" stylesheets="@css/style.css" text="Liste des adhérents">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="16.0" />
                </VBox.margin>
-            </Text>
+            </Label>
             <HBox prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
                   <TableView fx:id="adherentList" prefHeight="370.0" prefWidth="449.0" HBox.hgrow="ALWAYS">
@@ -38,17 +34,17 @@
                   </TableView>
                   <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#toAddAdherent" text="Ajouter un adhérent">
+                        <Button mnemonicParsing="false" onAction="#toAddAdherent" styleClass="page-btn" text="Ajouter un adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" text="Modifier l'adhérent">
+                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" styleClass="page-btn" text="Modifier l'adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteAdherent" text="Supprimer l'adhérent">
+                        <Button mnemonicParsing="false" onAction="#deleteAdherent" styleClass="page-btn" text="Supprimer l'adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>

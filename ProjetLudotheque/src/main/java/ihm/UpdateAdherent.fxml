@@ -10,16 +10,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAdherentController">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdateAdherentController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="258.0" text="Modifier l'adhérent" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="258.0" styleClass="title-page" text="Modifier l'adhérent" textFill="WHITE">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="16.0" />
                </VBox.margin>
             </Label>
             <HBox prefHeight="353.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -66,13 +66,13 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="349.0" prefWidth="173.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="105.0" text="Valider les changements" textAlignment="CENTER" wrapText="true" />
-                        <Button mnemonicParsing="false" onAction="#renewSubscription" prefHeight="90.0" prefWidth="105.0" text="Renouveller l'adhésion" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="105.0" styleClass="page-btn" text="Valider les changements" textAlignment="CENTER" wrapText="true" />
+                        <Button mnemonicParsing="false" onAction="#renewSubscription" prefHeight="90.0" prefWidth="105.0" styleClass="page-btn" text="Renouveller l'adhésion" textAlignment="CENTER" wrapText="true">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#backListeAdherents" prefHeight="80.0" prefWidth="107.0" text="Retour à la liste des adhérents" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#backListeAdherents" prefHeight="80.0" prefWidth="107.0" styleClass="page-btn" text="Retour à la liste des adhérents" textAlignment="CENTER" wrapText="true">
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>

@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdatePersonnelController">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UpdatePersonnelController">
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="CENTER" prefHeight="35.0" prefWidth="258.0" text="Modifier Personnel" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="35.0" prefWidth="258.0" styleClass="title-page" text="Modifier Personnel" textFill="WHITE">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
@@ -74,11 +74,11 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="349.0" prefWidth="183.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="145.0" text="Valider les changements" textAlignment="CENTER" wrapText="true">
+                        <Button mnemonicParsing="false" onAction="#validateUpdate" prefHeight="80.0" prefWidth="145.0" styleClass="page-btn" text="Valider les changements" textAlignment="CENTER" wrapText="true">
                            <VBox.margin>
                               <Insets bottom="10.0" />
                            </VBox.margin></Button>
-                        <Button mnemonicParsing="false" onAction="#backListePersonnel" prefHeight="71.0" prefWidth="144.0" text="Retour à la liste du personnel" textAlignment="CENTER" wrapText="true" />
+                        <Button mnemonicParsing="false" onAction="#backListePersonnel" prefHeight="71.0" prefWidth="144.0" styleClass="page-btn" text="Retour à la liste du personnel" textAlignment="CENTER" wrapText="true" />
                      </children>
                      <HBox.margin>
                         <Insets top="70.0" />

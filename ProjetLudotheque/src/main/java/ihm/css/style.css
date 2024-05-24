@@ -7,6 +7,14 @@
 	src: url("SofiaSansExtraCondensed-Regular.ttf");
 }
 
+.title-page
+{
+	-fx-font-family: "Englebert";
+	-fx-font-size: 22px; 
+	-fx-text-fill : #a9a9a9;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 2, 2);
+}
+
 .label-level-1
 {
 	-fx-font-family: "Englebert";
@@ -37,6 +45,22 @@
 	-fx-background-color : #303030;
 	-fx-background-raduis : 0em;
 }
+
+.page-btn
+{
+	-fx-border-color : #4B4B4B;
+	-fx-border-style: solid;
+	-fx-border-width : 1px;
+	-fx-border-radius: 4px;
+	
+}
+
+.page-btn:hover
+{
+	-fx-border-color : #7D7D7D;
+	
+}
+
 .icon {
 	 -fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 1.5, 1.5);
 }
