@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
 	<children>
 		<HBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<children>
@@ -19,9 +23,9 @@
 						<Pane layoutX="10.0" layoutY="10.0" prefHeight="51.0" prefWidth="200.0" />
 						<HBox prefHeight="153.0" prefWidth="200.0">
 							<children>
-								<Button mnemonicParsing="false" onAction="#toConnexion" text="Connexion" HBox.hgrow="ALWAYS" />
+								<Button mnemonicParsing="false" onAction="#toConnexion" styleClass="page-btn" text="Connexion" HBox.hgrow="ALWAYS" />
 								<Pane prefHeight="148.0" prefWidth="26.0" />
-								<Button layoutX="184.0" layoutY="10.0" mnemonicParsing="false" onAction="#toGameList" text="Liste des jeux" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+								<Button layoutX="184.0" layoutY="10.0" mnemonicParsing="false" onAction="#toGameList" styleClass="page-btn" text="Liste des jeux" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
 							</children>
 						</HBox>
 					</children>
