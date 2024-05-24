@@ -59,8 +59,11 @@ public class UserDAO extends DAO<User>{
 				String requete = "SELECT * FROM "+TABLE_UTILISATEUR+" WHERE "+ID_UTILISATEUR+" = "+id;
 				ResultSet rs = Connexion.executeQuery(requete);
 				rs.next();
+				String email = rs.getString(EMAIL);
+				String password = rs.getString(MOT_DE_PASSE);
+				String salt = rs.getString(SALT);
 				String role = rs.getString(ROLE);
-				user = new User (id, role);
+				user = new User (id, email, password, salt, role);
 //				donnees.put(id, user);
 			} catch (SQLException e) {
 				e.printStackTrace();

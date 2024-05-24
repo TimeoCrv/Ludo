@@ -171,7 +171,7 @@ public class ListeAdherentsController extends PageInit {
 		} else {
 			String lowerCaseSearchText = searchText.toLowerCase();
 			for (Adherent adherent : adherentData) {
-				if (adherent.getNom().toLowerCase().contains(lowerCaseSearchText)) {
+				if (adherent.getNom().toLowerCase().contains(lowerCaseSearchText) || adherent.getPrenom().toLowerCase().contains(lowerCaseSearchText)) {
 					filteredList.add(adherent);
 				}
 			}

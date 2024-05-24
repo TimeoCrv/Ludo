@@ -97,6 +97,13 @@ public class MainController {
 				break;
 			// Historique : à but de test pour l'instant
 			// Quand les emprunts seront implémentés, historique différent entre adhérent et personnel
+			case "Mon profil":
+				if (SessionManager.getCurrentUser() != null) {
+					loadFXML("ProfilAdherent");
+				} else {
+					loadFXML("ListeAdherents");
+				}
+				break;
 			case "Historique":
 				if (SessionManager.getCurrentUser() != null) {
 					loadFXML("ListeAdherents");
@@ -253,10 +260,12 @@ public class MainController {
 	public static boolean isPersonnel() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;}
 
-
-
 	public static boolean isAdmin() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
+	}
+	
+	public static boolean isAdherent() {
+		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("adherent") : false;
 	}
 
 }
