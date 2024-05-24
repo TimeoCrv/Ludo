@@ -62,7 +62,7 @@ public class AjoutJeuController extends PageInit{
 
 	        if (!nomSaisi.isBlank() && joueursMaxSaisi > 0 && joueursMinSaisi > 0 && anneeSaisi > 0
 	                && ageMinSaisi > 0 && dureeMinSaisi > 0 && !descriptifSaisi.isBlank()
-	                && !editeurSaisi.isBlank() && nombreSaisi > 0) {
+	                && !editeurSaisi.isBlank() && nombreSaisi >= 0) {
 	            boolean confirmation = demanderConfirmation("Ajouter le jeu ?");
 	            if (confirmation) {
 	                Connexion.getInstance();
