@@ -23,6 +23,14 @@
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 2, 2);
 }
 
+.label-body
+{
+	-fx-font-family: "Englebert";
+	-fx-font-size: 16px; 
+	-fx-text-fill : #a9a9a9;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,1), 0.5, 0.5, 2, 2);
+}
+
 .button
 {
 	-fx-font-family: "Sofia Sans Extra Condensed";
