@@ -12,9 +12,9 @@ public class Connexion {
 
 	private static Connection connect = null;
 
-	private static final String SQL_SERVER = "localhost\\SQLEXPRESS01";
+	private static final String SQL_SERVER = "localhost\\SQLEXPRESS";
 	private static final String BASE_DE_DONNEES = "Ludo";
-	private static final String ID = "ercan";
+	private static final String ID = "timeo";
 	private static final String MDP = "toto";
 	
 	

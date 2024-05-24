@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Connexion;
@@ -32,7 +33,7 @@ public class AjoutJeuController extends PageInit{
 	private TextField ajoutEditeur;
 	
 	@FXML
-	private TextField ajoutDisponible;
+	private CheckBox ajoutDisponible;
 	
 	@FXML
 	private TextField ajoutNombre;
@@ -56,16 +57,16 @@ public class AjoutJeuController extends PageInit{
 	        int dureeMinSaisi = Integer.parseInt(ajoutDureeMin.getText());
 	        String descriptifSaisi = ajoutDescriptif.getText();
 	        String editeurSaisi = ajoutEditeur.getText();
-	        int disponibleSaisi = Integer.parseInt(ajoutDisponible.getText());
+	        boolean isDisponible = ajoutDisponible.isSelected();
 	        int nombreSaisi = Integer.parseInt(ajoutNombre.getText());
 
 	        if (!nomSaisi.isBlank() && joueursMaxSaisi > 0 && joueursMinSaisi > 0 && anneeSaisi > 0
 	                && ageMinSaisi > 0 && dureeMinSaisi > 0 && !descriptifSaisi.isBlank()
-	                && !editeurSaisi.isBlank() && disponibleSaisi >= 0 && nombreSaisi > 0) {
+	                && !editeurSaisi.isBlank() && nombreSaisi > 0) {
 	            boolean confirmation = demanderConfirmation("Ajouter le jeu ?");
 	            if (confirmation) {
 	                Connexion.getInstance();
-	                Jeu jeuCree = new Jeu(nomSaisi, joueursMaxSaisi, joueursMinSaisi, anneeSaisi, ageMinSaisi, dureeMinSaisi, editeurSaisi, descriptifSaisi, disponibleSaisi, nombreSaisi);
+	                Jeu jeuCree = new Jeu(nomSaisi, joueursMaxSaisi, joueursMinSaisi, anneeSaisi, ageMinSaisi, dureeMinSaisi, editeurSaisi, descriptifSaisi, isDisponible, nombreSaisi);
 	                JeuDAO.getInstance().create(jeuCree);
 
 	                afficherMessage("Jeu ajouté avec succès");
