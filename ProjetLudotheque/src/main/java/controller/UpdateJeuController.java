@@ -85,7 +85,7 @@ public class UpdateJeuController extends PageInit{
 
 	        if (!nomSaisi.isBlank() && joueursMaxSaisi > 0 && joueursMinSaisi > 0 && anneeSaisi > 0
 	                && ageMinSaisi > 0 && dureeMinSaisi > 0 && !descriptifSaisi.isBlank() && !editeurSaisi.isBlank()
-	                && nombreSaisi > 0) {
+	                && nombreSaisi >= 0) {
 	            boolean confirmation = demanderConfirmation("Modifier le jeu ?");
 	            if (confirmation) {
 	                this.jeu.setNom(nomSaisi);
