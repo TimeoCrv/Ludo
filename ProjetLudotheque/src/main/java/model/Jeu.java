@@ -11,11 +11,11 @@ public class Jeu {
 	private int dureeMin;
 	private String descriptif;
 	private String editeur;
-	private int disponible;
+	private boolean disponible;
 	private int nombre;
 	
 
-	public Jeu(int idJeu, String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, int disponible, int nombre) {
+	public Jeu(int idJeu, String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, boolean disponible, int nombre) {
 		super();
 		
 		this.idJeu = idJeu;
@@ -31,7 +31,7 @@ public class Jeu {
 		this.nombre = nombre;
 	}
 	
-	public Jeu(String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, int disponible, int nombre) {
+	public Jeu(String nom, int nombreJoueursMax, int nombreJoueursMin, int annee, int ageMin, int dureeMin, String descriptif, String editeur, boolean disponible, int nombre) {
 		super();
 		
 		this.nom = nom;
@@ -137,12 +137,12 @@ public class Jeu {
 	}
 
 
-	public int getDisponible() {
+	public boolean getDisponible() {
 		return disponible;
 	}
 
 
-	public void setDisponible(int disponible) {
+	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
 

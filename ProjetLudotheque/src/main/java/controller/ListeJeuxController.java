@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -30,7 +31,7 @@ public class ListeJeuxController extends PageInit {
 	@FXML
 	private TableColumn<Jeu, String> editeurJeu;
 	@FXML
-	private TableColumn<Jeu, Integer> disponibleJeu;
+	private TableColumn<Jeu, Boolean> disponibleJeu;
 	@FXML
 	private TableColumn<Jeu, Integer> nombreJeu;
 	@FXML
@@ -86,10 +87,11 @@ public class ListeJeuxController extends PageInit {
 			}
 		});
 
-		disponibleJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, Integer>, ObservableValue<Integer>>() {
+		disponibleJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, Boolean>, ObservableValue<Boolean>>() {
 			@Override
-			public ObservableValue<Integer> call(CellDataFeatures<Jeu, Integer> cellData) {
-				return new SimpleObjectProperty<>(cellData.getValue().getDisponible());
+			public ObservableValue<Boolean> call(CellDataFeatures<Jeu, Boolean> cellData) {
+				SimpleBooleanProperty booleanProperty = new SimpleBooleanProperty(cellData.getValue().getDisponible());
+				return booleanProperty.asObject();
 			}
 		});
 

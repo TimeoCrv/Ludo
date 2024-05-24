@@ -54,7 +54,7 @@ import java.util.List;
 		        pst.setInt(6, jeu.getDureeMin()); // Index 6 pour la durée minimale
 		        pst.setString(7, jeu.getDescriptif());
 		        pst.setString(8, jeu.getEditeur()); // Correction de l'index pour le nom de l'éditeur
-		        pst.setInt(9, jeu.getDisponible()); // Correction de l'index pour la disponibilité
+		        pst.setBoolean(9, jeu.getDisponible()); // Correction de l'index pour la disponibilité
 		        pst.setInt(10, jeu.getNombre());
 
 		        pst.executeUpdate();
@@ -105,7 +105,7 @@ import java.util.List;
 		    int dureeMin = jeu.getDureeMin();
 		    String descriptif = jeu.getDescriptif();
 		    String editeur = jeu.getEditeur();
-		    int disponible = jeu.getDisponible();
+		    boolean disponible = jeu.getDisponible();
 		    int nombre = jeu.getNombre();
 		    int id = jeu.getIdJeu(); // Assume this method retrieves the game ID
 
@@ -142,7 +142,7 @@ import java.util.List;
 		        pst.setInt(6, dureeMin);
 		        pst.setString(7, descriptif);
 		        pst.setString(8, editeur);
-		        pst.setInt(9, disponible);
+		        pst.setBoolean(9, disponible);
 		        pst.setInt(10, nombre);
 		        pst.setInt(11, id); // Bind the ID value at the end
 		        
@@ -184,7 +184,7 @@ import java.util.List;
 				int dureeMin = rs.getInt(DUREE_MIN);
 				String descriptif = rs.getString(DESCRIPTIF);
 				String editeur = rs.getString(EDITEUR);
-				int disponible = rs.getInt(DISPONIBLE);
+				boolean disponible = rs.getBoolean(DISPONIBLE);
 				int nombre = rs.getInt(NOMBRE);
 				jeu = new Jeu (idJeu, nom, nombreJoueursMax, nombreJoueursMin, annee, ageMin, dureeMin, descriptif, editeur, disponible, nombre);
 				donnees.put(idJeu, jeu);

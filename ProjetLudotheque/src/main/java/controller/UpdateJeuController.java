@@ -2,6 +2,7 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import model.Connexion;
@@ -34,7 +35,7 @@ public class UpdateJeuController extends PageInit{
 	private TextField modifEditeur;
 	
 	@FXML
-	private TextField modifDisponible;
+	private CheckBox modifDisponible;
 	
 	@FXML
 	private TextField modifNombre;
@@ -63,7 +64,7 @@ public class UpdateJeuController extends PageInit{
 	    modifAgeMin.setText(Integer.toString(this.jeu.getAgeMin()));
 	    modifDureeMin.setText(Integer.toString(this.jeu.getDureeMin()));
 	    modifEditeur.setText(this.jeu.getEditeur());
-	    modifDisponible.setText(Integer.toString(this.jeu.getDisponible()));
+	    modifDisponible.setSelected(this.jeu.getDisponible());
 	    modifNombre.setText(Integer.toString(this.jeu.getNombre()));
 	    modifDescriptif.setText(this.jeu.getDescriptif());
 	}
@@ -79,12 +80,12 @@ public class UpdateJeuController extends PageInit{
 	        int dureeMinSaisi = Integer.parseInt(modifDureeMin.getText());
 	        String descriptifSaisi = modifDescriptif.getText();
 	        String editeurSaisi = modifEditeur.getText();
-	        int disponibleSaisi = Integer.parseInt(modifDisponible.getText());
+	        boolean disponibleSaisi = modifDisponible.isSelected();
 	        int nombreSaisi = Integer.parseInt(modifNombre.getText());
 
 	        if (!nomSaisi.isBlank() && joueursMaxSaisi > 0 && joueursMinSaisi > 0 && anneeSaisi > 0
 	                && ageMinSaisi > 0 && dureeMinSaisi > 0 && !descriptifSaisi.isBlank() && !editeurSaisi.isBlank()
-	                && disponibleSaisi >= 0 && nombreSaisi > 0) {
+	                && nombreSaisi > 0) {
 	            boolean confirmation = demanderConfirmation("Modifier le jeu ?");
 	            if (confirmation) {
 	                this.jeu.setNom(nomSaisi);
