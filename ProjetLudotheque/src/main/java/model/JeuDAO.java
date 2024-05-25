@@ -170,7 +170,7 @@ import java.util.List;
 		public Jeu read(int idJeu) {
 			Jeu jeu = null;
 			
-			System.out.println("recherché dans la BD");
+//			System.out.println("recherché dans la BD");
 			try {
 
 				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+idJeu;

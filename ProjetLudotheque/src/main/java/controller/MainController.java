@@ -154,7 +154,7 @@ public class MainController {
 		}
 
 		// Réagir à l'événement de clic de bouton ici
-		System.out.println("Le bouton " + buttonName + " a été cliqué !");
+//		System.out.println("Le bouton " + buttonName + " a été cliqué !");
 	}
 
 	// Fonction de chargement d'une vue par le routeur
@@ -194,6 +194,8 @@ public class MainController {
 
 				if (user.getRole().matches("admin")) {
 
+					btnProfil.setVisible(false);
+					btnProfil.setManaged(false);
 					labelAdmin.setVisible(true);
 					labelAdmin.setManaged(true);
 					btnListeEmploye.setVisible(true);
