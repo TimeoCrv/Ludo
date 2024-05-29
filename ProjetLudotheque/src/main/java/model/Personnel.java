@@ -12,11 +12,11 @@ public class Personnel {
 	
 	private String password;
 	private String salt;
-	private String role = "personnel";
+	private String role = "";
 	
 	
 	//Constructeur pour Create
-	public Personnel(String nom, String prenom,String email, String tel, String adresse, boolean isAdmin, String password, String salt) {
+	public Personnel(String nom, String prenom,String email, String tel, String adresse, boolean isAdmin, String password, String salt, String role) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -26,6 +26,7 @@ public class Personnel {
 		this.isAdmin = isAdmin;
 		this.password = password;
 		this.salt = salt;
+		this.role=role;
 		
 	}
 	
