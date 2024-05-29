@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import model.Connexion;
 import model.Jeu;
 import model.JeuDAO;
+import model.Personnel;
+import model.PersonnelDAO;
+import model.User;
+import utils.SessionManager;
 
 public class UpdateJeuController extends PageInit{
 	
@@ -47,6 +51,16 @@ public class UpdateJeuController extends PageInit{
 	@FXML
 	public void initialize() {
 		setAnchors();
+//		User user = SessionManager.getCurrentUser();
+//		int id = SessionManager.getCurrentUser().getId();      //exemple de code pour récupérer la donnée de la personne connecté 
+//		System.out.println(user.getRole());
+//		if (user.getRole().matches("admin")) {
+//			Personnel p = PersonnelDAO.getInstance().read(id);
+//			System.out.println(p.getAdresse());
+//			p.setAdresse("déménage");
+//			PersonnelDAO.getInstance().update(p);
+//			System.out.println(p.getAdresse());
+//		}
 	}
 	
 	public void setJeu(Jeu jeu) {

@@ -70,6 +70,14 @@
                                     <Font name="Arial" size="16.0" />
                                  </font>
                               </Button>
+                              <Button id="ajouterJeu" fx:id="emprunterJeu" mnemonicParsing="false" onAction="#toEmprunterJeu" styleClass="page-btn" text="Emprunter" textFill="WHITE">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="150.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>

@@ -66,7 +66,7 @@ public class AjoutJeuController extends PageInit{
 	            boolean confirmation = demanderConfirmation("Ajouter le jeu ?");
 	            if (confirmation) {
 	                Connexion.getInstance();
-	                Jeu jeuCree = new Jeu(nomSaisi, joueursMaxSaisi, joueursMinSaisi, anneeSaisi, ageMinSaisi, dureeMinSaisi, editeurSaisi, descriptifSaisi, isDisponible, nombreSaisi);
+	                Jeu jeuCree = new Jeu(nomSaisi, joueursMaxSaisi, joueursMinSaisi, anneeSaisi, ageMinSaisi, dureeMinSaisi, descriptifSaisi, editeurSaisi, isDisponible, nombreSaisi);
 	                JeuDAO.getInstance().create(jeuCree);
 
 	                afficherMessage("Jeu ajouté avec succès");

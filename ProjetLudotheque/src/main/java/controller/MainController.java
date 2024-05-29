@@ -111,7 +111,7 @@ public class MainController {
 				}
 				break;
 			case "Ajouter un Adhérent":
-				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
+				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())){
 					loadFXML("AjoutAdherent");
 				}
 				break;
@@ -257,6 +257,10 @@ public class MainController {
 
 	public static boolean isAdmin() {
 		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
+	}
+	
+	public static boolean isAdherent() {
+		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("adherent") : false;
 	}
 
 }

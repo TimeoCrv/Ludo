@@ -16,6 +16,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+import model.Adherent;
+import model.AdherentDAO;
+import model.Emprunt;
+import model.EmpruntDAO;
 import model.Jeu;
 import model.JeuDAO;
 import utils.SessionManager;
@@ -40,6 +44,8 @@ public class ListeJeuxController extends PageInit {
 	private Button modifierJeu;
 	@FXML
 	private Button supprimerJeu;
+	@FXML
+	private Button emprunterJeu;
 
 	private ObservableList<Jeu> jeuData = FXCollections.observableArrayList();
 
@@ -56,15 +62,18 @@ public class ListeJeuxController extends PageInit {
 	@FXML
 	private void initialize() {
 		setAnchors();
+		ajouterJeu.setVisible(false);
+		modifierJeu.setVisible(false);
+		supprimerJeu.setVisible(false);
+		emprunterJeu.setVisible(false);
 
 		if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
 			ajouterJeu.setVisible(true);
 			modifierJeu.setVisible(true);
 			supprimerJeu.setVisible(true);
-		} else {
-			ajouterJeu.setVisible(false);
-			modifierJeu.setVisible(false);
-			supprimerJeu.setVisible(false);
+		} else if(SessionManager.getCurrentUser() != null && MainController.isAdherent()){
+			emprunterJeu.setVisible(true);
+			
 		}
 
 		nomJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
@@ -118,7 +127,8 @@ public class ListeJeuxController extends PageInit {
 	private Jeu getJeu() {
 		return jeuList.getSelectionModel().getSelectedItem();
 	}
-
+	
+	
 	@FXML
 	private void supprimerUnJeu() {
 		if (getJeu() != null) {
@@ -134,6 +144,27 @@ public class ListeJeuxController extends PageInit {
 			}
 		} else {
 			afficherMessage("Sélectionnez dans la liste le jeu à supprimer.");
+		}
+	}
+	
+	@FXML
+	private void toEmprunterJeu() {
+		if (getJeu() != null) {
+			try {
+				boolean confirmation = demanderConfirmation("Emprunter le jeu ?");
+				if (confirmation) {
+					int idUser = SessionManager.getCurrentUser().getId();
+					Adherent adherent = AdherentDAO.getInstance().read(idUser);
+					Emprunt emprunt = new Emprunt(adherent.getIdProfil(),getJeu().getIdJeu());
+					EmpruntDAO.getInstance().create(emprunt);
+					afficherMessage("Jeu emprunté avec succès");
+					loadOtherFXML("ListeJeux");
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste le jeu à emprunter.");
 		}
 	}
 
