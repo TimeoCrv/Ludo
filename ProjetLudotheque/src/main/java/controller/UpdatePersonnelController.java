@@ -70,6 +70,11 @@ public class UpdatePersonnelController extends PageInit {
 				String telephoneSaisi = telephone.getText();
 				String adresseSaisi = adresse.getText();
 				boolean isAdminSaisi = isAdmin.isSelected();
+				String role ="";
+				if(isAdminSaisi = isAdmin.isSelected()) {
+					role = "admin";
+					
+				}else {role="personnel";}
 
 				if (!nomSaisi.isBlank() && !prenomSaisi.isBlank() && !telephoneSaisi.isBlank()
 						&& !adresseSaisi.isBlank() && !emailSaisi.isBlank()) {
@@ -81,6 +86,7 @@ public class UpdatePersonnelController extends PageInit {
 						this.personnel.setTel(telephoneSaisi);
 						this.personnel.setAdresse(adresseSaisi);
 						this.personnel.setAdmin(isAdminSaisi);
+						this.personnel.setRole(role);
 
 						Connexion.getInstance();
 

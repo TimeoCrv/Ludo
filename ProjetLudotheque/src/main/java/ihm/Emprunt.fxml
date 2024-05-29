@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="childWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjoutEmpruntController">
+   <children>
+      <TableView fx:id="jeuList" layoutX="53.0" layoutY="106.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="nomJeu" />
+          <TableColumn fx:id="nomJeu" prefWidth="75.0" />
+        </columns>
+      </TableView>
+      <TableView fx:id="adherentList" layoutX="363.0" layoutY="106.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="nomAdherent" />
+          <TableColumn fx:id="nomAdherent" prefWidth="75.0" />
+        </columns>
+      </TableView>
+      <Button id="btn_emprunt" layoutX="276.0" layoutY="181.0" mnemonicParsing="false" text="emprunt" />
+      <Text layoutX="192.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Emprunt" textAlignment="CENTER" wrappingWidth="185.13671875" />
+      <Text layoutX="130.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jeu" textAlignment="CENTER" wrappingWidth="72.13671875" />
+      <Text layoutX="427.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adherent" textAlignment="CENTER" wrappingWidth="72.13671875" />
+   </children>
+</AnchorPane>

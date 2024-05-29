@@ -14,7 +14,7 @@ public class Connexion {
 
 	private static final String SQL_SERVER = "localhost\\SQLEXPRESS";
 	private static final String BASE_DE_DONNEES = "Ludo";
-	private static final String ID = "timeo";
+	private static final String ID = "nathan";
 	private static final String MDP = "toto";
 	
 	

@@ -131,6 +131,9 @@ public class MainController {
 			case "Ajouter un jeu":
 				loadFXML("AjoutJeu");
 				break;
+			case "Rendre un jeu":
+				loadFXML("Emprunt");
+				break;
 			case "Deconnexion":
 				SessionManager.closeSession();
 				loadFXML("Accueil");

@@ -100,8 +100,8 @@ public class ListePersonnelController extends PageInit {
 
 	public ObservableList<Personnel> getPersonnelDataPersonnel() {
 		personnelData = FXCollections.observableArrayList();
-		List<Personnel> lePersonnel = PersonnelDAO.getInstance().readAllPersonnel();
-		for (Personnel personnel : lePersonnel) {
+		List<Personnel> lesPersonnel = PersonnelDAO.getInstance().readAllPersonnel();
+		for (Personnel personnel : lesPersonnel) {
 			personnelData.add(personnel);
 		}
 		return personnelData;
