@@ -40,6 +40,8 @@ public class ListeJeuxController extends PageInit {
 	private Button modifierJeu;
 	@FXML
 	private Button supprimerJeu;
+	@FXML
+	private Button emprunterJeu;
 
 	private ObservableList<Jeu> jeuData = FXCollections.observableArrayList();
 
@@ -147,7 +149,23 @@ public class ListeJeuxController extends PageInit {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public void emprunterUnJeu(ActionEvent event) {
+	    if (getJeu() != null) {
+	        try {
+	        	Jeu jeu =getJeu();
+	            loadEmpruntJeuFXML("EmpruntJeu", jeu );
+	        } catch (IOException e) {  
+	            e.printStackTrace();
+	        }
+	    } else {
+	        afficherMessage("Sélectionnez dans la liste le jeu à emprunter.");
+	    }
+	}
+	
 
+	
 	@FXML
 	public void toUpdateJeu(ActionEvent event) {
 		if (getJeu() != null) {
