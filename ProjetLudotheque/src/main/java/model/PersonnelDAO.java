@@ -143,7 +143,7 @@ public class PersonnelDAO extends DAO<Personnel> {
 
 	@Override
 	public boolean update(Personnel personnel) {
-		System.out.println(donnees);
+//		System.out.println(donnees);
 		
 		boolean succes=true;
 
@@ -211,7 +211,7 @@ int id = personnel.getId_personnel();
 	public Personnel read(int id) {
 		Personnel personnel = null;
 			
-			System.out.println("recherché dans la BD");
+//			System.out.println("recherché dans la BD");
 			try {
 
 				String requete = "SELECT * FROM "+TABLE_UTILISATEUR+" JOIN "+TABLE_PERSONNEL+

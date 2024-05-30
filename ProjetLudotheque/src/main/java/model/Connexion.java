@@ -34,7 +34,7 @@ public class Connexion {
 				ds.setServerName(SQL_SERVER);
 				ds.setDatabaseName(BASE_DE_DONNEES);
 				connect = ds.getConnection();
-				System.out.println("connecté");
+//				System.out.println("connecté");
 			}
 			catch (SQLException e){
 				System.out.println("Echec de la tentative de connexion : " + e.getMessage() + e.getStackTrace()) ;
@@ -87,7 +87,7 @@ public class Connexion {
 		try
 		{
 			getInstance().close();
-			System.out.println("deconnexion ok");
+//			System.out.println("deconnexion ok");
 		}
 		catch (SQLException e)
 		{

@@ -212,9 +212,6 @@ public class EmpruntDAO extends DAO<Emprunt>{
 				emprunt = EmpruntDAO.getInstance().readFullDetails(id);
 				rep.add(emprunt);
 			}
-//			for(Jeu jeu : rep) {
-//				System.out.println(jeu.getNom());
-//			}
 		}
 		catch(SQLException e){
 			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
@@ -233,9 +230,6 @@ public class EmpruntDAO extends DAO<Emprunt>{
 				emprunt = EmpruntDAO.getInstance().readFullDetails(id);
 				rep.add(emprunt);
 			}
-//			for(Jeu jeu : rep) {
-//				System.out.println(jeu.getNom());
-//			}
 		}
 		catch(SQLException e){
 			System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;
