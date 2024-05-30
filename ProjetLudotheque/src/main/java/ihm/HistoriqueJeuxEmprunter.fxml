@@ -14,7 +14,7 @@
    <children>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="title-page" stylesheets="@css/style.css" text="Liste des jeux" textFill="WHITE">
+            <Label styleClass="title-page" stylesheets="@css/style.css" text="Jeux Empruntés" textFill="WHITE">
                <font>
                   <Font name="Arial" size="22.0" />
                </font>
@@ -26,7 +26,7 @@
                <children>
                   <TableView id="empruntList" fx:id="empruntList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"  prefHeight="246.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
                     <columns>
-                      <TableColumn id="nom" fx:id="nom" text="Nom" />
+                      <TableColumn id="nom" fx:id="nom" text="Nom du jeu" />
                         <TableColumn id="dateEmprunter" fx:id="dateEmprunter" prefWidth="75.0" text="Date Emprunté" />
                         <TableColumn id="dateRendre" fx:id="dateRendre" prefWidth="75.0" text="Date à rendre" />
                     </columns>

@@ -11,8 +11,6 @@ public class Emprunt {
 		private Date dateEmprunt;
 		private Date dateARendre;
 		private String nom;
-		private String formattedDateEmprunter;
-	    private String formattedDateRendre;
 		
 
 		public Emprunt(String nom, Date dateEmprunte, Date dateARendre) {
@@ -87,25 +85,5 @@ public class Emprunt {
 			this.nom = nom;
 		}
 		
-		public void setDateEmprunter(Date dateEmprunter) {
-	        this.dateEmprunt = dateEmprunter;
-	        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-	        this.formattedDateEmprunter = dateFormatter.format(dateEmprunter);
-	    }
-
-	    public void setDateRendre(Date dateRendre) {
-	        this.dateARendre = dateRendre;
-	        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-	        this.formattedDateRendre = dateFormatter.format(dateRendre);
-	    }
-
-	    // Getters for formatted date strings
-	    public String getFormattedDateEmprunter() {
-	        return formattedDateEmprunter;
-	    }
-
-	    public String getFormattedDateRendre() {
-	        return formattedDateRendre;
-	    }
 		
 }
