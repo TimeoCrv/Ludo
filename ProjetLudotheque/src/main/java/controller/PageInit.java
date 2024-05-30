@@ -121,6 +121,15 @@ public abstract class PageInit {
 
         childWindow.getChildren().setAll(content);
     }
+	
+	public void loadDetailJeuFXML(String fxml, Jeu jeu) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+        Parent content = loader.load();
+        DetailJeuController detailJeuController = loader.getController();
+        detailJeuController.setJeu(jeu);
+
+        childWindow.getChildren().setAll(content);
+    }
 
 	public void loadUpdatePersonnelFXML(String fxml, Personnel personnel) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));

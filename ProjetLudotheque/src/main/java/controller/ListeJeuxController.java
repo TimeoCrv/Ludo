@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.Adherent;
 import model.AdherentDAO;
@@ -26,6 +27,8 @@ import utils.SessionManager;
 
 public class ListeJeuxController extends PageInit {
 
+	@FXML
+	private TextField searchField;
 	@FXML
 	private TableView<Jeu> jeuList;
 	@FXML
@@ -44,6 +47,8 @@ public class ListeJeuxController extends PageInit {
 	private Button modifierJeu;
 	@FXML
 	private Button supprimerJeu;
+	@FXML
+	private Button detailJeu;
 	@FXML
 	private Button emprunterJeu;
 
@@ -76,7 +81,6 @@ public class ListeJeuxController extends PageInit {
 			supprimerJeu.setVisible(true);
 		} else if(SessionManager.getCurrentUser() != null && MainController.isAdherent()){
 			emprunterJeu.setVisible(true);
-			
 		}
 
 		nomJeu.setCellValueFactory(new Callback<CellDataFeatures<Jeu, String>, ObservableValue<String>>() {
@@ -115,6 +119,8 @@ public class ListeJeuxController extends PageInit {
 		});
 
 		jeuList.setItems(this.getJeuData());
+		
+		searchField.textProperty().addListener((observable, oldValue, newValue) -> filterJeu(newValue));
 	}
 
 	public ObservableList<Jeu> getJeuDataJeu() {
@@ -131,6 +137,21 @@ public class ListeJeuxController extends PageInit {
 		return jeuList.getSelectionModel().getSelectedItem();
 	}
 	
+	@FXML
+	public void toDetailJeu(ActionEvent event) {
+		if (getJeu() != null) {
+			try {
+				Jeu jeu = getJeu();
+				if (jeu != null) {
+					loadDetailJeuFXML("DetailJeu", jeu);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			afficherMessage("Sélectionnez dans la liste un jeu.");
+		}
+	}	
 	
 	@FXML
 	private void supprimerUnJeu() {
@@ -197,5 +218,20 @@ public class ListeJeuxController extends PageInit {
 		} else {
 			afficherMessage("Sélectionnez dans la liste le jeu à modifier.");
 		}
+	}
+	
+	public void filterJeu(String searchText) {
+		ObservableList<Jeu> filteredList = FXCollections.observableArrayList();
+		if (searchText == null || searchText.isEmpty()) {
+			filteredList.setAll(jeuData);
+		} else {
+			String lowerCaseSearchText = searchText.toLowerCase();
+			for (Jeu jeu : jeuData) {
+				if (jeu.getNom().toLowerCase().contains(lowerCaseSearchText)) {
+					filteredList.add(jeu);
+				}
+			}
+		}
+		jeuList.setItems(filteredList);
 	}
 }

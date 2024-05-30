@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -18,6 +19,18 @@
                   <Insets bottom="16.0" />
                </VBox.margin>
             </Label>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="searchField" prefHeight="25.0" prefWidth="341.0" promptText="Rechercher un adhérent ou un jeu...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </HBox>
             <HBox prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                <children>
                   <TableView fx:id="empruntList" prefHeight="370.0" prefWidth="449.0" HBox.hgrow="ALWAYS">
@@ -34,17 +47,12 @@
                   </TableView>
                   <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#toAddAdherent" styleClass="page-btn" text="Ajouter un adhérent">
+                        <Button mnemonicParsing="false" onAction="#toAddAdherent" styleClass="page-btn" text="Voir l'adhérent">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" styleClass="page-btn" text="Modifier l'adhérent">
-                           <VBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteAdherent" styleClass="page-btn" text="Supprimer l'adhérent">
+                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" styleClass="page-btn" text="Voir le jeu">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>

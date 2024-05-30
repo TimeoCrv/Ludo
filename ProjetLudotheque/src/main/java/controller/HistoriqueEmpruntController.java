@@ -14,12 +14,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.Emprunt;
 import model.EmpruntDAO;
 
 public class HistoriqueEmpruntController extends PageInit {
 
+	@FXML
+	private TextField searchField;
 	@FXML
 	private TableView<Emprunt> empruntList;
 	@FXML
@@ -93,6 +96,8 @@ public class HistoriqueEmpruntController extends PageInit {
 				});
 
 		empruntList.setItems(this.getEmpruntData());
+		
+		searchField.textProperty().addListener((observable, oldValue, newValue) -> filterEmprunt(newValue));
 	}
 
 	public ObservableList<Emprunt> getEmpruntDataEmprunt() {
@@ -150,6 +155,23 @@ public class HistoriqueEmpruntController extends PageInit {
 //		} else {
 //			afficherMessage("Sélectionnez dans la liste l'adhérent à modifier.");
 //		}
+	}
+	
+	public void filterEmprunt(String searchText) {
+		ObservableList<Emprunt> filteredList = FXCollections.observableArrayList();
+		if (searchText == null || searchText.isEmpty()) {
+			filteredList.setAll(empruntData);
+		} else {
+			String lowerCaseSearchText = searchText.toLowerCase();
+			for (Emprunt emprunt : empruntData) {
+				if (emprunt.getAdherent().getNom().toLowerCase().contains(lowerCaseSearchText) ||
+						emprunt.getAdherent().getPrenom().toLowerCase().contains(lowerCaseSearchText) ||
+						emprunt.getJeu().getNom().toLowerCase().contains(lowerCaseSearchText)) {
+					filteredList.add(emprunt);
+				}
+			}
+		}
+		empruntList.setItems(filteredList);
 	}
 
 }

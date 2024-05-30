@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -19,9 +20,18 @@
                   <Font name="Arial" size="22.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </Label>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="34.0" prefWidth="600.0">
+               <children>
+                  <TextField fx:id="searchField" prefHeight="25.0" prefWidth="341.0" promptText="Rechercher un jeu...">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
             <HBox alignment="TOP_CENTER" prefHeight="318.0" prefWidth="607.0" VBox.vgrow="ALWAYS">
                <children>
                   <TableView id="jeuList" fx:id="jeuList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#getJeu" prefHeight="246.0" prefWidth="597.0" HBox.hgrow="ALWAYS">
@@ -69,13 +79,24 @@
                                  <font>
                                     <Font name="Arial" size="16.0" />
                                  </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button id="ajouterJeu" fx:id="detailJeu" mnemonicParsing="false" onAction="#toDetailJeu" prefHeight="62.0" prefWidth="87.0" styleClass="page-btn" text="Voir les détail du jeu" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
                               </Button>
                               <Button id="ajouterJeu" fx:id="emprunterJeu" mnemonicParsing="false" onAction="#toEmprunterJeu" styleClass="page-btn" text="Emprunter" textFill="WHITE">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="150.0" />
+                                    <Insets />
                                  </VBox.margin>
                               </Button>
                            </children>
