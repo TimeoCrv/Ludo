@@ -1,23 +1,24 @@
 package model;
 
-import java.security.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Emprunt {
 	
 		private int idEmprunt;
 		private int idProfil;
 		private int idJeuPhysique;
-		private Timestamp dateEmprunt;
-		private Timestamp dateARendre;
+		private Date dateEmprunt;
+		private Date dateARendre;
+		private String nom;
+		private String formattedDateEmprunter;
+	    private String formattedDateRendre;
 		
 
-		public Emprunt(int idEmprunt, int idProfil, int idJeuPhysique, Timestamp dateEmprunt, Timestamp dateARendre) {
+		public Emprunt(String nom, Date dateEmprunte, Date dateARendre) {
 			super();
-			
-			this.idEmprunt = idEmprunt;
-			this.idProfil = idProfil;
-			this.idJeuPhysique = idJeuPhysique;
-			this.dateEmprunt = dateEmprunt;
+			this.setNom(nom);
+			this.dateEmprunt = dateEmprunte;
 			this.dateARendre = dateARendre;
 		}
 		
@@ -39,22 +40,22 @@ public class Emprunt {
 		}
 
 
-		public Timestamp getDateEmprunt() {
+		public Date getDateEmprunt() {
 			return dateEmprunt;
 		}
 
 
-		public void setDateEmprunt(Timestamp dateEmprunt) {
+		public void setDateEmprunt(Date dateEmprunt) {
 			this.dateEmprunt = dateEmprunt;
 		}
 
 
-		public Timestamp getDateARendre() {
+		public Date getDateARendre() {
 			return dateARendre;
 		}
 
 
-		public void setDateARendre(Timestamp dateARendre) {
+		public void setDateARendre(Date dateARendre) {
 			this.dateARendre = dateARendre;
 		}
 
@@ -77,5 +78,34 @@ public class Emprunt {
 		public void setIdEmprunt(int idEmprunt) {
 			this.idEmprunt = idEmprunt;
 		}
+
+		public String getNom() {
+			return nom;
+		}
+
+		public void setNom(String nom) {
+			this.nom = nom;
+		}
+		
+		public void setDateEmprunter(Date dateEmprunter) {
+	        this.dateEmprunt = dateEmprunter;
+	        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+	        this.formattedDateEmprunter = dateFormatter.format(dateEmprunter);
+	    }
+
+	    public void setDateRendre(Date dateRendre) {
+	        this.dateARendre = dateRendre;
+	        SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+	        this.formattedDateRendre = dateFormatter.format(dateRendre);
+	    }
+
+	    // Getters for formatted date strings
+	    public String getFormattedDateEmprunter() {
+	        return formattedDateEmprunter;
+	    }
+
+	    public String getFormattedDateRendre() {
+	        return formattedDateRendre;
+	    }
 		
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import model.Adherent;
-import model.Personnel;
+import model.Emprunt;
 import model.Jeu;
+import model.Personnel;
 import utils.SessionManager;
+import java.util.List;
 
 // Classe héritée par toutes les IHM
 // Regroupe les fonctions communes à toutes
@@ -131,6 +134,14 @@ public abstract class PageInit {
         childWindow.getChildren().setAll(content);
     }
 
+	public void loadHistoriqueJeuxEmprunteFXML(String fxml, List<Emprunt> emprunts) throws IOException {
+	    FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/" + fxml + ".fxml"));
+	    Parent content = loader.load();
+	    HistoriqueEmprunteController historiqueController = loader.getController();
+	    historiqueController.setEmprunts(emprunts);
+
+	    childWindow.getChildren().setAll(content);
+	}
     
    
 //Petits pop-up de confirmation

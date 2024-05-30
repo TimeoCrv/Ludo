@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.beans.property.SimpleBooleanProperty;
@@ -46,6 +47,8 @@ public class ListeJeuxController extends PageInit {
 	private Button supprimerJeu;
 	@FXML
 	private Button emprunterJeu;
+	
+	private List<Emprunt> listeJeuxEmprunte = new ArrayList<>();
 
 	private ObservableList<Jeu> jeuData = FXCollections.observableArrayList();
 
@@ -158,7 +161,8 @@ public class ListeJeuxController extends PageInit {
 					Emprunt emprunt = new Emprunt(adherent.getIdProfil(),getJeu().getIdJeu());
 					EmpruntDAO.getInstance().create(emprunt);
 					afficherMessage("Jeu emprunté avec succès");
-					loadOtherFXML("ListeJeux");
+					listeJeuxEmprunte = EmpruntDAO.getInstance().readAllEmprunt(idUser);
+					loadHistoriqueJeuxEmprunteFXML("HistoriqueJeuxEmprunter",listeJeuxEmprunte);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -167,6 +171,8 @@ public class ListeJeuxController extends PageInit {
 			afficherMessage("Sélectionnez dans la liste le jeu à emprunter.");
 		}
 	}
+
+	
 
 	@FXML
 	public void toAddJeu(ActionEvent event) {
