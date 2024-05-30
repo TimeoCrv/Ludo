@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="childWindow" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HistoriqueAdherentController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label styleClass="title-page" stylesheets="@css/style.css" text="Historique des emprunts">
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <TableView fx:id="empruntList" prefHeight="370.0" prefWidth="449.0" HBox.hgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="nomJeu" prefWidth="109.0" text="Jeu" />
+                        <TableColumn fx:id="dateEmprunt" minWidth="0.0" prefWidth="83.0" text="Date d'emprunt" />
+                        <TableColumn fx:id="dateRendu" prefWidth="85.0" text="Date prévue de rendu" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <VBox alignment="TOP_CENTER" prefHeight="370.0" prefWidth="168.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#toAddAdherent" styleClass="page-btn" text="Ajouter un adhérent">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#toUpdateAdherent" styleClass="page-btn" text="Modifier l'adhérent">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#deleteAdherent" styleClass="page-btn" text="Supprimer l'adhérent">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

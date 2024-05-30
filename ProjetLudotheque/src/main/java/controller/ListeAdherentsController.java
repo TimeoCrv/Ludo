@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,14 +16,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import model.Adherent;
 import model.AdherentDAO;
-import model.JeuDAO;
-import utils.SessionManager;
 
 public class ListeAdherentsController extends PageInit {
 
+	@FXML
+	private TextField searchField;
 	@FXML
 	private TableView<Adherent> adherentList;
 	@FXML
@@ -92,6 +94,17 @@ public class ListeAdherentsController extends PageInit {
 				});
 
 		adherentList.setItems(this.getAdherentData());
+
+		//Champs de recherche qui filtre par rapport au nom
+		searchField.textProperty().addListener((observable, oldValue, newValue) -> filterAdherent(newValue));
+
+		// Même fonction 
+//		searchField.textProperty().addListener(new ChangeListener<String>() {
+//			@Override
+//			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//				filterAdherent(newValue);
+//			}
+//		});
 	}
 
 	public ObservableList<Adherent> getAdherentDataAdherent() {
@@ -151,4 +164,18 @@ public class ListeAdherentsController extends PageInit {
 		}
 	}
 
+	public void filterAdherent(String searchText) {
+		ObservableList<Adherent> filteredList = FXCollections.observableArrayList();
+		if (searchText == null || searchText.isEmpty()) {
+			filteredList.setAll(adherentData);
+		} else {
+			String lowerCaseSearchText = searchText.toLowerCase();
+			for (Adherent adherent : adherentData) {
+				if (adherent.getNom().toLowerCase().contains(lowerCaseSearchText) || adherent.getPrenom().toLowerCase().contains(lowerCaseSearchText)) {
+					filteredList.add(adherent);
+				}
+			}
+		}
+		adherentList.setItems(filteredList);
+	}
 }

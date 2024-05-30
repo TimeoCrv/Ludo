@@ -1,15 +1,28 @@
 package model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Emprunt {
 	
 		private int idEmprunt;
 		private int idProfil;
 		private int idJeuPhysique;
+		private Adherent adherent;
+		private Jeu jeu;
 		private Timestamp dateEmprunt;
 		private Timestamp dateARendre;
 		
+		public Emprunt(int idEmprunt, int idProfil, int idJeuPhysique, Adherent adherent, Jeu jeu, Timestamp dateEmprunt, Timestamp dateARendre) {
+			super();
+			
+			this.idEmprunt = idEmprunt;
+			this.idProfil = idProfil;
+			this.idJeuPhysique = idJeuPhysique;
+			this.adherent = adherent;
+			this.jeu=jeu;
+			this.dateEmprunt = dateEmprunt;
+			this.dateARendre = dateARendre;
+		}
 
 		public Emprunt(int idEmprunt, int idProfil, int idJeuPhysique, Timestamp dateEmprunt, Timestamp dateARendre) {
 			super();
@@ -76,6 +89,22 @@ public class Emprunt {
 
 		public void setIdEmprunt(int idEmprunt) {
 			this.idEmprunt = idEmprunt;
+		}
+
+		public Adherent getAdherent() {
+			return adherent;
+		}
+
+		public void setAdherent(Adherent adherent) {
+			this.adherent = adherent;
+		}
+
+		public Jeu getJeu() {
+			return jeu;
+		}
+
+		public void setJeu(Jeu jeu) {
+			this.jeu = jeu;
 		}
 		
 }

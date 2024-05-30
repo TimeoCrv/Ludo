@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 
@@ -12,9 +14,9 @@ public class Connexion {
 
 	private static Connection connect = null;
 
-	private static final String SQL_SERVER = "localhost\\SQLEXPRESS";
+	private static final String SQL_SERVER = "localhost\\SQLEXPRESS01";
 	private static final String BASE_DE_DONNEES = "Ludo";
-	private static final String ID = "timeo";
+	private static final String ID = "ercan";
 	private static final String MDP = "toto";
 	
 	
@@ -94,6 +96,22 @@ public class Connexion {
 		}
 	}
 	
+//	public static void compareDate(Adherent adherent) {
+//		Date currentDate = new Date();
+//        Timestamp todayTimestamp = new Timestamp(currentDate.getTime());
+//        
+//		if (adherent.getDateInscriptionFin().before(todayTimestamp)) {
+//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+//            + " n'est plus valide.");
+//        } else if (adherent.getDateInscriptionFin().after(todayTimestamp)) {
+//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+//            + " est encore valide.");
+//        } else {
+//            System.out.println("L'inscription de " + adherent.getPrenom() + " " + adherent.getNom()
+//            + " termine aujourd'hui.");
+//        }
+//	}
+
 }
 
 

@@ -22,8 +22,8 @@ public class AdherentDAO extends DAO<Adherent> {
 	private static final String ROLE = "role";
 
 	//Table profil (adhérent)
-	private static final String TABLE_PROFIL = "profil";
-	private static final String ID_PROFIL = "id_profil";
+	public static final String TABLE_PROFIL = "profil";
+	public static final String ID_PROFIL = "id_profil";
 	private static final String NOM = "nom";
 	private static final String PRENOM = "prenom";
 	private static final String TEL = "tel";

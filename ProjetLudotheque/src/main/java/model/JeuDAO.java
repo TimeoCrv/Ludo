@@ -10,8 +10,8 @@ import java.util.List;
 
 	public class JeuDAO extends DAO<Jeu> {
 		
-		private static final String TABLE = "jeu";
-		private static final String CLE_PRIMAIRE = "id_jeu";
+		public static final String TABLE = "jeu";
+		public static final String CLE_PRIMAIRE = "id_jeu";
 
 		private static final String NOM_JEU = "nom";
 		private static final String NOMBRE_JOUEURS_MAX = "nombre_joueurs_max";
@@ -170,7 +170,7 @@ import java.util.List;
 		public Jeu read(int idJeu) {
 			Jeu jeu = null;
 			
-			System.out.println("recherché dans la BD");
+//			System.out.println("recherché dans la BD");
 			try {
 
 				String requete = "SELECT * FROM "+TABLE+" WHERE "+CLE_PRIMAIRE+" = "+idJeu;
@@ -206,6 +206,9 @@ import java.util.List;
 					ad = JeuDAO.getInstance().read(id);
 					rep.add(ad);
 				}
+//				for(Jeu jeu : rep) {
+//					System.out.println(jeu.getNom());
+//				}
 			}
 			catch(SQLException e){
 				System.out.println("Echec de la tentative d'interrogation Select * : " + e.getMessage()) ;

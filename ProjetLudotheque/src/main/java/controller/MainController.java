@@ -41,7 +41,7 @@ public class MainController {
 
 	@FXML
 	private Label labelAdmin;
-	
+
 	@FXML
 	private Button btnListeAdherent;
 
@@ -56,24 +56,22 @@ public class MainController {
 
 	@FXML
 	private AnchorPane mainWindow;
-	
-	
+
 	// Atrribut timer qui sert dans la fonction startTimerToShowButtonsOrNot()
-	// Sert pour l'instant à donner l'illusion d'une connexion et déconnexion instantanée
+	// Sert pour l'instant à donner l'illusion d'une connexion et déconnexion
+	// instantanée
 	// A voir pour rendre tout ça instantané par le création de fonction statique
 	private Timer timer;
 
 	@FXML
 	public void initialize() {
 
-		
 		try {
 			loadFXML("Accueil"); // Chargement d'une vue au lancement de l'application
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		
 		// Masquer certains boutons et labels au démarrage de l'application
 		initializeButtons();
 	}
@@ -84,34 +82,43 @@ public class MainController {
 
 	@FXML
 	void handleButtonClick(ActionEvent event) {
-		
+
 		Button sourceButton = (Button) event.getSource();
 		String buttonName = sourceButton.getText();
 
-		
 		try {
 			// Sorte de routeur des différents boutons du menu du côté
 			switch (buttonName) {
 			case "Connexion":
 				loadFXML("ConnexionForm");
 				break;
-			// Historique : à but de test pour l'instant
-			// Quand les emprunts seront implémentés, historique différent entre adhérent et personnel
+			case "Mon profil":
+				if (SessionManager.getCurrentUser() != null) {
+					if (MainController.isAdherent()) {
+						loadFXML("ProfilAdherent");
+					} else {
+						loadFXML("ProfilPersonnel");
+					}
+				}
+				break;
 			case "Historique":
 				if (SessionManager.getCurrentUser() != null) {
-					loadFXML("ListeAdherents");
-				} else {
-					loadFXML("ListeAdherents");
+					if (MainController.isAdherent()) {
+						loadFXML("HistoriqueAdherent");
+					} else {
+						loadFXML("HistoriqueEmprunt");
+					}
 				}
 				break;
 			// Affichage des adhérents que si on est admin ou personnel
 			case "Liste des adhérents":
-				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				if (SessionManager.getCurrentUser() != null
+						&& (MainController.isAdmin() || MainController.isPersonnel())) {
 					loadFXML("ListeAdherents");
 				}
 				break;
 			case "Ajouter un Adhérent":
-				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())){
+				if (SessionManager.getCurrentUser() != null && MainController.isAdmin()) {
 					loadFXML("AjoutAdherent");
 				}
 				break;
@@ -121,7 +128,8 @@ public class MainController {
 				}
 				break;
 			case "Liste des employés":
-				if (SessionManager.getCurrentUser() != null && (MainController.isAdmin() || MainController.isPersonnel())) {
+				if (SessionManager.getCurrentUser() != null
+						&& (MainController.isAdmin() || MainController.isPersonnel())) {
 					loadFXML("ListePersonnel");
 				}
 				break;
@@ -145,10 +153,9 @@ public class MainController {
 		}
 
 		// Réagir à l'événement de clic de bouton ici
-		System.out.println("Le bouton " + buttonName + " a été cliqué !");
+//		System.out.println("Le bouton " + buttonName + " a été cliqué !");
 	}
 
-	
 	// Fonction de chargement d'une vue par le routeur
 	public void loadFXML(String fxml) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/ihm/" + fxml + ".fxml"));
@@ -157,7 +164,8 @@ public class MainController {
 		startTimerToShowButtonsOrNot();
 	}
 
-	// Fonctions qui gère l'affichage des boutons du menu principal suivant le rôle de l'utilisateur
+	// Fonctions qui gère l'affichage des boutons du menu principal suivant le rôle
+	// de l'utilisateur
 	public void showButtons() {
 
 		User user = SessionManager.getCurrentUser();
@@ -169,13 +177,10 @@ public class MainController {
 			btnDeconnexion.setManaged(true);
 			btnHistorique.setVisible(true);
 			btnHistorique.setManaged(true);
+			btnProfil.setVisible(true);
+			btnProfil.setManaged(true);
 
-			if (user.getRole().matches("adherent")) {
-
-				btnProfil.setVisible(true);
-				btnProfil.setManaged(true);
-
-			} else {
+			if (user.getRole().matches("personnel") || user.getRole().matches("admin")) {
 
 				btnAddJeu.setVisible(true);
 				btnAddJeu.setManaged(true);
@@ -188,6 +193,8 @@ public class MainController {
 
 				if (user.getRole().matches("admin")) {
 
+					btnProfil.setVisible(false);
+					btnProfil.setManaged(false);
 					labelAdmin.setVisible(true);
 					labelAdmin.setManaged(true);
 					btnListeEmploye.setVisible(true);
@@ -201,7 +208,8 @@ public class MainController {
 
 	}
 
-	// Fonction d'initialisation des boutons au lancement de l'application ou à la déconnexion
+	// Fonction d'initialisation des boutons au lancement de l'application ou à la
+	// déconnexion
 	private void initializeButtons() {
 		btnConnexion.setVisible(true);
 		btnConnexion.setManaged(true);
@@ -224,44 +232,50 @@ public class MainController {
 		btnListeEmploye.setVisible(false);
 		btnListeEmploye.setManaged(false);
 		btnAddEmploye.setVisible(false);
-		btnAddEmploye.setManaged(false);}
-	
+		btnAddEmploye.setManaged(false);
+	}
+
 	// Fonction qui donne l'illusion de la connexion et déconnexion instantanée
-	// Elle vérifie si une session est créée avec un utilisateur défini pour lancer la fonction showButtons()
+	// Elle vérifie si une session est créée avec un utilisateur défini pour lancer
+	// la fonction showButtons()
 	// A améliorer pour éviter le timer
 	private void startTimerToShowButtonsOrNot() {
 
-        timer = new Timer();
-        
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if (SessionManager.getCurrentUser()!=null) {
-                    showButtons();
-                    timer.cancel();
-                } else {
-                	initializeButtons();
-                }
-            }
-        }, 0, 1000);}
-    
+		timer = new Timer();
 
-	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour divers affichages dans l'application
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				if (SessionManager.getCurrentUser() != null) {
+					showButtons();
+					timer.cancel();
+				} else {
+					initializeButtons();
+				}
+			}
+		}, 0, 1000);
+	}
+
+	// A la session créée, l'utilisateur étant défini, on vérifie son rôle pour
+	// divers affichages dans l'application
 	// A ajouter isAdherent()
-	// Ecriture en ternaire que je trouve plus simple lorsqu'on a des résultats de conditions if qui ne sont pas longues
-	// A tester si SessionManager.getCurrentUser().getRole().matches(...) est suffisant
+	// Ecriture en ternaire que je trouve plus simple lorsqu'on a des résultats de
+	// conditions if qui ne sont pas longues
+	// A tester si SessionManager.getCurrentUser().getRole().matches(...) est
+	// suffisant
 	public static boolean isPersonnel() {
-		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("personnel") : false;}
-
-
+		return SessionManager.getCurrentUser() != null ? SessionManager.getCurrentUser().getRole().matches("personnel")
+				: false;
+	}
 
 	public static boolean isAdmin() {
-		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("admin") : false;
+		return SessionManager.getCurrentUser() != null ? SessionManager.getCurrentUser().getRole().matches("admin")
+				: false;
 	}
-	
+
 	public static boolean isAdherent() {
-		return SessionManager.getCurrentUser()!=null ? SessionManager.getCurrentUser().getRole().matches("adherent") : false;
+		return SessionManager.getCurrentUser() != null ? SessionManager.getCurrentUser().getRole().matches("adherent")
+				: false;
 	}
 
 }
-

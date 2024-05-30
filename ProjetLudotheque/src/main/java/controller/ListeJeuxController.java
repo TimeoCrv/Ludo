@@ -56,6 +56,9 @@ public class ListeJeuxController extends PageInit {
 	}
 
 	public ObservableList<Jeu> getJeuData() {
+//		for(Jeu jeu : jeuData) {
+//			System.out.println(jeu.getNom());
+//		}
 		return jeuData;
 	}
 
